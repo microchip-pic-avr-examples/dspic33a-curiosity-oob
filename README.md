@@ -4,7 +4,7 @@
     <img alt="Microchip Logo." src="images/microchip_logo_black_red.png">
 </picture>
 
-## %repoDescritpion%
+## dspic33a curiosity oob
 
 Board Image if any.
 
