@@ -21,10 +21,10 @@ limitations under the License.
 #include <stdbool.h>
 #include <stdint.h>
 
-void LED_GREEN_Initialize();
-void LED_GREEN_On();
-void LED_GREEN_Off();
-void LED_GREEN_Toggle();
+void LED_GREEN_Initialize(void);
+void LED_GREEN_On(void);
+void LED_GREEN_Off(void);
+void LED_GREEN_Toggle(void);
 void LED_GREEN_Set(bool on);
 void LED_GREEN_SetIntensity(uint16_t intensity);
 

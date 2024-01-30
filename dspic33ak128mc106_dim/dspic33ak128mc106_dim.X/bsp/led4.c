@@ -15,24 +15,24 @@ limitations under the License.
 *******************************************************************************/
 
 #include <xc.h>
-#include "led_simple.h"
+#include "led4.h"
 
-void LED4_Initialize()
+void LED4_Initialize(void)
 {
     TRISCbits.TRISC7 = 0;
 }
 
-void LED4_On()
+void LED4_On(void)
 {
     LATCbits.LATC7 = 1;
 }
 
-void LED4_Off()
+void LED4_Off(void)
 {
     LATCbits.LATC7 = 0;
 }
 
-void LED4_Toggle()
+void LED4_Toggle(void)
 {
     LATCbits.LATC7 ^= 1;
 }

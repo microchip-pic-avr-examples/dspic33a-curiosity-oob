@@ -48,7 +48,9 @@ void POT_Initialize(void)
     AD1CONbits.ON = 1;
     
     // Wait when ADC will be ready/calibrated.
-    while(AD1CONbits.ADRDY == 0);
+    while(AD1CONbits.ADRDY == 0)
+    {
+    }
 }
 
 uint16_t POT_Read(void)
@@ -56,7 +58,10 @@ uint16_t POT_Read(void)
     // Trigger channel #1 in software and wait for the result.
     AD1SWTRGbits.CH1TRG = 1;
     // Wait for a conversion ready flag.
-    while(AD1STATbits.CH1RDY == 0);
+    while(AD1STATbits.CH1RDY == 0)
+    {
+    }
+    
     // Read result. It will clear the conversion ready flag.
     return AD1DATA1;
 }

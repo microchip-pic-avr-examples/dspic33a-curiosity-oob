@@ -20,10 +20,10 @@ limitations under the License.
 #include "led_simple.h"
 #include <stdbool.h>
 
-void LED7_Initialize();
-void LED7_On();
-void LED7_Off();
-void LED7_Toggle();
+void LED7_Initialize(void);
+void LED7_On(void);
+void LED7_Off(void);
+void LED7_Toggle(void);
 void LED7_Set(bool on);
 
 extern struct LED_SIMPLE led7;

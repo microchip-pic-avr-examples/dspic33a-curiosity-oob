@@ -15,9 +15,9 @@ limitations under the License.
 *******************************************************************************/
 
 #include <xc.h>
-#include "led_dimmable.h"
+#include "led_blue.h"
 
-void LED_BLUE_Initialize()
+void LED_BLUE_Initialize(void)
 {
     TRISDbits.TRISD2 = 0;
     
@@ -44,17 +44,17 @@ void LED_BLUE_Initialize()
     PG1CONbits.ON = 0;
 }
 
-void LED_BLUE_On()
+void LED_BLUE_On(void)
 {
     PG1CONbits.ON = 1;
 }
 
-void LED_BLUE_Off()
+void LED_BLUE_Off(void)
 {
     PG1CONbits.ON = 0;
 }
 
-void LED_BLUE_Toggle()
+void LED_BLUE_Toggle(void)
 {
     PG1CONbits.ON ^= 1;
 }

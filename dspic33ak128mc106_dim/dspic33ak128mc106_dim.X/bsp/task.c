@@ -21,7 +21,7 @@ limitations under the License.
 #include <xc.h>
 
 #ifndef TASK_MAX_COUNT
-#define TASK_MAX_COUNT 10
+#define TASK_MAX_COUNT 10u
 #endif
 
 struct TASK
@@ -37,7 +37,7 @@ void TASK_Initialize(void)
 {
     T1CON = 0;
     
-    memset(tasks, 0, sizeof(tasks));
+    (void)memset(tasks, 0, sizeof(tasks));
     
     PR1 = 0x000007DA;
 
@@ -52,7 +52,7 @@ bool TASK_Request(void (*task)(void), uint32_t milliseconds)
     
     for(i=0; i<TASK_MAX_COUNT; i++)
     {
-        if(tasks[i].rate == 0)
+        if(tasks[i].rate == 0u)
         {
             tasks[i].rate = milliseconds;
             tasks[i].task = task;

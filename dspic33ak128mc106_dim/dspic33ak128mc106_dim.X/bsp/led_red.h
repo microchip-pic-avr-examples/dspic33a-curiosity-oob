@@ -17,14 +17,14 @@ limitations under the License.
 #ifndef LED_RED_H
 #define LED_RED_H
 
-#include "led_simple.h"
+#include "led_dimmable.h"
 #include <stdbool.h>
 #include <stdint.h>
 
-void LED_RED_Initialize();
-void LED_RED_On();
-void LED_RED_Off();
-void LED_RED_Toggle();
+void LED_RED_Initialize(void);
+void LED_RED_On(void);
+void LED_RED_Off(void);
+void LED_RED_Toggle(void);
 void LED_RED_Set(bool on);
 void LED_RED_SetIntensity(uint16_t intensity);
 

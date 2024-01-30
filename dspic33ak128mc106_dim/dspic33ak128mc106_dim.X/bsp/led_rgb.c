@@ -17,32 +17,33 @@ limitations under the License.
 #include <xc.h>
 #include "led_color.h"
 
+#include "led_rgb.h"
 #include "led_red.h"
 #include "led_green.h"
 #include "led_blue.h"
 
-void LED_RGB_Initialize()
+void LED_RGB_Initialize(void)
 {
     ledRed.initialize();
     ledGreen.initialize();
     ledBlue.initialize();
 }
 
-void LED_RGB_On()
+void LED_RGB_On(void)
 {
     ledRed.on();
     ledGreen.on();
     ledBlue.on();
 }
 
-void LED_RGB_Off()
+void LED_RGB_Off(void)
 {
     ledRed.off();
     ledGreen.off();
     ledBlue.off();
 }
 
-void LED_RGB_Toggle()
+void LED_RGB_Toggle(void)
 {
     ledRed.toggle();
     ledGreen.toggle();

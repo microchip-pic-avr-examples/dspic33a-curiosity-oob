@@ -15,9 +15,9 @@ limitations under the License.
 *******************************************************************************/
 
 #include <xc.h>
-#include "led_dimmable.h"
+#include "led_red.h"
 
-void LED_RED_Initialize()
+void LED_RED_Initialize(void)
 {
     TRISCbits.TRISC2 = 0;
     
@@ -44,17 +44,17 @@ void LED_RED_Initialize()
     PG4CONbits.ON = 0;
 }
 
-void LED_RED_On()
+void LED_RED_On(void)
 {
     PG4CONbits.ON = 1;
 }
 
-void LED_RED_Off()
+void LED_RED_Off(void)
 {
     PG4CONbits.ON = 0;
 }
 
-void LED_RED_Toggle()
+void LED_RED_Toggle(void)
 {
     PG4CONbits.ON ^= 1;
 }

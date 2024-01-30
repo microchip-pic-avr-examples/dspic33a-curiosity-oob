@@ -21,10 +21,10 @@ limitations under the License.
 #include <stdbool.h>
 #include <stdint.h>
 
-void LED_RGB_Initialize();
-void LED_RGB_On();
-void LED_RGB_Off();
-void LED_RGB_Toggle();
+void LED_RGB_Initialize(void);
+void LED_RGB_On(void);
+void LED_RGB_Off(void);
+void LED_RGB_Toggle(void);
 void LED_RGB_Set(bool on);
 void LED_RGB_SetSolor(uint8_t red, uint8_t green, uint8_t blue);
 

@@ -21,10 +21,10 @@ limitations under the License.
 #include <stdbool.h>
 #include <stdint.h>
 
-void LED_BLUE_Initialize();
-void LED_BLUE_On();
-void LED_BLUE_Off();
-void LED_BLUE_Toggle();
+void LED_BLUE_Initialize(void);
+void LED_BLUE_On(void);
+void LED_BLUE_Off(void);
+void LED_BLUE_Toggle(void);
 void LED_BLUE_Set(bool on);
 void LED_BLUE_SetIntensity(uint16_t request);
 
