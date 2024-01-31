@@ -78,7 +78,7 @@ void CLOCK_Initialize(void);
  * @return   true   - Auxiliary PLL locked
  * @return   false  - Auxiliary PLL not locked
  */
-bool CLOCK_AuxPllLockStatusGet();
+bool CLOCK_AuxPllLockStatusGet(void);
 
 #endif    /* CLOCK_H */
 /**

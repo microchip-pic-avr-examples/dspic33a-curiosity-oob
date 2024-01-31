@@ -40,6 +40,13 @@
 #define ERROR_HANDLER __attribute__((interrupt,no_auto_psv))
 #define FAILSAFE_STACK_GUARDSIZE 8
 
+void ERROR_HANDLER _GeneralTrap(void);
+void ERROR_HANDLER _MathErrorTrap(void);
+void ERROR_HANDLER _BusErrorTrap(void);
+void ERROR_HANDLER _AddressErrorTrap(void);
+void ERROR_HANDLER _IllegalInstructionTrap(void);
+void ERROR_HANDLER _StackErrorTrap(void);
+
 // A private place to store the error code if we run into a severe error
 
 static uint16_t TRAPS_error_code = -1;

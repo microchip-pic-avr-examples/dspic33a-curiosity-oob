@@ -44,58 +44,46 @@ void CLOCK_Initialize(void)
 {
     OSCCFGbits.POSCMD = POSCMD_XT_MODE;
     
- /**   PLL1DIV |= (PLLDIV_POSTDIV1_2|PLLDIV_PLLFBDIV(50)|PLLDIV_RFDIV(1)|PLLDIV_POSTDIV2_1);
-    PLL1CON |= (PLLCON_ON_1|PLLCON_OE_1|PLLCON_NOSC_POSC);
-    
-            
-    //Enable PLL Input and Feedback Divider update
-    PLL1CONbits.PLLSWEN = 1;
-    while (PLL1CONbits.PLLSWEN == 1);
-    PLL1CONbits.FOUTSWEN = 1;
-    while (PLL1CONbits.FOUTSWEN);
-    PLL1CONbits.OSWEN = 1; //enable clock switching
-    while (PLL1CONbits.OSWEN); //wait for switching(hardware clear)
-    while(!OSCCTRLbits.PLL1RDY); //wait for clock to be ready
-**/
-    
     CLK1CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
     CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0)|CLKDIV_INTDIV_2x(1));
         
     CLK1CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK1CONbits.DIVSWEN); //hardware cleared 
+    while (CLK1CONbits.DIVSWEN) //hardware cleared 
+    {
+    }
 
     CLK1CONbits.OSWEN = 1; //enable clock switching
-    while (CLK1CONbits.OSWEN); //wait for switching(hardware clear))
-
-    //IFS0bits.CLKFAILIF = 0; // enable clock failure interrupt
-    //IEC0bits.CLKFAILIE = 1;
+    while (CLK1CONbits.OSWEN) //wait for switching(hardware clear))
+    {
+    } 
     
     //Generator3 clock switch
     CLK3CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_BFRC);
-    //CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0)|CLKDIV_INTDIV_2x(1));
         
     CLK3CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK3CONbits.DIVSWEN); //hardware cleared 
+    while (CLK3CONbits.DIVSWEN) //hardware cleared 
+    {
+    }
 
     CLK3CONbits.OSWEN = 1; //enable clock switching
-    while (CLK3CONbits.OSWEN); //wait for switching(hardware clear))
+    while (CLK3CONbits.OSWEN) //wait for switching(hardware clear))
+    {
+    }
     
     //Generator8 clock switch
     CLK8CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
-    //CLK12DIV = (CLKDIV_FRACDIV_2_P1x(0)|CLKDIV_INTDIV_2x(1));
         
     CLK8CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK8CONbits.DIVSWEN); //hardware cleared 
+    while (CLK8CONbits.DIVSWEN) //hardware cleared 
+    {
+    }
 
     CLK8CONbits.OSWEN = 1; //enable clock switching
-    while (CLK8CONbits.OSWEN); //wait for switching(hardware clear))
+    while (CLK8CONbits.OSWEN) //wait for switching(hardware clear))
+    {
+    }
 
-//    IFS0bits.CLKFAILIF = 0; // enable clock failure interrupt
-//    IEC0bits.CLKFAILIE = 1;
-
-    
     //Clock diagnostics control register, clock monitor and fault injection bits
-    //CLKDIAG = 0x0; This reg is not present in compiler yet
     
     //FRC tuner
     FRCOSCTUN = 0x0; 
@@ -162,17 +150,4 @@ void CLOCK_Initialize(void)
     CM2LWARN = 0x0;
     CM3LWARN = 0x0;
     CM4LWARN = 0x0;
-    
-    //Reference clock selection status fail
-    //CLKFAIL
-    
-    //Clock generator selection status fail
-    //SCSFAIL
-    
-    //Oscillator configuration register
-    //unlock sequence to be performed before modifying this register
-    //OSCCFG
-    
-    //Oscillator control register
-    //OSCCTRL
 }

@@ -51,7 +51,7 @@ void SYSTEM_Initialize(void);
  * @brief   Initializes the CPU core control register
  * @return  none 
  */
-inline static void SYSTEM_CORCONInitialize()
+inline static void SYSTEM_CORCONInitialize(void)
 {
     CORCON = (CORCON & 0x00F2) | CORCON_MODE_PORVALUES;
 }

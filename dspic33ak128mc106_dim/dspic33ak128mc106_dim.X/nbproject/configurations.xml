@@ -36,6 +36,7 @@
           <itemPath>mcc_generated_files/system/traps.h</itemPath>
           <itemPath>mcc_generated_files/system/system_types.h</itemPath>
           <itemPath>mcc_generated_files/system/system.h</itemPath>
+          <itemPath>mcc_generated_files/system/clock.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <itemPath>mcc_generated_files/uart/uart1.h</itemPath>
@@ -99,8 +100,8 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>bsp</Elem>
-    <Elem>mcc_generated_files/system/src</Elem>
     <Elem>mcc_generated_files/uart</Elem>
+    <Elem>mcc_generated_files/system</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -452,6 +453,8 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="800000-81ffff"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/work/repos/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

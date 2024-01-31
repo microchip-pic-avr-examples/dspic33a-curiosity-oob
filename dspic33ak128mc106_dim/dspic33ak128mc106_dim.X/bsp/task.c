@@ -18,7 +18,7 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
-
+#include "task.h"
 #include <string.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -61,7 +61,7 @@ bool TASK_Request(void (*task)(void), uint32_t milliseconds)
         {
             tasks[i].rate = milliseconds;
             tasks[i].task = task;
-            tasks[i].count = 0;
+            tasks[i].count = 0u;
             
             status = true;
             break;
@@ -79,7 +79,7 @@ void TASK_Cancel(void (*task)(void))
     {
         if(tasks[i].task == task)
         {
-            tasks[i].rate = 0;
+            tasks[i].rate = 0u;
         }
     }
 }
@@ -90,14 +90,14 @@ void __attribute__ ( ( __interrupt__ , auto_psv ) ) _T1Interrupt ( void )
 
     for (i=0; i<TASK_MAX_COUNT; i++)
     {
-        if (tasks[i].rate != 0)
+        if (tasks[i].rate != 0u)
         {
             tasks[i].count++ ;
 
             if (tasks[i].count == tasks[i].rate)
             {
                 tasks[i].task() ;
-                tasks[i].count = 0 ;
+                tasks[i].count = 0u ;
             }
         }
     }

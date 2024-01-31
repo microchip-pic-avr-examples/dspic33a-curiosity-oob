@@ -64,9 +64,9 @@ void LED_RGB_Set(bool on)
 
 void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue)
 {
-    ledRed.setIntensity(red << 8);
-    ledGreen.setIntensity(green << 8);
-    ledBlue.setIntensity(blue << 8);
+    ledRed.setIntensity((uint16_t)red << 8u);
+    ledGreen.setIntensity((uint16_t)green << 8u);
+    ledBlue.setIntensity((uint16_t)blue << 8u);
 }
 
 struct LED_COLOR ledRGB = 

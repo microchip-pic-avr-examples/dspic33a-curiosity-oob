@@ -10,8 +10,8 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>bsp</sourceRootElem>
-                <sourceRootElem>mcc_generated_files/system/src</sourceRootElem>
                 <sourceRootElem>mcc_generated_files/uart</sourceRootElem>
+                <sourceRootElem>mcc_generated_files/system</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
