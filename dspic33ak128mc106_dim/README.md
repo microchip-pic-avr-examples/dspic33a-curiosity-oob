@@ -5,7 +5,7 @@
 </picture>
 
 ## dsPIC33AK128MC106 Curiosity GP DIM Out of Box Demo
-![Board picture](images/dim.jpg)
+![Board picture](./images/dim.jpg)
 
 ## Summary
 Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curiosity Platform Development Board
@@ -47,7 +47,7 @@ Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curio
 | Pressing '6' in terminal | LED6 toggles |
 | Pressing '7' in terminal | LED7 toggles |
 
-![Example terminal image](images/terminal.png)
+![Example terminal image](./images/terminal.png)
 
 ![Curiosity Platform Board](../images/curiosity.jpg)
  

@@ -5,7 +5,7 @@
 </picture>
 
 ## dsPIC33A Curiosity Platform Development Board Out of Box Demos
-![Board image](images/curiosity.jpg)
+![Board image](./images/curiosity.jpg)
 
 ## Summary
 Collection of out of box demos for the dsPIC33A Curiosity Platform Development Board for each supported microcontroller Dual Inline Module (DIM).
