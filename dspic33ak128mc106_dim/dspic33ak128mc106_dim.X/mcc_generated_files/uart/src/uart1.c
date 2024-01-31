@@ -266,7 +266,7 @@ uint32_t UART1_BaudRateGet(void)
     uint32_t baudRate;
     
     brgValue = UART1_BRGCountGet();
-    if((U1CONbits.CLKMOD == 1) && (brgValue != 0))
+    if((U1CONbits.CLKMOD == 1) && (brgValue != 0u))
     {
         baudRate = UART1_BRG_TO_BAUD_WITH_FRACTIONAL(brgValue);
     }
