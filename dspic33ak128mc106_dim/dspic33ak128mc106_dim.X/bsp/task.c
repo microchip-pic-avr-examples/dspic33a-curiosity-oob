@@ -82,8 +82,9 @@ void TASK_Cancel(void (*task)(void))
             tasks[i].rate = 0u;
         }
     }
-}
 
+}
+void __attribute__ ( ( __interrupt__ , auto_psv ) ) _T1Interrupt ( void );
 void __attribute__ ( ( __interrupt__ , auto_psv ) ) _T1Interrupt ( void )
 {
     unsigned int i ;

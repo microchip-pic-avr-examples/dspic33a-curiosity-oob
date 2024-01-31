@@ -37,8 +37,6 @@
 
 // Section: Includes
 #include <xc.h>
-#include <stddef.h>
-#include <stdio.h>
 #include "../pins.h"
 
 // Section: Driver Interface Function Definitions

@@ -45,15 +45,15 @@ void CLOCK_Initialize(void)
     OSCCFGbits.POSCMD = POSCMD_XT_MODE;
     
     CLK1CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
-    CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0)|CLKDIV_INTDIV_2x(1));
+    CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0u)|CLKDIV_INTDIV_2x(1u));
         
     CLK1CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK1CONbits.DIVSWEN) //hardware cleared 
+    while (CLK1CONbits.DIVSWEN == 1) //hardware cleared 
     {
     }
 
     CLK1CONbits.OSWEN = 1; //enable clock switching
-    while (CLK1CONbits.OSWEN) //wait for switching(hardware clear))
+    while (CLK1CONbits.OSWEN == 1) //wait for switching(hardware clear))
     {
     } 
     
@@ -61,12 +61,12 @@ void CLOCK_Initialize(void)
     CLK3CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_BFRC);
         
     CLK3CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK3CONbits.DIVSWEN) //hardware cleared 
+    while (CLK3CONbits.DIVSWEN == 1) //hardware cleared 
     {
     }
 
     CLK3CONbits.OSWEN = 1; //enable clock switching
-    while (CLK3CONbits.OSWEN) //wait for switching(hardware clear))
+    while (CLK3CONbits.OSWEN == 1) //wait for switching(hardware clear))
     {
     }
     
@@ -74,12 +74,12 @@ void CLOCK_Initialize(void)
     CLK8CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
         
     CLK8CONbits.DIVSWEN = 1; //enable divide factors to get updated
-    while (CLK8CONbits.DIVSWEN) //hardware cleared 
+    while (CLK8CONbits.DIVSWEN == 1) //hardware cleared 
     {
     }
 
     CLK8CONbits.OSWEN = 1; //enable clock switching
-    while (CLK8CONbits.OSWEN) //wait for switching(hardware clear))
+    while (CLK8CONbits.OSWEN == 1) //wait for switching(hardware clear))
     {
     }
 
