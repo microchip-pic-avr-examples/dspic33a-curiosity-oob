@@ -42,13 +42,11 @@
  @brief    This Enum can be used to know UART error type 
            using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
 */
-enum UART_ERROR_MASKS{
-    UART_ERROR_FRAMING_MASK = 0x1U,
-    UART_ERROR_PARITY_MASK = 0x2U,
-    UART_ERROR_RX_OVERRUN_MASK = 0x4U,
-    UART_ERROR_TX_COLLISION_MASK = 0x8U,
-    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10U,
-};
+#define UART_ERROR_FRAMING_MASK             0x01U
+#define UART_ERROR_PARITY_MASK              0x02U
+#define UART_ERROR_RX_OVERRUN_MASK          0x04U
+#define UART_ERROR_TX_COLLISION_MASK        0x08U
+#define UART_ERROR_AUTOBAUD_OVERFLOW_MASK   0x10U
 
 #endif
 
