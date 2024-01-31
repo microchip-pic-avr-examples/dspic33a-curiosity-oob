@@ -45,7 +45,7 @@ void CLOCK_Initialize(void)
     OSCCFGbits.POSCMD = POSCMD_XT_MODE;
     
     CLK1CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
-    CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0u)|CLKDIV_INTDIV_2x(1u));
+    CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0UL)|CLKDIV_INTDIV_2x(1UL));
         
     CLK1CONbits.DIVSWEN = 1; //enable divide factors to get updated
     while (CLK1CONbits.DIVSWEN == 1) //hardware cleared 

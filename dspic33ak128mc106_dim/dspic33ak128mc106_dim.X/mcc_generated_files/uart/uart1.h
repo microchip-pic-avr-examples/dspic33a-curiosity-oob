@@ -282,7 +282,7 @@ void UART1_BRGCountSet(uint32_t brgValue);
  * @ingroup  uartdriver
  * @brief    Gets the BRG value of UART1
  * @param    none
- * @return   Combined BRG value upto 20 bits        /////needs to change
+ * @return   Combined BRG value upto 20 bits
  */
 uint32_t UART1_BRGCountGet(void);
 

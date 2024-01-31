@@ -239,7 +239,7 @@ void UART1_BaudRateSet(uint32_t baudRate)
 {
     uint32_t brgValue;
     
-    if((baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL) && (baudRate != 0))
+    if((baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL) && (baudRate != 0u))
     {
         U1CONbits.CLKMOD = 1;
         U1CONbits.BRGS = 0;
@@ -283,10 +283,16 @@ uint32_t UART1_BaudRateGet(void)
 
 int __attribute__((__section__(".libc.write"))) write(int handle, void *buffer, unsigned int len) {
     unsigned int numBytesWritten = 0 ;
-    while(!UART1_IsTxDone());
+    while(!UART1_IsTxDone())
+    {
+        
+    }
     while(numBytesWritten<len)
     {
-        while(!UART1_IsTxReady());
+        while(!UART1_IsTxReady())
+        {
+            
+        }
         UART1_Write(*((uint8_t *)buffer + numBytesWritten++));
     }
     return numBytesWritten;
