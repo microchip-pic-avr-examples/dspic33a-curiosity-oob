@@ -18,14 +18,22 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
-#ifndef S1_APP_H
-#define S1_APP_H
 #include "application.h"
+#include "bsp/led6.h"
 
-void s1AppStart(void);
-void s1AppStop(void);
-void s1AppStop(void);
+void s2AppStart(void){
+    led6.on();
+}
 
-extern struct APPLICATION s1App;
+void s2AppRun(void){
+}
 
-#endif
+void s2AppStop(void){
+    led6.off();
+}
+
+struct APPLICATION s2App = {
+    &s2AppStart,
+    &s2AppRun,
+    &s2AppStop
+};

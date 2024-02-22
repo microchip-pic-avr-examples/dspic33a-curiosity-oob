@@ -21,19 +21,19 @@
 #include "application.h"
 #include "bsp/led7.h"
 
-void s1Start(void){
+void s1AppStart(void){
     led7.on();
 }
 
-void s1Run(void){
+void s1AppRun(void){
 }
 
-void s1Stop(void){
+void s1AppStop(void){
     led7.off();
 }
 
 struct APPLICATION s1App = {
-    &s1Start,
-    &s1Run,
-    &s1Stop
+    &s1AppStart,
+    &s1AppRun,
+    &s1AppStop
 };

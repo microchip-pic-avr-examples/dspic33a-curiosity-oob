@@ -71,9 +71,8 @@ int main(void)
     SYSTEM_Initialize();
     initializeAllLEDs();
     initializeAllButtons();
-    
     while(1)
-    {  
+    {                
         if (s1.isPressed()){
             led7.on();
         }
@@ -86,5 +85,5 @@ int main(void)
         else{
             turnOffAllLEDs();
         }
-    }    
-}
+    }
+}    

@@ -18,14 +18,14 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
-#ifndef S1_APP_H
-#define S1_APP_H
+#ifndef S3_APP_H
+#define S3_APP_H
 #include "application.h"
 
-void s1AppStart(void);
-void s1AppStop(void);
-void s1AppStop(void);
+void s3AppStart(void);
+void s3AppRun(void);
+void s3AppStop(void);
 
-extern struct APPLICATION s1App;
+extern struct APPLICATION s3App;
 
 #endif
