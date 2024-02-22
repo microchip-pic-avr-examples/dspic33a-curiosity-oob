@@ -55,7 +55,6 @@ void terminalAppStop(void){
     ledGreen.off();
 }
 
-
 struct APPLICATION terminalApp = {
     &terminalAppStart,
     &terminalAppRun,

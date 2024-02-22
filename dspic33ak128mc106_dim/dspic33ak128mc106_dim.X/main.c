@@ -34,6 +34,13 @@
 #include "bsp/s1.h"
 #include "bsp/s2.h"
 #include "bsp/s3.h"
+#include "application.h"
+#include "s1App.h"
+#include "s2App.h"
+#include "s3App.h"
+#include "terminalApp.h"
+#include "mcc_generated_files/uart/uart1.h"
+#include <stdio.h>
 
 void initializeAllLEDs(void){
     ledRed.initialize();
@@ -71,19 +78,61 @@ int main(void)
     SYSTEM_Initialize();
     initializeAllLEDs();
     initializeAllButtons();
-    while(1)
-    {                
-        if (s1.isPressed()){
-            led7.on();
+    
+    struct APPLICATION *currentApp = NULL;
+    bool isUARTRunning = false;
+    
+    while (1) {
+        if(UART1_IsRxReady()){
+            if(currentApp != &terminalApp){
+                if(currentApp != NULL){
+                    currentApp ->stop();
+                } 
+                terminalApp.start();
+                currentApp = &terminalApp;
+                isUARTRunning = true;
+            }
+            if(currentApp == &terminalApp){
+                terminalApp.run();
+            }
+        }
+        if(s1.isPressed()){
+            if(currentApp != &s1App){
+                if(currentApp != NULL){
+                    currentApp ->stop();
+                } 
+                s1App.start();
+                currentApp = &s1App;
+                isUARTRunning = false;
+            }
         }
         else if(s2.isPressed()){
-            led6.on();
+            if(currentApp != &s2App){
+                if(currentApp != NULL){
+                    currentApp->stop();
+                }
+                s2App.start();
+                currentApp = &s2App;
+                isUARTRunning = false;
+            }
         }
         else if(s3.isPressed()){
-            led5.on();
+            if(currentApp != &s3App){
+                if(currentApp != NULL){
+                    currentApp->stop();
+                }
+                s3App.start();
+                currentApp = &s3App;
+                isUARTRunning = false;
+            }
         }
-        else{
-            turnOffAllLEDs();
+        else
+        {
+            if(currentApp != NULL && !isUARTRunning){
+                currentApp->stop();
+                turnOffAllLEDs();
+                currentApp = NULL;
+            }
         }
     }
-}    
+}
