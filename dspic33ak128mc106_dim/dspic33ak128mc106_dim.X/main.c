@@ -28,6 +28,9 @@
 #include "bsp/led2.h"
 #include "bsp/led1.h"
 #include "bsp/led0.h"
+#include "bsp/led_red.h"
+#include "bsp/led_blue.h"
+#include "bsp/led_green.h"
 #include "bsp/led_color.h"
 #include "bsp/led_rgb.h"
 #include "bsp/s1.h"
@@ -83,6 +86,10 @@ void readPotentiometer(void){
         
        printf("\033[12;0f");
     }
+    
+    ledRed.setIntensity(potentiometerReading);
+    ledGreen.setIntensity(potentiometerReading);
+    ledBlue.setIntensity(potentiometerReading);
 }
 
 int main(void)
@@ -92,7 +99,7 @@ int main(void)
     initializeAllButtons();
     TASK_Initialize();
     pot.initialize();
-    
+    ledRGB.on();
     struct APPLICATION *currentApp = NULL;
     bool isUARTRunning = false;
     
