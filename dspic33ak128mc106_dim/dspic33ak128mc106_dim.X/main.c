@@ -92,6 +92,31 @@ void readPotentiometer(void){
     ledBlue.setIntensity(potentiometerReading);
 }
 
+void printMenu(void){
+    printf("\033[1;0f");
+    printf("------------------------------------");
+    printf("\033[2;0f");
+    printf("dsPIC33A128MC106 Out of Box Demo");
+    printf("\033[3;0f");
+    printf("------------------------------------");
+    
+    printf("\033[4;0f");
+    printf("Hold Switch S1 - LED7 turns on");
+    
+    printf("\033[5;0f");
+    printf("Hold Switch S2 - LED6 turns on");
+    
+    printf("\033[6;0f");
+    printf("Hold Switch S3 - LED5 turns on");
+    
+    printf("\033[7;0f");
+    printf("Press 'r', 'g', 'b' will toggle red, green, and blue states of the RGB LED "
+            "respectively.");
+    
+    printf("\033[8;0f");
+    printf("Turning the potentiometer will adjust the intensity of the RGB LED");
+}
+
 int main(void)
 {       
     SYSTEM_Initialize();
@@ -100,11 +125,14 @@ int main(void)
     TASK_Initialize();
     pot.initialize();
     ledRGB.on();
+    
     struct APPLICATION *currentApp = NULL;
     bool isUARTRunning = false;
     
     //Clear terminal screen
     printf("\033[2J"); 
+    
+    printMenu();
     
     TASK_Request(readPotentiometer, 200);
     while (1) {     
