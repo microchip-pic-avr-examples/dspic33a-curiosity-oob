@@ -19,8 +19,10 @@
     THIS SOFTWARE.
 */
 #include "application.h"
-#include "bsp/led7.h"
 #include "mcc_generated_files/uart/uart1.h"
+#include "bsp/led_red.h"
+#include "bsp/led_green.h"
+#include "bsp/led_blue.h"
 #include "bsp/led_rgb.h"
 #include "bsp/led_color.h"
 
@@ -29,16 +31,15 @@ void terminalAppStart(void){
     if(UART1_IsRxReady()){
         dataRx = UART1_Read();
         if(dataRx){
-            ledRGB.on();
             switch(dataRx){
                 case 'r': 
-                    ledRGB.setColor(255,0,0); 
+                    ledRed.toggle();
                     break;
                 case 'g': 
-                    ledRGB.setColor(0,255,0); 
+                    ledGreen.toggle();
                     break;   
                 case 'b': 
-                    ledRGB.setColor(0,0,255); 
+                    ledBlue.toggle();
                     break;
                 default: break;
             }
