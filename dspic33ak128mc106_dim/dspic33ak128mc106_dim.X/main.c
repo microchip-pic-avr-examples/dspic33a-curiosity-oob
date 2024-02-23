@@ -39,6 +39,8 @@
 #include "s3App.h"
 #include "terminalApp.h"
 #include "mcc_generated_files/uart/uart1.h"
+#include "bsp/pot.h"
+#include "bsp/task.h"
 #include <stdio.h>
 
 void initializeAllLEDs(void){
@@ -70,14 +72,34 @@ void turnOffAllLEDs(void){
     led7.off();
 }
 
+void readPotentiometer(void){
+    uint16_t potentiometerReading = pot.read();
+    static uint16_t previousPotentiometerReading;
+    
+    if(potentiometerReading != previousPotentiometerReading){
+        printf("\033[10;0f");
+        printf("Potentiometer: %X\n", potentiometerReading);
+        previousPotentiometerReading = potentiometerReading;
+        
+       printf("\033[12;0f");
+    }
+}
+
 int main(void)
 {       
     SYSTEM_Initialize();
     initializeAllLEDs();
     initializeAllButtons();
+    TASK_Initialize();
+    pot.initialize();
     
     struct APPLICATION *currentApp = NULL;
     bool isUARTRunning = false;
+    
+    //Clear terminal screen
+    printf("\033[2J"); 
+    
+    TASK_Request(readPotentiometer, 200);
     while (1) {     
         if(UART1_IsRxReady()){
             if(currentApp != &terminalApp){
