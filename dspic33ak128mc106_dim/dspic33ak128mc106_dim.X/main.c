@@ -20,9 +20,6 @@
 */
 
 #include "mcc_generated_files/system/system.h"
-#include "bsp/led_blue.h"
-#include "bsp/led_red.h"
-#include "bsp/led_green.h"
 #include "bsp/led7.h"
 #include "bsp/led6.h"
 #include "bsp/led5.h"
@@ -31,6 +28,8 @@
 #include "bsp/led2.h"
 #include "bsp/led1.h"
 #include "bsp/led0.h"
+#include "bsp/led_color.h"
+#include "bsp/led_rgb.h"
 #include "bsp/s1.h"
 #include "bsp/s2.h"
 #include "bsp/s3.h"
@@ -43,9 +42,7 @@
 #include <stdio.h>
 
 void initializeAllLEDs(void){
-    ledRed.initialize();
-    ledGreen.initialize();
-    ledBlue.initialize();
+    ledRGB.initialize();
     led0.initialize();
     led1.initialize();
     led2.initialize();
@@ -81,8 +78,7 @@ int main(void)
     
     struct APPLICATION *currentApp = NULL;
     bool isUARTRunning = false;
-    
-    while (1) {
+    while (1) {     
         if(UART1_IsRxReady()){
             if(currentApp != &terminalApp){
                 if(currentApp != NULL){
