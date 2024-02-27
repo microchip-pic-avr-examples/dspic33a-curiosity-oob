@@ -25,8 +25,29 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/**
+ * @ingroup  task
+ * @brief    Initializes the task scheduler.  Must be called before all other functions.
+ * @param    none
+ * @return   none
+ */
 void TASK_Initialize(void);
+
+/**
+ * @ingroup  task
+ * @brief    Request a function to be called after specified number of millseconds.
+ * @param[in] void (*task)(void) - function to call
+ * @param[in] uint32_t milliseconds - how frequently to call the function
+ * @return   bool - true: was able to set request, false: unable to handle request
+ */
 bool TASK_Request(void (*task)(void), uint32_t milliseconds);
+
+/**
+ * @ingroup  task
+ * @brief    Stop a previous request from triggering again.
+ * @param[in] void (*task)(void) - function representing the task to cancel
+ * @return   none
+ */
 void TASK_Cancel(void (*task)(void));
 
 #endif

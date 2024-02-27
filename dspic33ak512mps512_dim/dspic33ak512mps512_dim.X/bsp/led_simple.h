@@ -24,12 +24,26 @@
 
 #include <stdbool.h>
 
+#define LED_SIMPLE_ON true
+#define LED_SIMPLE_OFF false
+
+/**
+ @ingroup  led_simple
+ @struct   LED_SIMPLE
+ @brief    Defines structure for interface for a simple LED with on/off/toggle
+           functionality.
+*/
 struct LED_SIMPLE
 {
+    //Initializes the LED.  Must be called before other functions can be used.
     void (*const initialize)(void);
+    //Turns on the LED
     void (*const on)(void);
+    //Turns off the LED
     void (*const off)(void);
+    //Toggles the LED between on/off states (on->off or off->on)
     void (*const toggle)(void);
+    //Sets the LED on(true) or off(false) based on provided input.
     void (*const set)(bool);
 };
 

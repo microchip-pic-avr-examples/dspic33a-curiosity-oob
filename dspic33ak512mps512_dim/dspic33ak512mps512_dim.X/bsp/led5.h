@@ -25,12 +25,50 @@
 #include "led_simple.h"
 #include <stdbool.h>
 
+/**
+ * @ingroup  led5
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void LED5_Initialize(void);
+
+/**
+ * @ingroup  led5
+ * @brief    Turns on the LED
+ * @param    none
+ * @return   none
+ */
 void LED5_On(void);
+
+/**
+ * @ingroup  led5
+ * @brief    Turns off the LED
+ * @param    none
+ * @return   none
+ */
 void LED5_Off(void);
+
+/**
+ * @ingroup  led5
+ * @brief    Toggles the LED between on/off states (on->off or off->on)
+ * @param    none
+ * @return   none
+ */
 void LED5_Toggle(void);
+
+/**
+ * @ingroup  led5
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
 void LED5_Set(bool on);
 
+/**
+ @ingroup  led5
+ @brief    Declaration of LED_SIMPLE structure for LED5.
+*/
 extern const struct LED_SIMPLE led5;
 
 #endif
