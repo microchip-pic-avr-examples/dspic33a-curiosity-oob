@@ -37,9 +37,6 @@
 #include "bsp/s2.h"
 #include "bsp/s3.h"
 #include "application.h"
-#include "s1App.h"
-#include "s2App.h"
-#include "s3App.h"
 #include "terminalApp.h"
 #include "mcc_generated_files/uart/uart1.h"
 #include "bsp/pot.h"
@@ -153,42 +150,17 @@ int main(void)
             }
         }
         if(s1.isPressed()){
-            if(currentApp != &s1App){
-                if(currentApp != NULL){
-                    currentApp ->stop();
-                } 
-                s1App.start();
-                currentApp = &s1App;
-                isUARTRunning = false;
-            }
+            led7.on();
         }
         else if(s2.isPressed()){
-            if(currentApp != &s2App){
-                if(currentApp != NULL){
-                    currentApp->stop();
-                }
-                s2App.start();
-                currentApp = &s2App;
-                isUARTRunning = false;
-            }
+            led6.on();
         }
         else if(s3.isPressed()){
-            if(currentApp != &s3App){
-                if(currentApp != NULL){
-                    currentApp->stop();
-                }
-                s3App.start();
-                currentApp = &s3App;
-                isUARTRunning = false;
-            }
+            led5.on();
         }
         else
         {
-            if(currentApp != NULL && !isUARTRunning){
-                currentApp->stop();
-                turnOffAllLEDs();
-                currentApp = NULL;
-            }
+            turnOffAllLEDs();
         }
     }
 }
