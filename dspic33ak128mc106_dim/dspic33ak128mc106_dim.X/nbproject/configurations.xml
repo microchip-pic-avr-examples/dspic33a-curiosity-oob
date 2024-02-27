@@ -44,7 +44,6 @@
           <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <itemPath>application.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -98,8 +97,6 @@
       <itemPath>Makefile</itemPath>
       <itemPath>oob.mc3</itemPath>
     </logicalFolder>
-    <itemPath>terminalApp.c</itemPath>
-    <itemPath>terminalApp.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>

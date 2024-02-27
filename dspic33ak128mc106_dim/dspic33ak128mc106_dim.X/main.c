@@ -36,8 +36,6 @@
 #include "bsp/s1.h"
 #include "bsp/s2.h"
 #include "bsp/s3.h"
-#include "application.h"
-#include "terminalApp.h"
 #include "mcc_generated_files/uart/uart1.h"
 #include "bsp/pot.h"
 #include "bsp/task.h"
@@ -107,6 +105,36 @@ void printMenu(void){
  void printPotentiometer(void){
      potentiometerPrintRequired = true;
  }
+ 
+ void uartApp(void){
+    uint8_t dataRx;
+    if(UART1_IsRxReady()){
+        dataRx = UART1_Read();
+        if(dataRx){
+            switch(dataRx){
+                case 'r': 
+                case 'R': 
+                    ledRed.toggle();
+                    break;
+                case 'g': 
+                case 'G': 
+                    ledGreen.toggle();
+                    break;   
+                case 'b': 
+                case 'B': 
+                    ledBlue.toggle();
+                    break;
+                default: 
+                    break;
+            }
+        }
+    }
+    
+    while(!UART1_IsTxReady()) {
+        
+    }
+    UART1_Write(dataRx);
+}
 
 int main(void)
 {       
@@ -116,9 +144,7 @@ int main(void)
     TASK_Initialize();
     pot.initialize();
     ledRGB.on();
-    
-    struct APPLICATION *currentApp = NULL;
-    bool isUARTRunning = false;
+   
     uint16_t potentiometerReading;
 
     //Clear terminal screen
@@ -137,17 +163,7 @@ int main(void)
         }
         
         if(UART1_IsRxReady()){
-            if(currentApp != &terminalApp){
-                if(currentApp != NULL){
-                    currentApp ->stop();
-                } 
-                terminalApp.start();
-                currentApp = &terminalApp;
-                isUARTRunning = true;
-            }
-            if(currentApp == &terminalApp){
-                terminalApp.run();
-            }
+            uartApp();
         }
         if(s1.isPressed()){
             led7.on();
