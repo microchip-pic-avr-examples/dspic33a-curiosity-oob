@@ -31,6 +31,6 @@ void LED5_Off(void);
 void LED5_Toggle(void);
 void LED5_Set(bool on);
 
-extern struct LED_SIMPLE led5;
+extern const struct LED_SIMPLE led5;
 
 #endif

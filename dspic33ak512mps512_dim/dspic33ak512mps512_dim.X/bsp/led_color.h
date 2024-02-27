@@ -26,12 +26,12 @@
 
 struct LED_COLOR
 {
-    void (*initialize)(void);
-    void (*on)(void);
-    void (*off)(void);
-    void (*toggle)(void);
-    void (*set)(bool);
-    void (*setColor)(uint8_t red, uint8_t green, uint8_t blue);
+    void (*const initialize)(void);
+    void (*const on)(void);
+    void (*const off)(void);
+    void (*const toggle)(void);
+    void (*const set)(bool);
+    void (*const setColor)(uint8_t red, uint8_t green, uint8_t blue);
 };
 
 #endif

@@ -28,6 +28,6 @@
 void BUTTON_S3_Initialize(void);
 bool BUTTON_S3_IsPressed(void);
 
-extern struct BUTTON_SIMPLE s3;
+extern const struct BUTTON_SIMPLE s3;
 
 #endif

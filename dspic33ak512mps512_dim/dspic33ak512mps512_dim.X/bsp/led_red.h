@@ -33,6 +33,6 @@ void LED_RED_Toggle(void);
 void LED_RED_Set(bool on);
 void LED_RED_SetIntensity(uint16_t intensity);
 
-extern struct LED_DIMMABLE ledRed;
+extern const struct LED_DIMMABLE ledRed;
 
 #endif

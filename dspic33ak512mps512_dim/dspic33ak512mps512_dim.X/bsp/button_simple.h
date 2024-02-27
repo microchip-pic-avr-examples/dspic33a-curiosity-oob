@@ -26,8 +26,8 @@
 
 struct BUTTON_SIMPLE
 {
-    void (*initialize)(void);
-    bool (*isPressed)(void);
+    void (*const initialize)(void);
+    bool (*const isPressed)(void);
 };
 
 #endif

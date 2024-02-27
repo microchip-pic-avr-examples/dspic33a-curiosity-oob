@@ -33,6 +33,6 @@ void LED_GREEN_Toggle(void);
 void LED_GREEN_Set(bool on);
 void LED_GREEN_SetIntensity(uint16_t intensity);
 
-extern struct LED_DIMMABLE ledGreen;
+extern const struct LED_DIMMABLE ledGreen;
 
 #endif

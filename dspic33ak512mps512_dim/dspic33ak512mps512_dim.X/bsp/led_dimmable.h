@@ -26,12 +26,12 @@
 
 struct LED_DIMMABLE //extends LED_SIMPLE
 {
-    void (*initialize)(void);
-    void (*on)(void);
-    void (*off)(void);
-    void (*toggle)(void);
-    void (*set)(bool);
-    void (*setIntensity)(uint16_t request);
+    void (*const initialize)(void);
+    void (*const on)(void);
+    void (*const off)(void);
+    void (*const toggle)(void);
+    void (*const set)(bool);
+    void (*const setIntensity)(uint16_t request);
 };
 
 #endif

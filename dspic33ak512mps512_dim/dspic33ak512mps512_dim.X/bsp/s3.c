@@ -34,7 +34,7 @@ bool BUTTON_S3_IsPressed(void)
     return PORTBbits.RB2 == 0;      //Active low
 }
 
-struct BUTTON_SIMPLE s3 = 
+const struct BUTTON_SIMPLE s3 = 
 {
     &BUTTON_S3_Initialize,
     &BUTTON_S3_IsPressed

@@ -28,6 +28,6 @@
 void BUTTON_S2_Initialize(void);
 bool BUTTON_S2_IsPressed(void);
 
-extern struct BUTTON_SIMPLE s2;
+extern const struct BUTTON_SIMPLE s2;
 
 #endif

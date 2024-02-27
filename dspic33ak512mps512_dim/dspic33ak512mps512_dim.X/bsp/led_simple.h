@@ -26,11 +26,11 @@
 
 struct LED_SIMPLE
 {
-    void (*initialize)(void);
-    void (*on)(void);
-    void (*off)(void);
-    void (*toggle)(void);
-    void (*set)(bool);
+    void (*const initialize)(void);
+    void (*const on)(void);
+    void (*const off)(void);
+    void (*const toggle)(void);
+    void (*const set)(bool);
 };
 
 #endif
