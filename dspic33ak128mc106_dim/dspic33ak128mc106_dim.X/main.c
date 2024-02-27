@@ -65,24 +65,19 @@ void printMenu(void){
     printf("\033[1;0f");
     printf("------------------------------------ \r\n");
     printf("dsPIC33A128MC106 Out of Box Demo\r\n");
-    printf("------------------------------------ \r\n");
-    
+    printf("------------------------------------ \r\n");   
     printf("Hold Switch S1 - LED7 turns on \r\n");
-    
     printf("Hold Switch S2 - LED6 turns on \r\n");
-    
     printf("Hold Switch S3 - LED5 turns on \r\n");
-    
     printf("Press 'r', 'g', 'b' will toggle red, green, and blue states of the RGB LED "
             "respectively \r\n");
-    
     printf("Turning the potentiometer will adjust the intensity of the RGB LED \r\n");
 }
 
- bool potentiometerPrintRequired = false;
- void printPotentiometer(void){
-     potentiometerPrintRequired = true;
- }
+bool potentiometerPrintRequired = false;
+void printPotentiometer(void){
+    potentiometerPrintRequired = true;
+}
  
  void uartApp(void){
     uint8_t dataRx;
@@ -108,9 +103,9 @@ void printMenu(void){
         }
     }
     
-    while(!UART1_IsTxReady()) {
-        
+    while(!UART1_IsTxReady()) {     
     }
+    
     UART1_Write(dataRx);
 }
 
@@ -122,15 +117,14 @@ int main(void)
     TASK_Initialize();
     pot.initialize();
     ledRGB.on();
-   
     uint16_t potentiometerReading;
 
     //Clear terminal screen
     printf("\033[2J"); 
-    
     printMenu();
-    
+
     TASK_Request(printPotentiometer, 200);
+
     while (1) {
         potentiometerReading = pot.read();
         setRGBIntensity(potentiometerReading);
@@ -139,7 +133,7 @@ int main(void)
             printf("\033[10;0f");
             printf("Potentiometer: %X\r\n", pot.read());
         }
-        
+
         if(UART1_IsRxReady()){
             uartApp();
         }
