@@ -75,21 +75,10 @@ void turnOffAllLEDs(void){
     led7.off();
 }
 
-void readPotentiometer(void){
-    uint16_t potentiometerReading = pot.read();
-    static uint16_t previousPotentiometerReading;
-    
-    if(potentiometerReading != previousPotentiometerReading){
-        printf("\033[10;0f");
-        printf("Potentiometer: %X\n", potentiometerReading);
-        previousPotentiometerReading = potentiometerReading;
-        
-       printf("\033[12;0f");
-    }
-    
+void setRGBIntensity(uint16_t potentiometerReading){
     ledRed.setIntensity(potentiometerReading);
     ledGreen.setIntensity(potentiometerReading);
-    ledBlue.setIntensity(potentiometerReading);
+    ledBlue.setIntensity(potentiometerReading); 
 }
 
 void printMenu(void){
@@ -117,6 +106,11 @@ void printMenu(void){
     printf("Turning the potentiometer will adjust the intensity of the RGB LED");
 }
 
+ bool potentiometerPrintRequired = false;
+ void printPotentiometer(void){
+     potentiometerPrintRequired = true;
+ }
+
 int main(void)
 {       
     SYSTEM_Initialize();
@@ -128,14 +122,23 @@ int main(void)
     
     struct APPLICATION *currentApp = NULL;
     bool isUARTRunning = false;
-    
+    uint16_t potentiometerReading;
+
     //Clear terminal screen
     printf("\033[2J"); 
     
     printMenu();
     
-    TASK_Request(readPotentiometer, 200);
-    while (1) {     
+    TASK_Request(printPotentiometer, 200);
+    while (1) {
+        potentiometerReading = pot.read();
+        setRGBIntensity(potentiometerReading);
+        if(potentiometerPrintRequired){
+            potentiometerPrintRequired = false;
+            printf("\033[10;0f");
+            printf("Potentiometer: %X\n", pot.read());
+        }
+        
         if(UART1_IsRxReady()){
             if(currentApp != &terminalApp){
                 if(currentApp != NULL){
