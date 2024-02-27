@@ -25,9 +25,26 @@
 #include <stdbool.h>
 #include "button_simple.h"
 
+/**
+ * @ingroup  s3
+ * @brief    Initializes the S3 button.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void BUTTON_S3_Initialize(void);
+
+/**
+ * @ingroup  s3
+ * @brief    Detects if the S3 button is pressed (not debounced)
+ * @param    none
+ * @return   bool - true = pressed, false = not pressed
+ */
 bool BUTTON_S3_IsPressed(void);
 
+/**
+ @ingroup  s3
+ @brief    Declaration of BUTTON_SIMPLE structure for S3 button.
+*/
 extern struct BUTTON_SIMPLE s3;
 
 #endif

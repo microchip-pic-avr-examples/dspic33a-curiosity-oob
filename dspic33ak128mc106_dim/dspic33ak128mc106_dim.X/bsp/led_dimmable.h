@@ -24,13 +24,25 @@
 
 #include <stdbool.h>
 
+/**
+ @ingroup  led_dimmable
+ @struct   LED_DIMMABLE
+ @brief    Defines structure for interface for a dimmable LED.  This extends the
+           LED_SIMPLE interface
+*/
 struct LED_DIMMABLE //extends LED_SIMPLE
 {
+    //Initializes the LED.  Must be called before other functions can be used.
     void (*initialize)(void);
+    //Turns on the LED
     void (*on)(void);
+    //Turns off the LED
     void (*off)(void);
+    //Toggles the LED between on/off states (on->off or off->on)
     void (*toggle)(void);
+    //Sets the LED on(true) or off(false) based on provided input.
     void (*set)(bool);
+    //Sets the intensity/brightness of the LED.
     void (*setIntensity)(uint16_t request);
 };
 
