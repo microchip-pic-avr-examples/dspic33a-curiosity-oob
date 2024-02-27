@@ -33,15 +33,19 @@ void terminalAppStart(void){
         if(dataRx){
             switch(dataRx){
                 case 'r': 
+                case 'R': 
                     ledRed.toggle();
                     break;
                 case 'g': 
+                case 'G': 
                     ledGreen.toggle();
                     break;   
                 case 'b': 
+                case 'B': 
                     ledBlue.toggle();
                     break;
-                default: break;
+                default: 
+                    break;
             }
         }
     }
