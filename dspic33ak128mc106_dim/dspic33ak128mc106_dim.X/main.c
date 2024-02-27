@@ -23,11 +23,6 @@
 #include "bsp/led7.h"
 #include "bsp/led6.h"
 #include "bsp/led5.h"
-#include "bsp/led4.h"
-#include "bsp/led3.h"
-#include "bsp/led2.h"
-#include "bsp/led1.h"
-#include "bsp/led0.h"
 #include "bsp/led_red.h"
 #include "bsp/led_blue.h"
 #include "bsp/led_green.h"
@@ -43,11 +38,6 @@
 
 void initializeAllLEDs(void){
     ledRGB.initialize();
-    led0.initialize();
-    led1.initialize();
-    led2.initialize();
-    led3.initialize();
-    led4.initialize();
     led5.initialize();
     led6.initialize();
     led7.initialize();
@@ -60,11 +50,6 @@ void initializeAllButtons(void){
 }
 
 void turnOffAllLEDs(void){
-    led0.off();
-    led1.off();
-    led2.off();
-    led3.off();
-    led4.off();
     led5.off();
     led6.off();
     led7.off();
@@ -78,27 +63,20 @@ void setRGBIntensity(uint16_t potentiometerReading){
 
 void printMenu(void){
     printf("\033[1;0f");
-    printf("------------------------------------");
-    printf("\033[2;0f");
-    printf("dsPIC33A128MC106 Out of Box Demo");
-    printf("\033[3;0f");
-    printf("------------------------------------");
+    printf("------------------------------------ \r\n");
+    printf("dsPIC33A128MC106 Out of Box Demo\r\n");
+    printf("------------------------------------ \r\n");
     
-    printf("\033[4;0f");
-    printf("Hold Switch S1 - LED7 turns on");
+    printf("Hold Switch S1 - LED7 turns on \r\n");
     
-    printf("\033[5;0f");
-    printf("Hold Switch S2 - LED6 turns on");
+    printf("Hold Switch S2 - LED6 turns on \r\n");
     
-    printf("\033[6;0f");
-    printf("Hold Switch S3 - LED5 turns on");
+    printf("Hold Switch S3 - LED5 turns on \r\n");
     
-    printf("\033[7;0f");
     printf("Press 'r', 'g', 'b' will toggle red, green, and blue states of the RGB LED "
-            "respectively.");
+            "respectively \r\n");
     
-    printf("\033[8;0f");
-    printf("Turning the potentiometer will adjust the intensity of the RGB LED");
+    printf("Turning the potentiometer will adjust the intensity of the RGB LED \r\n");
 }
 
  bool potentiometerPrintRequired = false;
@@ -159,7 +137,7 @@ int main(void)
         if(potentiometerPrintRequired){
             potentiometerPrintRequired = false;
             printf("\033[10;0f");
-            printf("Potentiometer: %X\n", pot.read());
+            printf("Potentiometer: %X\r\n", pot.read());
         }
         
         if(UART1_IsRxReady()){
