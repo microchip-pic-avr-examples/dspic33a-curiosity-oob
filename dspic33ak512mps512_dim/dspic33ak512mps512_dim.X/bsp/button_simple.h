@@ -24,10 +24,17 @@
 
 #include <stdbool.h>
 
+/**
+ @ingroup  button_simple
+ @struct   BUTTON_SIMPLE
+ @brief    Defines structure for interface for a simple button interface
+*/
 struct BUTTON_SIMPLE
 {
-    void (*initialize)(void);
-    bool (*isPressed)(void);
+    //Initialize the button.  Must be called before other functions can be used
+    void (*const initialize)(void);
+    //Gives the current state of the button (not debounced)
+    bool (*const isPressed)(void);
 };
 
 #endif

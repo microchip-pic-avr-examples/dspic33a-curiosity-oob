@@ -47,7 +47,7 @@ void LED1_Set(bool on)
     LATCbits.LATC9 = on;
 }
 
-struct LED_SIMPLE led1 = 
+const struct LED_SIMPLE led1 = 
 {
     &LED1_Initialize,
     &LED1_On,

@@ -34,7 +34,7 @@ bool BUTTON_S2_IsPressed(void)
     return PORTFbits.RF0 == 0;      //Active low
 }
 
-struct BUTTON_SIMPLE s2 = 
+const struct BUTTON_SIMPLE s2 = 
 {
     &BUTTON_S2_Initialize,
     &BUTTON_S2_IsPressed

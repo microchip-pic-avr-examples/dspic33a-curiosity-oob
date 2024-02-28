@@ -25,9 +25,26 @@
 #include <stdbool.h>
 #include "button_simple.h"
 
+/**
+ * @ingroup  s1
+ * @brief    Initializes the S1 button.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void BUTTON_S1_Initialize(void);
+
+/**
+ * @ingroup  s1
+ * @brief    Detects if the S1 button is pressed (not debounced)
+ * @param    none
+ * @return   bool - true = pressed, false = not pressed
+ */
 bool BUTTON_S1_IsPressed(void);
 
-extern struct BUTTON_SIMPLE s1;
+/**
+ @ingroup  s1
+ @brief    Declaration of BUTTON_SIMPLE structure for S1 button.
+*/
+extern const struct BUTTON_SIMPLE s1;
 
 #endif

@@ -24,15 +24,33 @@
 
 #include <stdint.h>
 
+/**
+ * @ingroup  pot
+ * @brief    Initializes the potentiometer.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void POT_Initialize(void);
+
+/**
+ * @ingroup  pot
+ * @brief    Reads the value of the potentiometer.
+ * @param    none
+ * @return   uint16_t - 16-bit potentiometer value.  
+ */
 uint16_t POT_Read(void);
 
+/**
+ @ingroup  pot
+ @struct   POT
+ @brief    Defines structure for interface for a simple potentiometer interface.
+*/
 struct POT
 {
-    void (*initialize)(void);
-    uint16_t (*read)(void);
+    void (*const initialize)(void);
+    uint16_t (*const read)(void);
 };
 
-extern struct POT pot;
+extern const struct POT pot;
 
 #endif

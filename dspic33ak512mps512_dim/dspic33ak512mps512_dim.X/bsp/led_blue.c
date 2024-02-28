@@ -80,7 +80,7 @@ void LED_BLUE_SetIntensity(uint16_t request)
     PG1STATbits.UPDREQ = 1;
 } 
 
-struct LED_DIMMABLE ledBlue = 
+const struct LED_DIMMABLE ledBlue = 
 {
     &LED_BLUE_Initialize,
     &LED_BLUE_On,

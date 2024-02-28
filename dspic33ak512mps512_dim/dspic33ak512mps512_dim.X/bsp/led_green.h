@@ -26,13 +26,58 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/**
+ * @ingroup  led_green
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void LED_GREEN_Initialize(void);
+
+/**
+ * @ingroup  led_green
+ * @brief    Turns on the LED
+ * @param    none
+ * @return   none
+ */
 void LED_GREEN_On(void);
+
+/**
+ * @ingroup  led_green
+ * @brief    Turns off the LED
+ * @param    none
+ * @return   none
+ */
 void LED_GREEN_Off(void);
+
+/**
+ * @ingroup  led_green
+ * @brief    Toggles the LED between on/off states (on->off or off->on)
+ * @param    none
+ * @return   none
+ */
 void LED_GREEN_Toggle(void);
+
+/**
+ * @ingroup  led_green
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
 void LED_GREEN_Set(bool on);
+
+/**
+ * @ingroup  led_green
+ * @brief    Sets the intensity/brightness of the LED.
+ * @param[in] uint16_t request - the requested intensity (16-bit)
+ * @return   none
+ */
 void LED_GREEN_SetIntensity(uint16_t intensity);
 
-extern struct LED_DIMMABLE ledGreen;
+/**
+ @ingroup  led_green
+ @brief    Declaration of LED_SIMPLE structure for green LED in the RGB LED.
+*/
+extern const struct LED_DIMMABLE ledGreen;
 
 #endif

@@ -80,7 +80,7 @@ void LED_GREEN_SetIntensity(uint16_t request)
     PG2STATbits.UPDREQ = 1;
 } 
 
-struct LED_DIMMABLE ledGreen = 
+const struct LED_DIMMABLE ledGreen = 
 {
     &LED_GREEN_Initialize,
     &LED_GREEN_On,
