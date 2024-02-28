@@ -98,8 +98,7 @@ void printPotentiometer(void)
 void checkUartApp(void)
 {
     if(UART1_IsRxReady()){
-        uint8_t dataRx;  
-        dataRx = UART1_Read();
+        uint8_t dataRx = UART1_Read();
         if(dataRx)
         {
             switch(dataRx)
@@ -172,13 +171,12 @@ int main(void)
     TASK_Initialize();
     pot.initialize();
     ledRGB.on();
-    uint16_t potentiometerReading;
     printMenu();
     TASK_Request(printPotentiometer, 200);
 
     while (1) 
     {
-        potentiometerReading = pot.read();
+        uint16_t potentiometerReading = pot.read();
         setRGBIntensity(potentiometerReading);
         if(potentiometerPrintRequired)
         {
