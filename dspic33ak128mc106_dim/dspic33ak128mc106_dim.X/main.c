@@ -36,32 +36,37 @@
 #include "bsp/task.h"
 #include <stdio.h>
 
-void initializeAllLEDs(void){
+void initializeAllLEDs(void)
+{
     ledRGB.initialize();
     led5.initialize();
     led6.initialize();
     led7.initialize();
 }
 
-void initializeAllButtons(void){
+void initializeAllButtons(void)
+{
     s1.initialize();
     s2.initialize();
     s3.initialize();
 }
 
-void turnOffAllLEDs(void){
+void turnOffAllLEDs(void)
+{
     led5.off();
     led6.off();
     led7.off();
 }
 
-void setRGBIntensity(uint16_t potentiometerReading){
+void setRGBIntensity(uint16_t potentiometerReading)
+{
     ledRed.setIntensity(potentiometerReading);
     ledGreen.setIntensity(potentiometerReading);
     ledBlue.setIntensity(potentiometerReading); 
 }
 
-void printMenu(void){
+void printMenu(void)
+{
     //Clear terminal screen
     printf("\033[2J"); 
     printf("\033[1;0f");
@@ -77,15 +82,19 @@ void printMenu(void){
 }
 
 bool potentiometerPrintRequired = false;
-void printPotentiometer(void){
+void printPotentiometer(void)
+{
     potentiometerPrintRequired = true;
 }
  
- void uartApp(void){
+ void uartApp(void)
+ {
     uint8_t dataRx;
     dataRx = UART1_Read();
-    if(dataRx){
-        switch(dataRx){
+    if(dataRx)
+    {
+        switch(dataRx)
+        {
             case 'r': 
             case 'R': 
                 ledRed.toggle();
@@ -103,7 +112,8 @@ void printPotentiometer(void){
         }
     }
 
-    while(!UART1_IsTxReady()) {     
+    while(!UART1_IsTxReady()) 
+    {     
     }
     
     UART1_Write(dataRx);
@@ -121,25 +131,31 @@ int main(void)
     printMenu();
     TASK_Request(printPotentiometer, 200);
 
-    while (1) {
+    while (1) 
+    {
         potentiometerReading = pot.read();
         setRGBIntensity(potentiometerReading);
-        if(potentiometerPrintRequired){
+        if(potentiometerPrintRequired)
+        {
             potentiometerPrintRequired = false;
             printf("\033[10;0f");
             printf("Potentiometer: %X\r\n", pot.read());
         }
 
-        if(UART1_IsRxReady()){
+        if(UART1_IsRxReady())
+        {
             uartApp();
         }
-        if(s1.isPressed()){
+        if(s1.isPressed())
+        {
             led7.on();
         }
-        else if(s2.isPressed()){
+        else if(s2.isPressed())
+        {
             led6.on();
         }
-        else if(s3.isPressed()){
+        else if(s3.isPressed())
+        {
             led5.on();
         }
         else
