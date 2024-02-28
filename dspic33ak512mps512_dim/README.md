@@ -31,23 +31,24 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 
 ## Operation
 
-| *User Interaction* | *Demo Behavior* |
-| ---------------- | ------------- |
-| None             | All LEDs LED0-LED7 are off.  The RGB LED is cycling between colors. Potentiometer value displayed in serial terminal program (9600 8-N-1) |
-| Hold switch S1   | All LEDs LED0-LED7 are on |
-| Hold switch S2   | All LEDs LED0-LED7 blink in unison |
-| Hold switch S3   | LEDs LED0-LED7 cycle on one at a time |
-| Adjust potentiometer | Updated potentiometer value displayed in serial terminal program |
-| Pressing '0' in terminal | LED0 toggles |
-| Pressing '1' in terminal | LED1 toggles |
-| Pressing '2' in terminal | LED2 toggles |
-| Pressing '3' in terminal | LED3 toggles |
-| Pressing '4' in terminal | LED4 toggles |
-| Pressing '5' in terminal | LED5 toggles |
-| Pressing '6' in terminal | LED6 toggles |
-| Pressing '7' in terminal | LED7 toggles |
+**Basic I/O**
+* LED7 reflects the status of the S1 button; On when pressed, off when released.
+* LED6 reflects the status of the S1 button; On when pressed, off when released.
+* LED5 reflects the status of the S1 button; On when pressed, off when released.
 
-![Example terminal image](./images/terminal.png)
+**ADC/PWM**
+* Turning the potentiometer will vary the RGB LED brightness
+
+**UART**
+* Sending the ASCII characters 'r'(0x72), 'g'(0x67), or 'b'(0x62) over the UART (9600 8-N-1) will toggle the red/green/blue LEDs of the RGB LED respectively.
+* A terminal program can be used to view the potentiometer value over the UART.
+
+**CAN-FD**
+* Sending the ASCII characters 'r'(0x72), 'g'(0x67), or 'b'(0x62) over the CAN-FD will toggle the red/green/blue LEDs of the RGB LED respectively.
+* A CAN protocol analyzer can be used to view the potentiometer.  The potentiometer value is sent out in binary form.
+
+**Capacitive Touch**
+* LEDs LED0-LED4 indicate the touch location of the T1-T3 touchpads. As your finger slides across these touchpads from right to left, the LEDs LED0-LED4 will incrementally illuminate from right to left to match.
 
 ![Curiosity Platform Board](../images/curiosity.jpg)
  
