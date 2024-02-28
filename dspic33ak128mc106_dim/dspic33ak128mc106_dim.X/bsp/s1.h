@@ -45,6 +45,6 @@ bool BUTTON_S1_IsPressed(void);
  @ingroup  s1
  @brief    Declaration of BUTTON_SIMPLE structure for S1 button.
 */
-extern struct BUTTON_SIMPLE s1;
+extern const struct BUTTON_SIMPLE s1;
 
 #endif

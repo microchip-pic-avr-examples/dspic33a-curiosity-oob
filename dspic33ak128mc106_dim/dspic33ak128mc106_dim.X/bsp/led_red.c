@@ -80,7 +80,7 @@ void LED_RED_SetIntensity(uint16_t request)
     PG4STATbits.UPDREQ = 1;
 } 
 
-struct LED_DIMMABLE ledRed = 
+const struct LED_DIMMABLE ledRed = 
 {
     &LED_RED_Initialize,
     &LED_RED_On,

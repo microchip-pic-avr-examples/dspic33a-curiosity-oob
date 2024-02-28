@@ -78,6 +78,6 @@ void LED_RED_SetIntensity(uint16_t request);
  @ingroup  led_red
  @brief    Declaration of LED_SIMPLE structure for red LED in the RGB LED.
 */
-extern struct LED_DIMMABLE ledRed;
+extern const struct LED_DIMMABLE ledRed;
 
 #endif

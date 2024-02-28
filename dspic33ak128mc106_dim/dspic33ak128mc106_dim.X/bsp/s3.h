@@ -45,6 +45,6 @@ bool BUTTON_S3_IsPressed(void);
  @ingroup  s3
  @brief    Declaration of BUTTON_SIMPLE structure for S3 button.
 */
-extern struct BUTTON_SIMPLE s3;
+extern const struct BUTTON_SIMPLE s3;
 
 #endif

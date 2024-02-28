@@ -69,6 +69,6 @@ void LED7_Set(bool on);
  @ingroup  led7
  @brief    Declaration of LED_SIMPLE structure for LED7.
 */
-extern struct LED_SIMPLE led7;
+extern const struct LED_SIMPLE led7;
 
 #endif

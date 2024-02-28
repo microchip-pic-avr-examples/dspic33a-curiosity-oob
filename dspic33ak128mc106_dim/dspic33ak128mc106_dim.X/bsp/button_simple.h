@@ -32,9 +32,9 @@
 struct BUTTON_SIMPLE
 {
     //Initialize the button.  Must be called before other functions can be used
-    void (*initialize)(void);
+    void (*const initialize)(void);
     //Gives the current state of the button (not debounced)
-    bool (*isPressed)(void);
+    bool (*const isPressed)(void);
 };
 
 #endif
