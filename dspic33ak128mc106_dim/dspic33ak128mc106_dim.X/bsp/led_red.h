@@ -26,13 +26,58 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/**
+ * @ingroup  led_red
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
 void LED_RED_Initialize(void);
-void LED_RED_On(void);
-void LED_RED_Off(void);
-void LED_RED_Toggle(void);
-void LED_RED_Set(bool on);
-void LED_RED_SetIntensity(uint16_t intensity);
 
+/**
+ * @ingroup  led_red
+ * @brief    Turns on the LED
+ * @param    none
+ * @return   none
+ */
+void LED_RED_On(void);
+
+/**
+ * @ingroup  led_red
+ * @brief    Turns off the LED
+ * @param    none
+ * @return   none
+ */
+void LED_RED_Off(void);
+
+/**
+ * @ingroup  led_red
+ * @brief    Toggles the LED between on/off states (on->off or off->on)
+ * @param    none
+ * @return   none
+ */
+void LED_RED_Toggle(void);
+
+/**
+ * @ingroup  led_red
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
+void LED_RED_Set(bool on);
+
+/**
+ * @ingroup  led_red
+ * @brief    Sets the intensity/brightness of the LED.
+ * @param[in] uint16_t request - the requested intensity (16-bit)
+ * @return   none
+ */
+void LED_RED_SetIntensity(uint16_t request);
+
+/**
+ @ingroup  led_red
+ @brief    Declaration of LED_SIMPLE structure for red LED in the RGB LED.
+*/
 extern struct LED_DIMMABLE ledRed;
 
 #endif

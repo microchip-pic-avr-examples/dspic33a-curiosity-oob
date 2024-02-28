@@ -24,13 +24,24 @@
 
 #include <stdbool.h>
 
+/**
+ @ingroup  led_color
+ @struct   LED_COLOR
+ @brief    Defines structure for interface for an RGB LED
+*/
 struct LED_COLOR
 {
+    //Initializes the LED.  Must be called before other functions can be used.
     void (*initialize)(void);
+    //Turns on the LED
     void (*on)(void);
+    //Turns off the LED
     void (*off)(void);
+    //Toggles the LED between on/off states (on->off or off->on)
     void (*toggle)(void);
+    //Sets the LED on(true) or off(false) based on provided input.
     void (*set)(bool);
+    //Set the RGB value of the LED (approximate)
     void (*setColor)(uint8_t red, uint8_t green, uint8_t blue);
 };
 
