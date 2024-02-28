@@ -146,21 +146,31 @@ int main(void)
         {
             uartApp();
         }
-        if(s1.isPressed())
+        
+        if(s1.isPressed()) 
         {
             led7.on();
+        } 
+        else 
+        {
+            led7.off();
         }
-        else if(s2.isPressed())
+
+        if(s2.isPressed()) 
         {
             led6.on();
+        } 
+        else 
+        {
+            led6.off();
         }
-        else if(s3.isPressed())
+
+        if(s3.isPressed()) 
         {
             led5.on();
-        }
-        else
-        {
-            turnOffAllLEDs();
+        } 
+        else {
+            led5.off();
         }
     }
 }
