@@ -65,11 +65,19 @@ void setRGBIntensity(uint16_t potentiometerReading)
     ledBlue.setIntensity(potentiometerReading); 
 }
 
+void clearTerminalScreen(void)
+{
+    printf("\033[2J"); 
+}
+
+void moveCursor(int row){
+    printf("\033[%d;0f", row);
+}
+
 void printMenu(void)
 {
-    //Clear terminal screen
-    printf("\033[2J"); 
-    printf("\033[1;0f");
+    clearTerminalScreen();
+    moveCursor(1);
     printf("------------------------------------ \r\n");
     printf("dsPIC33A128MC106 Out of Box Demo\r\n");
     printf("------------------------------------ \r\n");   
@@ -87,36 +95,73 @@ void printPotentiometer(void)
     potentiometerPrintRequired = true;
 }
  
- void uartApp(void)
- {
-    uint8_t dataRx;
-    dataRx = UART1_Read();
-    if(dataRx)
-    {
-        switch(dataRx)
+void checkUartApp(void)
+{
+    if(UART1_IsRxReady()){
+        uint8_t dataRx;  
+        dataRx = UART1_Read();
+        if(dataRx)
         {
-            case 'r': 
-            case 'R': 
-                ledRed.toggle();
-                break;
-            case 'g': 
-            case 'G': 
-                ledGreen.toggle();
-                break;   
-            case 'b': 
-            case 'B': 
-                ledBlue.toggle();
-                break;
-            default: 
-                break;
-        }
-    }
+            switch(dataRx)
+            {
+                case 'r': 
+                case 'R': 
+                    ledRed.toggle();
+                    break;
+                case 'g': 
+                case 'G': 
+                    ledGreen.toggle();
+                    break;   
+                case 'b': 
+                case 'B': 
+                    ledBlue.toggle();
+                    break;
+                default: 
+                    break;
+            }
+        }   
 
-    while(!UART1_IsTxReady()) 
-    {     
+        while(!UART1_IsTxReady()) 
+        {     
+        }
+
+        UART1_Write(dataRx);       
     }
-    
-    UART1_Write(dataRx);
+}
+ 
+void checkButtonS1(void)
+{
+    if(s1.isPressed()) 
+    {
+        led7.on();
+    } 
+    else 
+    {
+        led7.off();
+    }
+}
+ 
+void checkButtonS2(void)
+{
+    if(s2.isPressed()) 
+    {
+       led6.on();
+    } 
+    else 
+    {
+       led6.off();
+    }    
+}
+ 
+void checkButtonS3(void)
+{
+    if(s3.isPressed()) 
+    {
+        led5.on();
+    } 
+    else {
+        led5.off();
+    } 
 }
 
 int main(void)
@@ -138,39 +183,13 @@ int main(void)
         if(potentiometerPrintRequired)
         {
             potentiometerPrintRequired = false;
-            printf("\033[10;0f");
+            moveCursor(10);
             printf("Potentiometer: %X\r\n", pot.read());
         }
-
-        if(UART1_IsRxReady())
-        {
-            uartApp();
-        }
         
-        if(s1.isPressed()) 
-        {
-            led7.on();
-        } 
-        else 
-        {
-            led7.off();
-        }
-
-        if(s2.isPressed()) 
-        {
-            led6.on();
-        } 
-        else 
-        {
-            led6.off();
-        }
-
-        if(s3.isPressed()) 
-        {
-            led5.on();
-        } 
-        else {
-            led5.off();
-        }
+        checkUartApp();
+        checkButtonS1();
+        checkButtonS2();
+        checkButtonS3();
     }
 }
