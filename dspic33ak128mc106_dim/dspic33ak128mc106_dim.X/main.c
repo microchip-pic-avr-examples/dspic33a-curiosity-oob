@@ -62,6 +62,8 @@ void setRGBIntensity(uint16_t potentiometerReading){
 }
 
 void printMenu(void){
+    //Clear terminal screen
+    printf("\033[2J"); 
     printf("\033[1;0f");
     printf("------------------------------------ \r\n");
     printf("dsPIC33A128MC106 Out of Box Demo\r\n");
@@ -81,28 +83,26 @@ void printPotentiometer(void){
  
  void uartApp(void){
     uint8_t dataRx;
-    if(UART1_IsRxReady()){
-        dataRx = UART1_Read();
-        if(dataRx){
-            switch(dataRx){
-                case 'r': 
-                case 'R': 
-                    ledRed.toggle();
-                    break;
-                case 'g': 
-                case 'G': 
-                    ledGreen.toggle();
-                    break;   
-                case 'b': 
-                case 'B': 
-                    ledBlue.toggle();
-                    break;
-                default: 
-                    break;
-            }
+    dataRx = UART1_Read();
+    if(dataRx){
+        switch(dataRx){
+            case 'r': 
+            case 'R': 
+                ledRed.toggle();
+                break;
+            case 'g': 
+            case 'G': 
+                ledGreen.toggle();
+                break;   
+            case 'b': 
+            case 'B': 
+                ledBlue.toggle();
+                break;
+            default: 
+                break;
         }
     }
-    
+
     while(!UART1_IsTxReady()) {     
     }
     
@@ -118,11 +118,7 @@ int main(void)
     pot.initialize();
     ledRGB.on();
     uint16_t potentiometerReading;
-
-    //Clear terminal screen
-    printf("\033[2J"); 
     printMenu();
-
     TASK_Request(printPotentiometer, 200);
 
     while (1) {
