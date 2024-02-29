@@ -36,6 +36,8 @@
 #include "bsp/task.h"
 #include <stdio.h>
 
+static bool potentiometerPrintRequired = false;
+
 static void initializeAllLEDs(void)
 {
     ledRGB.initialize();
@@ -90,7 +92,6 @@ static void printMenu(void)
 
 }
 
-static bool potentiometerPrintRequired = false;
 static void printPotentiometer(void)
 {
     potentiometerPrintRequired = true;
