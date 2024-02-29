@@ -86,10 +86,10 @@ void CLOCK_Initialize(void)
     //Clock diagnostics control register, clock monitor and fault injection bits
     
     //FRC tuner
-    FRCOSCTUN = 0x0; 
+    FRCTUN = 0x0; 
     
     //BFRC tuning
-    BFRCOSCTUN =0x0; 
+    BFRCTUN =0x0; 
     
     //Clock Monitor control register
     CM1CON = 0x0;
