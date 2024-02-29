@@ -75,9 +75,15 @@ void moveCursor(int row)
     printf("\033[%d;0f", row);
 }
 
+void hideCursor()
+{
+    printf("\033[?25l");
+}
+
 void printMenu(void)
 {
     clearTerminalScreen();
+    hideCursor();
     moveCursor(1);
     printf("------------------------------------ \r\n");
     printf("dsPIC33A128MC106 Out of Box Demo\r\n");
@@ -88,6 +94,7 @@ void printMenu(void)
     printf("Press 'r', 'g', 'b' will toggle red, green, and blue states of the RGB LED "
             "respectively \r\n");
     printf("Turning the potentiometer will adjust the intensity of the RGB LED \r\n");
+
 }
 
 bool potentiometerPrintRequired = false;
