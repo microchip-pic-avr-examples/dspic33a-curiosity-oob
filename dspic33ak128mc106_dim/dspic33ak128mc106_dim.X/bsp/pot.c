@@ -68,7 +68,8 @@ uint16_t POT_Read(void)
     }
     
     // Read result. It will clear the conversion ready flag.
-    return AD1CH1DATA;
+    // Convert to 16-bit value.
+    return AD1CH1DATA<<1;
 }
 
 const struct POT pot = 
