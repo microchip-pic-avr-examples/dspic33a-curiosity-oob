@@ -47,10 +47,10 @@ uint16_t POT_Read(void);
 */
 struct POT
 {
-    void (*initialize)(void);
-    uint16_t (*read)(void);
+    void (*const initialize)(void);
+    uint16_t (*const read)(void);
 };
 
-extern struct POT pot;
+extern const struct POT pot;
 
 #endif

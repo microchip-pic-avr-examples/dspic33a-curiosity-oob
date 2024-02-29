@@ -80,6 +80,6 @@ void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue);
  @ingroup  led_rgb
  @brief    Declaration of LED_COLOR structure for RGB LED.
 */
-extern struct LED_COLOR ledRGB;
+extern const struct LED_COLOR ledRGB;
 
 #endif

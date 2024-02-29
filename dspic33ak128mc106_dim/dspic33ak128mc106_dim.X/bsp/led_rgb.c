@@ -69,7 +69,7 @@ void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue)
     ledBlue.setIntensity((uint16_t)blue << 8u);
 }
 
-struct LED_COLOR ledRGB = 
+const struct LED_COLOR ledRGB = 
 {
     &LED_RGB_Initialize,
     &LED_RGB_On,

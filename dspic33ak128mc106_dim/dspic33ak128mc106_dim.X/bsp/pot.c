@@ -71,7 +71,7 @@ uint16_t POT_Read(void)
     return AD1DATA1;
 }
 
-struct POT pot = 
+const struct POT pot = 
 {
     &POT_Initialize,
     &POT_Read
