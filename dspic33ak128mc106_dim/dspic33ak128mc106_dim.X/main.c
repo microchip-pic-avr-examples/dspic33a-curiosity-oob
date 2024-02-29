@@ -70,7 +70,8 @@ void clearTerminalScreen(void)
     printf("\033[2J"); 
 }
 
-void moveCursor(int row){
+void moveCursor(int row)
+{
     printf("\033[%d;0f", row);
 }
 
@@ -97,7 +98,8 @@ void printPotentiometer(void)
  
 void checkUartApp(void)
 {
-    if(UART1_IsRxReady()){
+    if(UART1_IsRxReady())
+    {
         uint8_t dataRx = UART1_Read();
         if(dataRx)
         {
