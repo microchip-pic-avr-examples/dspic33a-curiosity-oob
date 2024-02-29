@@ -184,7 +184,7 @@ int main(void)
         {
             potentiometerPrintRequired = false;
             moveCursor(10);
-            printf("Potentiometer: %X\r\n", pot.read());
+            printf("Potentiometer: 0x%04X\r\n", pot.read());
         }
         
         checkUartApp();
