@@ -36,7 +36,9 @@
 #include "bsp/task.h"
 #include <stdio.h>
 
-void initializeAllLEDs(void)
+static bool potentiometerPrintRequired = false;
+
+static void initializeAllLEDs(void)
 {
     ledRGB.initialize();
     led5.initialize();
@@ -44,40 +46,39 @@ void initializeAllLEDs(void)
     led7.initialize();
 }
 
-void initializeAllButtons(void)
+static void initializeAllButtons(void)
 {
     s1.initialize();
     s2.initialize();
     s3.initialize();
 }
 
-void turnOffAllLEDs(void)
-{
-    led5.off();
-    led6.off();
-    led7.off();
-}
-
-void setRGBIntensity(uint16_t potentiometerReading)
+static void setRGBIntensity(uint16_t potentiometerReading)
 {
     ledRed.setIntensity(potentiometerReading);
     ledGreen.setIntensity(potentiometerReading);
     ledBlue.setIntensity(potentiometerReading); 
 }
 
-void clearTerminalScreen(void)
+static void clearTerminalScreen(void)
 {
     printf("\033[2J"); 
 }
 
-void moveCursor(int row)
+static void moveCursor(int row)
 {
     printf("\033[%d;0f", row);
 }
 
-void printMenu(void)
+static void hideCursor()
+{
+    printf("\033[?25l");
+}
+
+static void printMenu(void)
 {
     clearTerminalScreen();
+    hideCursor();
     moveCursor(1);
     printf("------------------------------------ \r\n");
     printf("dsPIC33A128MC106 Out of Box Demo\r\n");
@@ -88,15 +89,15 @@ void printMenu(void)
     printf("Press 'r', 'g', 'b' will toggle red, green, and blue states of the RGB LED "
             "respectively \r\n");
     printf("Turning the potentiometer will adjust the intensity of the RGB LED \r\n");
+
 }
 
-bool potentiometerPrintRequired = false;
-void printPotentiometer(void)
+static void printPotentiometer(void)
 {
     potentiometerPrintRequired = true;
 }
  
-void checkUartApp(void)
+static void checkUartApp(void)
 {
     if(UART1_IsRxReady())
     {
@@ -130,7 +131,7 @@ void checkUartApp(void)
     }
 }
  
-void checkButtonS1(void)
+static void checkButtonS1(void)
 {
     if(s1.isPressed()) 
     {
@@ -142,7 +143,7 @@ void checkButtonS1(void)
     }
 }
  
-void checkButtonS2(void)
+static void checkButtonS2(void)
 {
     if(s2.isPressed()) 
     {
@@ -154,7 +155,7 @@ void checkButtonS2(void)
     }    
 }
  
-void checkButtonS3(void)
+static void checkButtonS3(void)
 {
     if(s3.isPressed()) 
     {
@@ -184,7 +185,7 @@ int main(void)
         {
             potentiometerPrintRequired = false;
             moveCursor(10);
-            printf("Potentiometer: %X\r\n", pot.read());
+            printf("Potentiometer: 0x%04X\r\n", pot.read());
         }
         
         checkUartApp();
