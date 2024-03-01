@@ -49,7 +49,7 @@ void PINS_Initialize(void)
     _RPCONLK = 0;       // RPCON unlock
     _IOLOCK = 0;        // unlock PPS
     
-    _U1RXR = 52;
+    _U1RXR = 50;
     _RP114R = _RPOUT_U1TX;      //RH1 -> U1TX
     
     _IOLOCK = 1;        // lock PPS
