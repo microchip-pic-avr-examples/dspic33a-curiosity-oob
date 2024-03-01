@@ -65,7 +65,7 @@ uint16_t POT_Read(void)
     }
     
     // Read result. It will clear the conversion ready flag.
-    return AD5DATA0;
+    return AD5CH0DATA;
 }
 
 const struct POT pot = 
