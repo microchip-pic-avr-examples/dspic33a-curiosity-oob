@@ -81,7 +81,7 @@ static void printMenu(void)
     hideCursor();
     moveCursor(1);
     printf("------------------------------------ \r\n");
-    printf("dsPIC33A128MC106 Out of Box Demo\r\n");
+    printf("dsPIC33AK128MC106 Out of Box Demo\r\n");
     printf("------------------------------------ \r\n");   
     printf("Hold Switch S1 - LED7 turns on \r\n");
     printf("Hold Switch S2 - LED6 turns on \r\n");
