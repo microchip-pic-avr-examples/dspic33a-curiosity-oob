@@ -38,6 +38,7 @@
 #include "../../uart/uart1.h"
 #include "../system_types.h"
 #include "../interrupt.h"
+#include "../../can/can1.h"
 
 
 void SYSTEM_Initialize(void)
@@ -45,6 +46,7 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     PINS_Initialize();
     UART1_Initialize();
+    CAN1_Initialize();
     INTERRUPT_Initialize();
     INTERRUPT_GlobalEnable();
 }
