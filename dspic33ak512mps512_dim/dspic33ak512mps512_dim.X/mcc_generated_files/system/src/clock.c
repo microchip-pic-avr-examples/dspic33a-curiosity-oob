@@ -57,6 +57,19 @@ void CLOCK_Initialize(void)
     {
     } 
     
+    PLL1CON = (PLLCON_ON_1|PLLCON_OE_1|PLLCON_NOSC_FRC|PLLCON_BOSC_3|PLLCON_FSCMEN);
+    PLL1DIV = (PLLDIV_POSTDIV1_1|PLLDIV_POSTDIV2_1|VCO1DIV_INTDIV(1UL)|PLLDIV_PLLFBDIV(96UL));
+    
+    PLL1CONbits.DIVSWEN = 1; //enable divide factors to get updated
+    while (PLL1CONbits.DIVSWEN == 1) //hardware cleared 
+    {
+    }
+
+    PLL1CONbits.OSWEN = 1; //enable clock switching
+    while (PLL1CONbits.OSWEN == 1) //wait for switching(hardware clear))
+    {
+    } 
+    
     //Generator3 clock switch
     CLK3CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_BFRC);
         
@@ -83,6 +96,20 @@ void CLOCK_Initialize(void)
     {
     }
 
+    //Generator9 clock switch
+    CLK9CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_PLL1|CLKCON_FSCMEN_1|CLKCON_NOSC_PLL1_VCO);
+    CLK9DIV = (CLKDIV_FRACDIV_2_P1x(0UL)|CLKDIV_INTDIV_2x(1UL));
+        
+    CLK9CONbits.DIVSWEN = 1; //enable divide factors to get updated
+    while (CLK9CONbits.DIVSWEN == 1) //hardware cleared 
+    {
+    }
+
+    CLK9CONbits.OSWEN = 1; //enable clock switching
+    while (CLK9CONbits.OSWEN == 1) //wait for switching(hardware clear))
+    {
+    }
+    
     //Clock diagnostics control register, clock monitor and fault injection bits
     
     //FRC tuner

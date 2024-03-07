@@ -34,6 +34,8 @@
 #include "mcc_generated_files/uart/uart1.h"
 #include "bsp/pot.h"
 #include "bsp/task.h"
+#include "mcc_generated_files/can/can1.h"
+#include "mcc_generated_files/can/can_types.h"
 #include <stdio.h>
 
 static bool potentiometerPrintRequired = false;
@@ -168,29 +170,45 @@ static void checkButtonS3(void)
 
 int main(void)
 {       
+    struct CAN_MSG_OBJ out;
+    struct CAN_MSG_FIELD msgtype;
+    uint8_t candata[8];
     SYSTEM_Initialize();
-    initializeAllLEDs();
-    initializeAllButtons();
-    TASK_Initialize();
-    pot.initialize();
-    ledRGB.on();
-    printMenu();
-    TASK_Request(printPotentiometer, 200);
-
+//    initializeAllLEDs();
+//    initializeAllButtons();
+//    TASK_Initialize();
+//    pot.initialize();
+//    ledRGB.on();
+//    printMenu();
+//    TASK_Request(printPotentiometer, 200);
+    
+    candata[0] = 'r';
+    msgtype.idType = CAN_FRAME_STD;
+    msgtype.frameType = CAN_FRAME_DATA;
+    msgtype.dlc = DLC_8;
+    msgtype.formatType = CAN_FD_FORMAT;
+    msgtype.brs = CAN_NON_BRS_MODE;
+   
+    out.data = candata;
+    out.msgId = 0x000000A2;
+    out.field = msgtype;
+    
+    CAN_FD1_Transmit(CAN1_TXQ, &out);
     while (1) 
     {
-        uint16_t potentiometerReading = pot.read();
-        setRGBIntensity(potentiometerReading);
-        if(potentiometerPrintRequired)
-        {
-            potentiometerPrintRequired = false;
-            moveCursor(10);
-            printf("Potentiometer: 0x%04X\r\n", pot.read());
-        }
-        
-        checkUartApp();
-        checkButtonS1();
-        checkButtonS2();
-        checkButtonS3();
+        CAN_FD1_Transmit(CAN1_TXQ, &out);
+//        uint16_t potentiometerReading = pot.read();
+//        setRGBIntensity(potentiometerReading);
+//        if(potentiometerPrintRequired)
+//        {
+//            potentiometerPrintRequired = false;
+//            moveCursor(10);
+//            printf("Potentiometer: 0x%04X\r\n", pot.read());
+//        }
+//        
+//        checkUartApp();
+//        checkButtonS1();
+//        checkButtonS2();
+//        checkButtonS3();
     }
 }
