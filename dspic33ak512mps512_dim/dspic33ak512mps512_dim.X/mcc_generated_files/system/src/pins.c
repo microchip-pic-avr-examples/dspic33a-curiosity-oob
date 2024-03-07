@@ -52,6 +52,15 @@ void PINS_Initialize(void)
     _U1RXR = 50;
     _RP114R = _RPOUT_U1TX;      //RH1 -> U1TX
     
+    _CAN1RXR = 60;
+    _RP62R = _RPOUT_CAN1TX;
+    
+    LATDbits.LATD13 = 1;
+    TRISDbits.TRISD13 = 0;
+            
+    LATDbits.LATD14 = 0;
+    TRISDbits.TRISD14 = 0;
+            
     _IOLOCK = 1;        // lock PPS
     _RPCONWR = 0;       // RPCON write disable
     _RPCONLK = 1;       // RPCON lock
