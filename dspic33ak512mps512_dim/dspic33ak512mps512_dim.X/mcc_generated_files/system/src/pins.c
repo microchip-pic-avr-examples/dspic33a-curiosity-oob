@@ -52,15 +52,12 @@ void PINS_Initialize(void)
     _U1RXR = 50;
     _RP114R = _RPOUT_U1TX;      //RH1 -> U1TX
     
-    _CAN1RXR = 60;
-    _RP62R = _RPOUT_CAN1TX;
+    _CAN1RXR = 60;              //RD11 -> CAN1RX
+    _RP62R = _RPOUT_CAN1TX;     //RD13 -> CAN1TX
     
-    LATDbits.LATD13 = 1;
-    TRISDbits.TRISD13 = 0;
-            
-    LATDbits.LATD14 = 0;
+    LATDbits.LATD14 = 0;        //Enable CAN Transceiver drive STBY low
     TRISDbits.TRISD14 = 0;
-            
+    
     _IOLOCK = 1;        // lock PPS
     _RPCONWR = 0;       // RPCON write disable
     _RPCONLK = 1;       // RPCON lock
