@@ -38,7 +38,13 @@
 #include "mcc_generated_files/can/can_types.h"
 #include <stdio.h>
 
+#define CAN_TX_MESSAGE_ID 0xA2
+
 static bool potentiometerPrintRequired = false;
+static struct CAN_MSG_OBJ canRxMessage;
+static uint8_t canRxData[8];
+static struct CAN_MSG_OBJ canTxMessage;
+static uint8_t canTxData[8];
 
 static void initializeAllLEDs(void)
 {
@@ -53,6 +59,18 @@ static void initializeAllButtons(void)
     s1.initialize();
     s2.initialize();
     s3.initialize();
+}
+
+static void initializeCanMessage(void)
+{
+    canRxMessage.data = canRxData;
+    canTxMessage.msgId = CAN_TX_MESSAGE_ID;
+    canTxMessage.data = canTxData;
+    canTxMessage.field.idType = CAN_FRAME_STD;
+    canTxMessage.field.frameType = CAN_FRAME_DATA;
+    canTxMessage.field.dlc = DLC_8;
+    canTxMessage.field.formatType = CAN_FD_FORMAT;
+    canTxMessage.field.brs = CAN_NON_BRS_MODE;
 }
 
 static void setRGBIntensity(uint16_t potentiometerReading)
@@ -132,7 +150,38 @@ static void checkUartApp(void)
         UART1_Write(dataRx);       
     }
 }
- 
+
+static void checkCANApp(void)
+{    
+    uint8_t index = 0;
+    
+    if(CAN1_ReceivedMessageCountGet() > 0)
+    {
+        CAN1_ReceiveMessageGet(CAN1_FIFO_1, &canRxMessage);
+        while(index < 8)
+        {
+            switch(canRxMessage.data[index])
+            {
+                case 'r': 
+                case 'R': 
+                    ledRed.toggle();
+                    break;
+                case 'g': 
+                case 'G': 
+                    ledGreen.toggle();
+                    break;   
+                case 'b': 
+                case 'B': 
+                    ledBlue.toggle();
+                    break;
+                default: 
+                    break;
+            } 
+            index++;
+        }
+    }
+}
+
 static void checkButtonS1(void)
 {
     if(s1.isPressed()) 
@@ -169,46 +218,35 @@ static void checkButtonS3(void)
 }
 
 int main(void)
-{       
-    struct CAN_MSG_OBJ out;
-    struct CAN_MSG_FIELD msgtype;
-    uint8_t candata[8];
+{    
     SYSTEM_Initialize();
-//    initializeAllLEDs();
-//    initializeAllButtons();
-//    TASK_Initialize();
-//    pot.initialize();
-//    ledRGB.on();
-//    printMenu();
-//    TASK_Request(printPotentiometer, 200);
+    initializeCanMessage();
+    initializeAllLEDs();
+    initializeAllButtons();
+    TASK_Initialize();
+    pot.initialize();
+    ledRGB.on();
+    printMenu();
+    TASK_Request(printPotentiometer, 200);
+    TASK_Request(CAN1_Tasks, 200);
     
-    candata[0] = 'r';
-    msgtype.idType = CAN_FRAME_STD;
-    msgtype.frameType = CAN_FRAME_DATA;
-    msgtype.dlc = DLC_8;
-    msgtype.formatType = CAN_FD_FORMAT;
-    msgtype.brs = CAN_NON_BRS_MODE;
-   
-    out.data = candata;
-    out.msgId = 0x000000A2;
-    out.field = msgtype;
-    
-    CAN_FD1_Transmit(CAN1_TXQ, &out);
     while (1) 
     {
-        CAN_FD1_Transmit(CAN1_TXQ, &out);
-//        uint16_t potentiometerReading = pot.read();
-//        setRGBIntensity(potentiometerReading);
-//        if(potentiometerPrintRequired)
-//        {
-//            potentiometerPrintRequired = false;
-//            moveCursor(10);
-//            printf("Potentiometer: 0x%04X\r\n", pot.read());
-//        }
-//        
-//        checkUartApp();
-//        checkButtonS1();
-//        checkButtonS2();
-//        checkButtonS3();
+        uint16_t potentiometerReading = pot.read();
+        setRGBIntensity(potentiometerReading);
+        if(potentiometerPrintRequired)
+        {
+            potentiometerPrintRequired = false;
+            moveCursor(10);
+            printf("Potentiometer: 0x%04X\r\n", pot.read());
+            canTxMessage.data[0] = potentiometerReading >> 8;
+            canTxMessage.data[1] = potentiometerReading;
+            CAN1_Transmit(CAN1_TXQ, &canTxMessage);
+        }
+        checkUartApp();
+        checkCANApp();
+        checkButtonS1();
+        checkButtonS2();
+        checkButtonS3();
     }
 }
