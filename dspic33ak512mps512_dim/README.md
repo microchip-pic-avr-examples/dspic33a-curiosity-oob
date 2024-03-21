@@ -44,8 +44,8 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 * A terminal program can be used to view the potentiometer value over the UART.
 
 **CAN-FD**
-* Sending the ASCII characters 'r'(0x72), 'g'(0x67), or 'b'(0x62) over the CAN-FD will toggle the red/green/blue LEDs of the RGB LED respectively.
-* A CAN protocol analyzer can be used to view the potentiometer.  The potentiometer value is sent out in binary form.
+* Sending the ASCII characters 'r'(0x72), 'g'(0x67), or 'b'(0x62) over the CAN-FD on CAN ID 0xA1 will toggle the red/green/blue LEDs of the RGB LED respectively.
+* A CAN protocol analyzer can be used to view the potentiometer.  The potentiometer value is sent out in binary form on CAN ID 0xA2 every 200ms.
 
 **Capacitive Touch**
 * LEDs LED0-LED4 indicate the touch location of the T1-T3 touchpads. As your finger slides across these touchpads from right to left, the LEDs LED0-LED4 will incrementally illuminate from right to left to match.
