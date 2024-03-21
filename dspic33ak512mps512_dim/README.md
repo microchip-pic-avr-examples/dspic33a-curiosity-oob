@@ -44,6 +44,7 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 * A terminal program can be used to view the potentiometer value over the UART.
 
 **CAN-FD**
+* CAN FD nominal bit rate 125kbit/s data bit rate 2Mbit/s
 * Sending the ASCII characters 'r'(0x72), 'g'(0x67), or 'b'(0x62) over the CAN-FD on CAN ID 0xA1 will toggle the red/green/blue LEDs of the RGB LED respectively.
 * A CAN protocol analyzer can be used to view the potentiometer.  The potentiometer value is sent out in binary form on CAN ID 0xA2 every 200ms.
 
