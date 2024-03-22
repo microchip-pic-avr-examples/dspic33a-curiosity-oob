@@ -30,6 +30,12 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="can" displayName="can" projectFiles="true">
+          <itemPath>mcc_generated_files/can/can1.h</itemPath>
+          <itemPath>mcc_generated_files/can/can_features.h</itemPath>
+          <itemPath>mcc_generated_files/can/can_interface.h</itemPath>
+          <itemPath>mcc_generated_files/can/can_types.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/interrupt_types.h</itemPath>
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
@@ -44,6 +50,12 @@
           <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>oob.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -74,6 +86,11 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="can" displayName="can" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/can/src/can1.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/system/src/interrupt.c</itemPath>
@@ -91,17 +108,12 @@
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>oob.mc3</itemPath>
-    </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>bsp</Elem>
     <Elem>mcc_generated_files/uart</Elem>
     <Elem>mcc_generated_files/system</Elem>
+    <Elem>mcc_generated_files/can</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

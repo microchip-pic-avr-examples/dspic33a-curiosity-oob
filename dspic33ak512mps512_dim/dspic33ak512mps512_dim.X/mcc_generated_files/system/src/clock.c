@@ -42,7 +42,30 @@
 //to be removed in template
 void CLOCK_Initialize(void)
 {
-    OSCCFGbits.POSCMD = POSCMD_XT_MODE;
+    OSCCFGbits.POSCMD = POSCMD_EC_MODE;
+    
+    OSCCTRLbits.POSCEN = 1; //Enable POSC
+    while(!OSCCTRLbits.POSCRDY) //Wait for POSC to be ready
+    {
+    }
+    
+    PLL2CON = (PLLCON_ON_1| PLLCON_NOSC_POSC); //Select POSC as PLL2's clock source
+    PLL2DIV = (PLLDIV_RFDIV(1UL)|PLLDIV_PLLFBDIV(10UL)|PLLDIV_POSTDIV1_4|PLLDIV_POSTDIV2_1);
+    
+    PLL2CONbits.OSWEN = 1; //Request PLL2 clock switch
+    while(PLL2CONbits.OSWEN) //Wait for PLL2 clock switch to complete
+    {
+    }
+    
+    PLL2CONbits.PLLSWEN = 1; //Request PLL2 feedback divider switch
+    while(PLL2CONbits.PLLSWEN)//Wait for PLL2 feedback divider switch to complete
+    {
+    }
+        
+    PLL2CONbits.FOUTSWEN = 1;//Request PLL2 output divider switch
+    while(PLL2CONbits.FOUTSWEN)//Wait for PLL2 output divider switch to complete
+    {
+    }
     
     CLK1CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_BFRC|CLKCON_FSCMEN_1|CLKCON_NOSC_FRC);
     CLK1DIV = (CLKDIV_FRACDIV_2_P1x(0UL)|CLKDIV_INTDIV_2x(1UL));
@@ -83,6 +106,20 @@ void CLOCK_Initialize(void)
     {
     }
 
+    //Generator10 clock switch CAN source
+    CLK10CON = (CLKCON_ON_1|CLKCON_OE_1|CLKCON_BOSC_PLL2|CLKCON_NOSC_PLL2);
+    CLK10DIV = (CLKDIV_FRACDIV_2_P1x(0UL)|CLKDIV_INTDIV_2x(0UL));
+        
+    CLK10CONbits.DIVSWEN = 1; //enable divide factors to get updated
+    while (CLK10CONbits.DIVSWEN == 1) //hardware cleared 
+    {
+    }
+
+    CLK10CONbits.OSWEN = 1; //enable clock switching
+    while (CLK10CONbits.OSWEN == 1) //wait for switching(hardware clear))
+    {
+    }
+    
     //Clock diagnostics control register, clock monitor and fault injection bits
     
     //FRC tuner

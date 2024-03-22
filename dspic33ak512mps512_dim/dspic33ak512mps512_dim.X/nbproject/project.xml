@@ -12,6 +12,7 @@
                 <sourceRootElem>bsp</sourceRootElem>
                 <sourceRootElem>mcc_generated_files/uart</sourceRootElem>
                 <sourceRootElem>mcc_generated_files/system</sourceRootElem>
+                <sourceRootElem>mcc_generated_files/can</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
