@@ -56,11 +56,11 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 **PEAK PCAN-View CAN bit rate setup**
 * If using the PEAK USB CAN-FD Analyzer additional bit rates to the default bit rates may be needed to get consistent communication functioning with the dsPIC33A Curiosity Platform Development Board. The following steps are a guide to other tool provided bit rates that will improve communication.
 
-1) In the PEAK PCAN-View software double click the bit rate settings in the bottom left (circled in red) to open the bit rates dialogue box.
+1) In the PEAK PCAN-View software double click the bit rate settings in the bottom left (circled in red) to open the bit rates dialogue box.<br>
 ![PEAK PCAN-View Settings](./images/peak-settings.png)
-2) Ensure that both the nominal bit rate and data bit rate have similar sample points. If the sample points are different click the ellipsis (circled in red) to open an additional table of timing setting options.
+2) Ensure that both the nominal bit rate and data bit rate have similar sample points. If the sample points are different click the ellipsis (circled in red) to open an additional table of timing setting options.<br>
 ![PEAK PCAN-View Bit Rates Dialogue](./images/peak-bit-rates.png)
-3) Select a timing setting similar to the selected data bit rate, and make a selection for the Sync Jump Width before selecting OK to both dialogue boxes to accept these settings.
+3) Select a timing setting similar to the selected data bit rate, and make a selection for the Sync Jump Width before selecting OK to both dialogue boxes to accept these settings.<br>
 ![PEAK PCAN-View Timing Options Dialogue](./images/peak-timing-options.png)
 4) Repeat these steps until there is consistent potentiometer messages being received in PCAN-View on CAN ID 0x0A2 ~every 200ms.
  
