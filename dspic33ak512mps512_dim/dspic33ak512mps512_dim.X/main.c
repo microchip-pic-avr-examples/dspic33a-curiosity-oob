@@ -70,7 +70,7 @@ static void initializeCanMessage(void)
     canTxMessage.field.frameType = CAN_FRAME_DATA;
     canTxMessage.field.dlc = DLC_8;
     canTxMessage.field.formatType = CAN_FD_FORMAT;
-    canTxMessage.field.brs = CAN_NON_BRS_MODE;
+    canTxMessage.field.brs = CAN_BRS_MODE;
 }
 
 static void setRGBIntensity(uint16_t potentiometerReading)
