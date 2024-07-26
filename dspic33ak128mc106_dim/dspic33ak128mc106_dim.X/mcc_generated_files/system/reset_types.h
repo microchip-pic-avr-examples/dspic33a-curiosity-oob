@@ -1,3 +1,17 @@
+/**
+ * RESET Generated Driver Types Header File
+ * 
+ * @file      reset_types.h
+ *            
+ * @ingroup   resetdriver
+ *            
+ * @brief     This is the generated driver types header file for the RESET driver
+ *
+ * @skipline @version   PLIB Version 1.0.1
+ *            
+ * @skipline  Device : dsPIC33AK128MC106
+*/
+
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,39 +33,24 @@
     THIS SOFTWARE.
 */
 
-#include <xc.h>
-#include "led4.h"
+#ifndef RESET_TYPES_H
+#define    RESET_TYPES_H
 
-void LED4_Initialize(void)
-{
-    TRISCbits.TRISC7 = 0;
-}
-
-void LED4_On(void)
-{
-    LATCbits.LATC7 = 1;
-}
-
-void LED4_Off(void)
-{
-    LATCbits.LATC7 = 0;
-}
-
-void LED4_Toggle(void)
-{
-    LATCbits.LATC7 ^= 1;
-}
-
-void LED4_Set(bool on)
-{
-    LATCbits.LATC7 = on;
-}
-
-const struct LED_SIMPLE led4 = 
-{
-    &LED4_Initialize,
-    &LED4_On,
-    &LED4_Off,
-    &LED4_Toggle,
-    &LED4_Set
+/**
+ @ingroup  resetdriver
+ @enum     RESET_MASKS
+ @brief    Defines the RESET cause mask location   
+*/
+enum RESET_MASKS
+{ 
+  RESET_MASK_WDTO      = 0x00000010,   /**< Defines the watchdog timeout reset flag mask location */
+  RESET_MASK_SWR       = 0x00000040,   /**< Defines the software reset mask location */
+  RESET_MASK_EXTR      = 0x00000080,   /**< Defines the external reset mask location */
+  RESET_MASK_CM        = 0x00000200,   /**< Defines the configuration mismatch reset mask location */
 };
+
+#endif    /* RESET_TYPES_H */
+
+/**
+ End of File
+*/

@@ -32,16 +32,12 @@
 */
 struct LED_DIMMABLE //extends LED_SIMPLE
 {
-    //Initializes the LED.  Must be called before other functions can be used.
-    void (*const initialize)(void);
     //Turns on the LED
     void (*const on)(void);
     //Turns off the LED
     void (*const off)(void);
     //Toggles the LED between on/off states (on->off or off->on)
     void (*const toggle)(void);
-    //Sets the LED on(true) or off(false) based on provided input.
-    void (*const set)(bool);
     //Sets the intensity/brightness of the LED.
     void (*const setIntensity)(uint16_t request);
 };

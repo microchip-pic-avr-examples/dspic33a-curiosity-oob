@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver source file for TRAPS driver          
  *
- * @skipline @version   PLIB Version 1.0.0-dev.2
+ * @skipline @version   PLIB Version 1.0.1
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */
@@ -39,13 +39,6 @@
 
 #define ERROR_HANDLER __attribute__((interrupt,no_auto_psv))
 #define FAILSAFE_STACK_GUARDSIZE 8
-
-void ERROR_HANDLER _GeneralTrap(void);
-void ERROR_HANDLER _MathErrorTrap(void);
-void ERROR_HANDLER _BusErrorTrap(void);
-void ERROR_HANDLER _AddressErrorTrap(void);
-void ERROR_HANDLER _IllegalInstructionTrap(void);
-void ERROR_HANDLER _StackErrorTrap(void);
 
 // A private place to store the error code if we run into a severe error
 
@@ -88,19 +81,32 @@ inline static void use_failsafe_stack(void)
     SPLIM = (uint32_t)(((uint8_t *)failsafe_stack) + sizeof(failsafe_stack) - (uint32_t) FAILSAFE_STACK_GUARDSIZE);
 }
 
+/** Address error.**/
+void ERROR_HANDLER _AddressErrorTrap(void)
+{
+    INTCON1bits.ADDRERR = 0;  //Clear the trap flag
+    TRAPS_halt_on_error(TRAPS_ADDRESS_ERR);
+}
+
 /** General error.**/
 void ERROR_HANDLER _GeneralTrap(void)
 {
-    if(INTCON5bits.WDT == 1)
-    {
-      INTCON5bits.WDT = 0;  //Clear the trap flag
-      TRAPS_halt_on_error(TRAPS_WDT_ERR);
-    }
-
     if(INTCON5bits.DMT == 1)
     {
       INTCON5bits.DMT = 0;  //Clear the trap flag
       TRAPS_halt_on_error(TRAPS_DMT_ERR);
+    }
+
+    if(INTCON5bits.SOFT == 1)
+    {
+      INTCON5bits.SOFT = 0;  //Clear the trap flag
+      TRAPS_halt_on_error(TRAPS_GEN_ERR);
+    }
+
+    if(INTCON5bits.WDT == 1)
+    {
+      INTCON5bits.WDT = 0;  //Clear the trap flag
+      TRAPS_halt_on_error(TRAPS_WDT_ERR);
     }
 
     while(1)
@@ -115,27 +121,6 @@ void ERROR_HANDLER _MathErrorTrap(void)
     TRAPS_halt_on_error(TRAPS_DIV0_ERR);
 }
 
-/** Bus error.**/
-void ERROR_HANDLER _BusErrorTrap(void)
-{
-    INTCON3bits.BET2 = 0;  //Clear the trap flag
-    TRAPS_halt_on_error(TRAPS_DMA_BUS_ERR);
-}
-
-/** Address error.**/
-void ERROR_HANDLER _AddressErrorTrap(void)
-{
-    INTCON1bits.ADDRERR = 0;  //Clear the trap flag
-    TRAPS_halt_on_error(TRAPS_ADDRESS_ERR);
-}
-
-/** Illegal instruction.**/
-void ERROR_HANDLER _IllegalInstructionTrap(void)
-{
-    INTCON1bits.BADOPERR = 0;  //Clear the trap flag
-    TRAPS_halt_on_error(TRAPS_ILLEGALINSTRUCTION);
-}
-
 /** Stack error.**/
 void ERROR_HANDLER _StackErrorTrap(void)
 {
@@ -147,5 +132,19 @@ void ERROR_HANDLER _StackErrorTrap(void)
     
     INTCON1bits.STKERR = 0;  //Clear the trap flag
     TRAPS_halt_on_error(TRAPS_STACK_ERR);
+}
+
+/** Bus error.**/
+void ERROR_HANDLER _BusErrorTrap(void)
+{
+    INTCON3bits.BET2 = 0;  //Clear the trap flag
+    TRAPS_halt_on_error(TRAPS_DMA_BUS_ERR);
+}
+
+/** Illegal instruction.**/
+void ERROR_HANDLER _IllegalInstructionTrap(void)
+{
+    INTCON1bits.BADOPERR = 0;  //Clear the trap flag
+    TRAPS_halt_on_error(TRAPS_ILLEGALINSTRUCTION);
 }
 

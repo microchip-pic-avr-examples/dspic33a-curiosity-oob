@@ -5,20 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="bsp" projectFiles="true">
-        <itemPath>bsp/led_simple.h</itemPath>
-        <itemPath>bsp/button_simple.h</itemPath>
-        <itemPath>bsp/led0.h</itemPath>
-        <itemPath>bsp/led1.h</itemPath>
-        <itemPath>bsp/led2.h</itemPath>
-        <itemPath>bsp/led3.h</itemPath>
-        <itemPath>bsp/led4.h</itemPath>
-        <itemPath>bsp/led5.h</itemPath>
-        <itemPath>bsp/led6.h</itemPath>
-        <itemPath>bsp/led7.h</itemPath>
-        <itemPath>bsp/s1.h</itemPath>
-        <itemPath>bsp/s2.h</itemPath>
-        <itemPath>bsp/s3.h</itemPath>
-        <itemPath>bsp/pot.h</itemPath>
         <itemPath>bsp/task.h</itemPath>
         <itemPath>bsp/led_red.h</itemPath>
         <itemPath>bsp/led_green.h</itemPath>
@@ -30,6 +16,19 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="adc" displayName="adc" projectFiles="true">
+          <itemPath>mcc_generated_files/adc/adc_features.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc1.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc_interface.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc_types.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="pwm" displayName="pwm" projectFiles="true">
+          <itemPath>mcc_generated_files/pwm/pwm_interface.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp1.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp2.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp3.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/pwm_types.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/interrupt_types.h</itemPath>
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
@@ -39,6 +38,11 @@
           <itemPath>mcc_generated_files/system/clock.h</itemPath>
           <itemPath>mcc_generated_files/system/pins.h</itemPath>
           <itemPath>mcc_generated_files/clock_settings.h</itemPath>
+          <itemPath>mcc_generated_files/system/clock_types.h</itemPath>
+          <itemPath>mcc_generated_files/system/dmt.h</itemPath>
+          <itemPath>mcc_generated_files/system/watchdog.h</itemPath>
+          <itemPath>mcc_generated_files/system/reset_types.h</itemPath>
+          <itemPath>mcc_generated_files/system/reset.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <itemPath>mcc_generated_files/uart/uart1.h</itemPath>
@@ -46,6 +50,13 @@
           <itemPath>mcc_generated_files/uart/uart_types.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="true">
+      <itemPath>Makefile</itemPath>
+      <itemPath>oob.mc3</itemPath>
+      <itemPath>dsPIC33AK128MC106_Curiosity_GP_DIM_out_of_box_demo.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -55,18 +66,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="bsp" displayName="bsp" projectFiles="true">
-        <itemPath>bsp/led0.c</itemPath>
-        <itemPath>bsp/led1.c</itemPath>
-        <itemPath>bsp/led2.c</itemPath>
-        <itemPath>bsp/led3.c</itemPath>
-        <itemPath>bsp/led4.c</itemPath>
-        <itemPath>bsp/led5.c</itemPath>
-        <itemPath>bsp/led6.c</itemPath>
-        <itemPath>bsp/led7.c</itemPath>
-        <itemPath>bsp/s1.c</itemPath>
-        <itemPath>bsp/s2.c</itemPath>
-        <itemPath>bsp/s3.c</itemPath>
-        <itemPath>bsp/pot.c</itemPath>
         <itemPath>bsp/task.c</itemPath>
         <itemPath>bsp/led_red.c</itemPath>
         <itemPath>bsp/led_green.c</itemPath>
@@ -76,6 +75,18 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="adc" displayName="adc" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/adc/src/adc1.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <logicalFolder name="pwm" displayName="pwm" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/pwm/src/sccp1.c</itemPath>
+            <itemPath>mcc_generated_files/pwm/src/sccp3.c</itemPath>
+            <itemPath>mcc_generated_files/pwm/src/sccp2.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/system/src/interrupt.c</itemPath>
@@ -83,6 +94,10 @@
             <itemPath>mcc_generated_files/system/src/system.c</itemPath>
             <itemPath>mcc_generated_files/system/src/clock.c</itemPath>
             <itemPath>mcc_generated_files/system/src/pins.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/reset.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/dmt.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/config_bits.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/dmt_asm.s</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
@@ -92,12 +107,6 @@
         </logicalFolder>
       </logicalFolder>
       <itemPath>main.c</itemPath>
-    </logicalFolder>
-    <logicalFolder name="ExternalFiles"
-                   displayName="Important Files"
-                   projectFiles="false">
-      <itemPath>Makefile</itemPath>
-      <itemPath>oob.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -117,7 +126,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33AK-MC_DFP" vendor="Microchip" version="1.0.4"/>
+        <pack name="dsPIC33AK-MC_DFP" vendor="Microchip" version="1.0.33"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -166,7 +175,6 @@
         <property key="extra-include-directories" value=""/>
         <property key="isolate-each-function" value="false"/>
         <property key="keep-inline" value="false"/>
-        <property key="oXC16gcc-align-arr" value="false"/>
         <property key="oXC16gcc-cnsts-mauxflash" value="false"/>
         <property key="oXC16gcc-data-sects" value="false"/>
         <property key="oXC16gcc-errata" value=""/>
@@ -249,6 +257,7 @@
         <property key="oXC16ld-nostdlib" value="false"/>
         <property key="oXC16ld-stackguard" value="16"/>
         <property key="preprocessor-macros" value=""/>
+        <property key="psv-override" value="false"/>
         <property key="remove-unused-sections" value="false"/>
         <property key="report-memory-usage" value="true"/>
         <property key="secure-eeprom" value="no_eeprom"/>
@@ -297,6 +306,7 @@
         <property key="CRC" value="true"/>
         <property key="DAC" value="true"/>
         <property key="DMA" value="true"/>
+        <property key="FRZ" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="HPC" value="true"/>
         <property key="I2C1" value="true"/>
@@ -320,6 +330,7 @@
         <property key="SPI1" value="true"/>
         <property key="SPI2" value="true"/>
         <property key="SPI3" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
         <property key="TIMER1" value="true"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
@@ -337,6 +348,7 @@
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -371,9 +383,10 @@
         <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="toolpack.updateoptions"
-                  value="toolpack.updateoptions.specifictoolpack"/>
+                  value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion" value="1.14.1168"/>
       </Tool>
       <pkob4hybrid>
@@ -397,6 +410,7 @@
         <property key="CRC" value="true"/>
         <property key="DAC" value="true"/>
         <property key="DMA" value="true"/>
+        <property key="FRZ" value="true"/>
         <property key="Freeze All Other Peripherals" value="true"/>
         <property key="HPC" value="true"/>
         <property key="I2C1" value="true"/>
@@ -420,6 +434,7 @@
         <property key="SPI1" value="true"/>
         <property key="SPI2" value="true"/>
         <property key="SPI3" value="true"/>
+        <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
         <property key="TIMER1" value="true"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
@@ -437,6 +452,7 @@
         <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.simultaneous.debug" value="false"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="event.recorder.debugger.behavior" value="Running"/>
         <property key="event.recorder.enabled" value="false"/>
         <property key="event.recorder.scvd.files" value=""/>
         <property key="freeze.timers" value="false"/>
@@ -455,7 +471,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="800000-81ffff"/>
         <property key="programmerToGoFilePath"
-                  value="C:/work/repos/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
+                  value="C:/Users/C74569/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -471,9 +487,10 @@
         <property key="programoptions.program.otpconfig" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
+        <property key="programoptions.smart.program" value="When debugging only"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="toolpack.updateoptions"
-                  value="toolpack.updateoptions.specifictoolpack"/>
+                  value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion" value="1.14.1168"/>
       </pkob4hybrid>
     </conf>

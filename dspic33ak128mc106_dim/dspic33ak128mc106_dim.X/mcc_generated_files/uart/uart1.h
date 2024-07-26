@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver header file for the UART1 driver
  *
- * @skipline @version   PLIB Version 1.0.0
+ * @skipline @version   PLIB Version 1.0.1
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */

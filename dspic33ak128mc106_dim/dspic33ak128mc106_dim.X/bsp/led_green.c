@@ -21,71 +21,43 @@
 
 #include <xc.h>
 #include "led_green.h"
+#include "../mcc_generated_files/pwm/sccp2.h"
 
-void LED_GREEN_Initialize(void)
-{
-    TRISDbits.TRISD0 = 0;
-    
-    /* PWM control register configuration */
-    PCLKCONbits.MCLKSEL = 0b1;
-    
-    PG2CON = 0;
-    PG2CONbits.CLKSEL = 1;
-    PG2CONbits.MODSEL = 0b000;      /* Independent edge triggered mode */
-       
-    PG2IOCON = 0;
-    PG2IOCONbits.PMOD = 0b10;       /* Independent mode */
-    PG2IOCONbits.PENH = 1;          /* High output enabled */ 
-    
-    /* PWM uses PG2DC, PG2PER, PG2PHASE registers */
-    /* PWM Generator does not broadcast UPDATE status bit state or EOC signal */
-    /* Update the data registers at start of next PWM cycle (SOC) */
-    /* PWM Generator operates in Single Trigger mode */
-    /* Start of cycle (SOC) = local EOC */
-    /* Write to DATA REGISTERS */
-    PG2PER = 0x10000; /* PWM frequency */
-    PG2DC = 0x8000;   /* 50% duty */
-
-    PG2CONbits.ON = 0;
-}
+static bool issccp2Enabled = false;
 
 void LED_GREEN_On(void)
 {
-    PG2CONbits.ON = 1;
+    SCCP2_PWM_Enable();
+    issccp2Enabled = true;
 }
 
 void LED_GREEN_Off(void)
 {
-    PG2CONbits.ON = 0;
+    SCCP2_PWM_Disable();
+    issccp2Enabled = false;
 }
 
 void LED_GREEN_Toggle(void)
 {
-    PG2CONbits.ON ^= 1;
-}
-
-void LED_GREEN_Set(bool on)
-{
-    PG2CONbits.ON = on;
+    if (issccp2Enabled == true) 
+    {
+        LED_GREEN_Off();
+    } 
+    else 
+    {
+        LED_GREEN_On();
+    }
 }
 
 void LED_GREEN_SetIntensity(uint16_t request)
 {  
-    while(PG2STATbits.UPDATE == 1)
-    {
-    }
-    
-    PG2DC = request;
-    
-    PG2STATbits.UPDREQ = 1;
+    SCCP2_PWM_DutyCycleSet(request);
 } 
 
 const struct LED_DIMMABLE ledGreen = 
 {
-    &LED_GREEN_Initialize,
     &LED_GREEN_On,
     &LED_GREEN_Off,
     &LED_GREEN_Toggle,
-    &LED_GREEN_Set,
     &LED_GREEN_SetIntensity
 };

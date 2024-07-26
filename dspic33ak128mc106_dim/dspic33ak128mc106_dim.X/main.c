@@ -20,38 +20,19 @@
 */
 
 #include "mcc_generated_files/system/system.h"
-#include "bsp/led7.h"
-#include "bsp/led6.h"
-#include "bsp/led5.h"
+#include "mcc_generated_files/system/pins.h"
+#include "mcc_generated_files/adc/adc1.h"
 #include "bsp/led_red.h"
 #include "bsp/led_blue.h"
 #include "bsp/led_green.h"
 #include "bsp/led_color.h"
 #include "bsp/led_rgb.h"
-#include "bsp/s1.h"
-#include "bsp/s2.h"
-#include "bsp/s3.h"
 #include "mcc_generated_files/uart/uart1.h"
-#include "bsp/pot.h"
 #include "bsp/task.h"
 #include <stdio.h>
 
 static bool potentiometerPrintRequired = false;
-
-static void initializeAllLEDs(void)
-{
-    ledRGB.initialize();
-    led5.initialize();
-    led6.initialize();
-    led7.initialize();
-}
-
-static void initializeAllButtons(void)
-{
-    s1.initialize();
-    s2.initialize();
-    s3.initialize();
-}
+static uint16_t potentiometerReading = 200;
 
 static void setRGBIntensity(uint16_t potentiometerReading)
 {
@@ -133,59 +114,58 @@ static void checkUartApp(void)
  
 static void checkButtonS1(void)
 {
-    if(s1.isPressed()) 
+    if(IO_RB5_GetValue() == 0) 
     {
-        led7.on();
+        IO_RC10_SetHigh();
     } 
     else 
     {
-        led7.off();
+        IO_RC10_SetLow();
     }
 }
  
 static void checkButtonS2(void)
 {
-    if(s2.isPressed()) 
+    if(IO_RB4_GetValue() == 0) 
     {
-       led6.on();
+        IO_RC9_SetHigh();
     } 
     else 
     {
-       led6.off();
+        IO_RC9_SetLow();
     }    
 }
  
 static void checkButtonS3(void)
 {
-    if(s3.isPressed()) 
+    if(IO_RA6_GetValue() == 0) 
     {
-        led5.on();
+        IO_RC8_SetHigh();
     } 
-    else {
-        led5.off();
+    else 
+    {
+        IO_RC8_SetLow();
     } 
 }
 
 int main(void)
 {       
     SYSTEM_Initialize();
-    initializeAllLEDs();
-    initializeAllButtons();
     TASK_Initialize();
-    pot.initialize();
     ledRGB.on();
     printMenu();
     TASK_Request(printPotentiometer, 200);
 
     while (1) 
     {
-        uint16_t potentiometerReading = pot.read();
+        ADC1.SoftwareTriggerEnable();
+        potentiometerReading = ADC1.ConversionResultGet(ADC1_Channel0);
         setRGBIntensity(potentiometerReading);
         if(potentiometerPrintRequired)
         {
             potentiometerPrintRequired = false;
             moveCursor(10);
-            printf("Potentiometer: 0x%04X\r\n", pot.read());
+            printf("Potentiometer: 0x%04X\r\n", potentiometerReading);
         }
         
         checkUartApp();

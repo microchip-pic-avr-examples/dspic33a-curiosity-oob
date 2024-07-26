@@ -1,3 +1,17 @@
+/**
+ * RESET Generated Driver Header File
+ * 
+ * @file      reset.h
+ *            
+ * @defgroup  resetdriver Reset Driver
+ *            
+ * @brief     This is the generated driver header file for the RESET driver
+ *
+ * @skipline @version   PLIB Version 1.0.1
+ *            
+ * @skipline  Device : dsPIC33AK128MC106
+*/
+
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,38 +33,39 @@
     THIS SOFTWARE.
 */
 
-#ifndef POT_H
-#define POT_H
+#ifndef RESET_H
+#define    RESET_H
 
 #include <stdint.h>
+#include "reset_types.h"
 
 /**
- * @ingroup  pot
- * @brief    Initializes the potentiometer.  Must be called before other functions can be used.
- * @param    none
- * @return   none
+ * @ingroup  resetdriver
+ * @brief    Returns the cause of previous reset
+ * @pre      This function should be called before any use of CLRWDT
+ *           since it has a side-effect of clearing the appropriate bits in the
+ *           register showing reset cause (see DS70602B page 8-10)
+ * @return   none  
  */
-void POT_Initialize(void);
+uint32_t RESET_CauseGet(void);
 
 /**
- * @ingroup  pot
- * @brief    Reads the value of the potentiometer.
- * @param    none
- * @return   uint16_t - 16-bit potentiometer value.  
+ * @ingroup  resetdriver
+ * @brief    It handles the reset cause by clearing the cause register values.
+ *           This is a weak attribute function. The user can 
+ *           override and implement the same function without weak attribute.
+ * @return   none  
  */
-uint16_t POT_Read(void);
+void RESET_CauseHandler(void);
 
 /**
- @ingroup  pot
- @struct   POT
- @brief    Defines structure for interface for a simple potentiometer interface.
+ * @ingroup  resetdriver
+ * @brief    Clears the Reset Cause register
+ * @return   none  
+ */
+void RESET_CauseClearAll(void);
+
+#endif    /* RESET_H */
+/**
+ End of File
 */
-struct POT
-{
-    void (*const initialize)(void);
-    uint16_t (*const read)(void);
-};
-
-extern const struct POT pot;
-
-#endif

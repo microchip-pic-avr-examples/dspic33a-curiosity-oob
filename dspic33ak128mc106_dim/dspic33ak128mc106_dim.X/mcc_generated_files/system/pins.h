@@ -3,19 +3,36 @@
  * 
  * @file      pins.h
  *            
- * @defgroup  pinsdriver PINS Driver
+ * @defgroup  pinsdriver Pins Driver
  *            
  * @brief     The Pin Driver directs the operation and function of 
  *            the selected device pins using dsPIC MCUs.
  *
- * @version   Firmware Driver Version 1.0.1
- *
- * @version   PLIB Version 1.0.0
+ * @skipline @version   PLIB Version 1.0.1
  *
  * @skipline  Device : dsPIC33AK128MC106
 */
 
-/*disclaimer*/
+/*
+© [2024] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
+*/
 
 #ifndef PINS_H
 #define PINS_H
@@ -26,326 +43,318 @@
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RA0 GPIO Pin which has a custom name of IO_RA0 to High
- * @pre      The RA0 must be set as Output Pin             
+ * @brief    Sets the RA6 GPIO Pin which has a custom name of IO_RA6 to High
+ * @pre      The RA6 must be set as Output Pin             
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_SetHigh()          (_LATA0 = 1)
+#define IO_RA6_SetHigh()          (_LATA6 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RA0 GPIO Pin which has a custom name of IO_RA0 to Low
- * @pre      The RA0 must be set as Output Pin
+ * @brief    Sets the RA6 GPIO Pin which has a custom name of IO_RA6 to Low
+ * @pre      The RA6 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_SetLow()           (_LATA0 = 0)
+#define IO_RA6_SetLow()           (_LATA6 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Toggles the RA0 GPIO Pin which has a custom name of IO_RA0
- * @pre      The RA0 must be set as Output Pin
+ * @brief    Toggles the RA6 GPIO Pin which has a custom name of IO_RA6
+ * @pre      The RA6 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_Toggle()           (_LATA0 ^= 1)
+#define IO_RA6_Toggle()           (_LATA6 ^= 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Reads the value of the RA0 GPIO Pin which has a custom name of IO_RA0
+ * @brief    Reads the value of the RA6 GPIO Pin which has a custom name of IO_RA6
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_GetValue()         _RA0
+#define IO_RA6_GetValue()         _RA6
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RA0 GPIO Pin which has a custom name of IO_RA0 as Input
+ * @brief    Configures the RA6 GPIO Pin which has a custom name of IO_RA6 as Input
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_SetDigitalInput()  (_TRISA0 = 1)
+#define IO_RA6_SetDigitalInput()  (_TRISA6 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RA0 GPIO Pin which has a custom name of IO_RA0 as Output
+ * @brief    Configures the RA6 GPIO Pin which has a custom name of IO_RA6 as Output
+ * @param    none
  * @return   none  
  */
-#define IO_RA0_SetDigitalOutput() (_TRISA0 = 0)
+#define IO_RA6_SetDigitalOutput() (_TRISA6 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB1 GPIO Pin which has a custom name of IO_RB1 to High
- * @pre      The RB1 must be set as Output Pin             
+ * @brief    Sets the RB4 GPIO Pin which has a custom name of IO_RB4 to High
+ * @pre      The RB4 must be set as Output Pin             
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_SetHigh()          (_LATB1 = 1)
+#define IO_RB4_SetHigh()          (_LATB4 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB1 GPIO Pin which has a custom name of IO_RB1 to Low
- * @pre      The RB1 must be set as Output Pin
+ * @brief    Sets the RB4 GPIO Pin which has a custom name of IO_RB4 to Low
+ * @pre      The RB4 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_SetLow()           (_LATB1 = 0)
+#define IO_RB4_SetLow()           (_LATB4 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Toggles the RB1 GPIO Pin which has a custom name of IO_RB1
- * @pre      The RB1 must be set as Output Pin
+ * @brief    Toggles the RB4 GPIO Pin which has a custom name of IO_RB4
+ * @pre      The RB4 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_Toggle()           (_LATB1 ^= 1)
+#define IO_RB4_Toggle()           (_LATB4 ^= 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Reads the value of the RB1 GPIO Pin which has a custom name of IO_RB1
+ * @brief    Reads the value of the RB4 GPIO Pin which has a custom name of IO_RB4
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_GetValue()         _RB1
+#define IO_RB4_GetValue()         _RB4
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB1 GPIO Pin which has a custom name of IO_RB1 as Input
+ * @brief    Configures the RB4 GPIO Pin which has a custom name of IO_RB4 as Input
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_SetDigitalInput()  (_TRISB1 = 1)
+#define IO_RB4_SetDigitalInput()  (_TRISB4 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB1 GPIO Pin which has a custom name of IO_RB1 as Output
+ * @brief    Configures the RB4 GPIO Pin which has a custom name of IO_RB4 as Output
+ * @param    none
  * @return   none  
  */
-#define IO_RB1_SetDigitalOutput() (_TRISB1 = 0)
+#define IO_RB4_SetDigitalOutput() (_TRISB4 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RA1 GPIO Pin which has a custom name of IO_RA1 to High
- * @pre      The RA1 must be set as Output Pin             
+ * @brief    Sets the RB5 GPIO Pin which has a custom name of IO_RB5 to High
+ * @pre      The RB5 must be set as Output Pin             
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_SetHigh()          (_LATA1 = 1)
+#define IO_RB5_SetHigh()          (_LATB5 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RA1 GPIO Pin which has a custom name of IO_RA1 to Low
- * @pre      The RA1 must be set as Output Pin
+ * @brief    Sets the RB5 GPIO Pin which has a custom name of IO_RB5 to Low
+ * @pre      The RB5 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_SetLow()           (_LATA1 = 0)
+#define IO_RB5_SetLow()           (_LATB5 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Toggles the RA1 GPIO Pin which has a custom name of IO_RA1
- * @pre      The RA1 must be set as Output Pin
+ * @brief    Toggles the RB5 GPIO Pin which has a custom name of IO_RB5
+ * @pre      The RB5 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_Toggle()           (_LATA1 ^= 1)
+#define IO_RB5_Toggle()           (_LATB5 ^= 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Reads the value of the RA1 GPIO Pin which has a custom name of IO_RA1
+ * @brief    Reads the value of the RB5 GPIO Pin which has a custom name of IO_RB5
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_GetValue()         _RA1
+#define IO_RB5_GetValue()         _RB5
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RA1 GPIO Pin which has a custom name of IO_RA1 as Input
+ * @brief    Configures the RB5 GPIO Pin which has a custom name of IO_RB5 as Input
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_SetDigitalInput()  (_TRISA1 = 1)
+#define IO_RB5_SetDigitalInput()  (_TRISB5 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RA1 GPIO Pin which has a custom name of IO_RA1 as Output
+ * @brief    Configures the RB5 GPIO Pin which has a custom name of IO_RB5 as Output
+ * @param    none
  * @return   none  
  */
-#define IO_RA1_SetDigitalOutput() (_TRISA1 = 0)
+#define IO_RB5_SetDigitalOutput() (_TRISB5 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB9 GPIO Pin which has a custom name of IO_RB9 to High
- * @pre      The RB9 must be set as Output Pin             
+ * @brief    Sets the RC8 GPIO Pin which has a custom name of IO_RC8 to High
+ * @pre      The RC8 must be set as Output Pin             
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_SetHigh()          (_LATB9 = 1)
+#define IO_RC8_SetHigh()          (_LATC8 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB9 GPIO Pin which has a custom name of IO_RB9 to Low
- * @pre      The RB9 must be set as Output Pin
+ * @brief    Sets the RC8 GPIO Pin which has a custom name of IO_RC8 to Low
+ * @pre      The RC8 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_SetLow()           (_LATB9 = 0)
+#define IO_RC8_SetLow()           (_LATC8 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Toggles the RB9 GPIO Pin which has a custom name of IO_RB9
- * @pre      The RB9 must be set as Output Pin
+ * @brief    Toggles the RC8 GPIO Pin which has a custom name of IO_RC8
+ * @pre      The RC8 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_Toggle()           (_LATB9 ^= 1)
+#define IO_RC8_Toggle()           (_LATC8 ^= 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Reads the value of the RB9 GPIO Pin which has a custom name of IO_RB9
+ * @brief    Reads the value of the RC8 GPIO Pin which has a custom name of IO_RC8
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_GetValue()         _RB9
+#define IO_RC8_GetValue()         _RC8
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB9 GPIO Pin which has a custom name of IO_RB9 as Input
+ * @brief    Configures the RC8 GPIO Pin which has a custom name of IO_RC8 as Input
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_SetDigitalInput()  (_TRISB9 = 1)
+#define IO_RC8_SetDigitalInput()  (_TRISC8 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB9 GPIO Pin which has a custom name of IO_RB9 as Output
+ * @brief    Configures the RC8 GPIO Pin which has a custom name of IO_RC8 as Output
+ * @param    none
  * @return   none  
  */
-#define IO_RB9_SetDigitalOutput() (_TRISB9 = 0)
+#define IO_RC8_SetDigitalOutput() (_TRISC8 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB8 GPIO Pin which has a custom name of IO_RB8 to High
- * @pre      The RB8 must be set as Output Pin             
+ * @brief    Sets the RC9 GPIO Pin which has a custom name of IO_RC9 to High
+ * @pre      The RC9 must be set as Output Pin             
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_SetHigh()          (_LATB8 = 1)
+#define IO_RC9_SetHigh()          (_LATC9 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Sets the RB8 GPIO Pin which has a custom name of IO_RB8 to Low
- * @pre      The RB8 must be set as Output Pin
+ * @brief    Sets the RC9 GPIO Pin which has a custom name of IO_RC9 to Low
+ * @pre      The RC9 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_SetLow()           (_LATB8 = 0)
+#define IO_RC9_SetLow()           (_LATC9 = 0)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Toggles the RB8 GPIO Pin which has a custom name of IO_RB8
- * @pre      The RB8 must be set as Output Pin
+ * @brief    Toggles the RC9 GPIO Pin which has a custom name of IO_RC9
+ * @pre      The RC9 must be set as Output Pin
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_Toggle()           (_LATB8 ^= 1)
+#define IO_RC9_Toggle()           (_LATC9 ^= 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Reads the value of the RB8 GPIO Pin which has a custom name of IO_RB8
+ * @brief    Reads the value of the RC9 GPIO Pin which has a custom name of IO_RC9
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_GetValue()         _RB8
+#define IO_RC9_GetValue()         _RC9
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB8 GPIO Pin which has a custom name of IO_RB8 as Input
+ * @brief    Configures the RC9 GPIO Pin which has a custom name of IO_RC9 as Input
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_SetDigitalInput()  (_TRISB8 = 1)
+#define IO_RC9_SetDigitalInput()  (_TRISC9 = 1)
 
 /**
  * @ingroup  pinsdriver
- * @brief    Configures the RB8 GPIO Pin which has a custom name of IO_RB8 as Output
+ * @brief    Configures the RC9 GPIO Pin which has a custom name of IO_RC9 as Output
+ * @param    none
  * @return   none  
  */
-#define IO_RB8_SetDigitalOutput() (_TRISB8 = 0)
+#define IO_RC9_SetDigitalOutput() (_TRISC9 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RC10 GPIO Pin which has a custom name of IO_RC10 to High
+ * @pre      The RC10 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_SetHigh()          (_LATC10 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RC10 GPIO Pin which has a custom name of IO_RC10 to Low
+ * @pre      The RC10 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_SetLow()           (_LATC10 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RC10 GPIO Pin which has a custom name of IO_RC10
+ * @pre      The RC10 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_Toggle()           (_LATC10 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RC10 GPIO Pin which has a custom name of IO_RC10
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_GetValue()         _RC10
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RC10 GPIO Pin which has a custom name of IO_RC10 as Input
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_SetDigitalInput()  (_TRISC10 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RC10 GPIO Pin which has a custom name of IO_RC10 as Output
+ * @param    none
+ * @return   none  
+ */
+#define IO_RC10_SetDigitalOutput() (_TRISC10 = 0)
 
 /**
  * @ingroup  pinsdriver
  * @brief    Initializes the PINS module
+ * @param    none
  * @return   none  
  */
 void PINS_Initialize(void);
 
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RA1 Pin
- * @return   none   
- */
-void IO_RA1_CallBack(void);
-
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RA0 Pin
- * @return   none   
- */
-void IO_RA0_CallBack(void);
-
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RA2 Pin
- * @return   none   
- */
-void IO_RA2_CallBack(void);
-
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RB2 Pin
- * @return   none   
- */
-void IO_RB2_CallBack(void);
-
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RB4 Pin
- * @return   none   
- */
-void IO_RB4_CallBack(void);
-
-/**
- * @ingroup  pinsdriver
- * @brief    This function is callback for IO_RB3 Pin
- * @return   none   
- */
-void IO_RB3_CallBack(void);
-
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RA1_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RA0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RA2_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RB2_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RB4_SetInterruptHandler(void (* InterruptHandler)(void));
-
-/**
- * @ingroup    pinsdriver
- * @brief      This function assigns a function pointer with a callback address
- * @param[in]  InterruptHandler - Address of the callback function 
- * @return     none  
- */
-void IO_RB3_SetInterruptHandler(void (* InterruptHandler)(void));
 
 
 #endif

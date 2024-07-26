@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver source file for the UART1 driver.
  *
- * @skipline @version   PLIB Version 1.0.0
+ * @skipline @version   PLIB Version 1.0.1
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */
@@ -41,18 +41,16 @@
 #include "../uart1.h"
 
 // Section: Macro Definitions
-#define UART1_CLOCK 8000000U
+#define UART1_CLOCK 4000000U
 #define UART1_BAUD_TO_BRG_WITH_FRACTIONAL(x) (UART1_CLOCK/(x))
-#define UART1_BAUD_TO_BRG_WITH_BRGH_1(x) (UART1_CLOCK/(4U*(x))-1U)
-#define UART1_BAUD_TO_BRG_WITH_BRGH_0(x) (UART1_CLOCK/(16U*(x))-1U)
+#define UART1_BAUD_TO_BRG_WITH_BRGS_1(x) (UART1_CLOCK/(4U*(x))-1U)
+#define UART1_BAUD_TO_BRG_WITH_BRGS_0(x) (UART1_CLOCK/(16U*(x))-1U)
 #define UART1_BRG_TO_BAUD_WITH_FRACTIONAL(x) (UART1_CLOCK/(x))
-#define UART1_BRG_TO_BAUD_WITH_BRGH_1(x) (UART1_CLOCK/(4U*((x)+1U)))
-#define UART1_BRG_TO_BAUD_WITH_BRGH_0(x) (UART1_CLOCK/(16U*((x)+1U)))
+#define UART1_BRG_TO_BAUD_WITH_BRGS_1(x) (UART1_CLOCK/(4U*((x)+1U)))
+#define UART1_BRG_TO_BAUD_WITH_BRGS_0(x) (UART1_CLOCK/(16U*((x)+1U)))
 
-//#define BRGVAL ((UART1_CLOCK/153600)-1)
-
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 600U
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGH_1 300U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 4U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGS_1 1U
 
 // Section: Driver Interface
 
@@ -66,6 +64,8 @@ const struct UART_INTERFACE UART1_Drv = {
     .IsTxDone = &UART1_IsTxDone,
     .TransmitEnable = &UART1_TransmitEnable,
     .TransmitDisable = &UART1_TransmitDisable,
+    .TransmitInterruptEnable = NULL,
+    .TransmitInterruptDisable = NULL,
     .AutoBaudSet = &UART1_AutoBaudSet,
     .AutoBaudQuery = &UART1_AutoBaudQuery,
     .AutoBaudEventEnableGet = &UART1_AutoBaudEventEnableGet,
@@ -74,13 +74,12 @@ const struct UART_INTERFACE UART1_Drv = {
     .BaudRateSet = &UART1_BaudRateSet,
     .BaudRateGet = &UART1_BaudRateGet,
     .ErrorGet = &UART1_ErrorGet,
-    .TxCompleteCallbackRegister = NULL,
     .RxCompleteCallbackRegister = NULL,
+    .TxCompleteCallbackRegister = NULL,
     .TxCollisionCallbackRegister = NULL,
     .FramingErrorCallbackRegister = NULL,
     .OverrunErrorCallbackRegister = NULL,
     .ParityErrorCallbackRegister = NULL,
-    .EventCallbackRegister = NULL,
 };
 
 // Section: Private Variable Definitions
@@ -106,24 +105,23 @@ void UART1_Initialize(void)
      Set the UART1 module to the options selected in the user interface.
      Make sure to set LAT bit corresponding to TxPin as high before UART initialization
 */
-    // URXEN disabled; RXBIMD RXBKIF flag when Break makes low-to-high transition after being low for at least 23/11 bit periods; UARTEN enabled; MOD Asynchronous 8-bit UART; UTXBRK disabled; BRKOVR TX line driven by shifter; UTXEN disabled; USIDL disabled; WAKE disabled; ABAUD disabled; BRGH enabled; 
-    U1CON = 0x02000080;
-    // OERIE disabled; RXBKIF disabled; RXBKIE disabled; ABDOVF disabled; OERR disabled; TXCIE disabled; TXCIF disabled; FERIE disabled; TXMTIE disabled; ABDOVE disabled; CERIE disabled; CERIF disabled; PERIE disabled; 
-    U1STAT = 0x002E0080;
-    // BaudRate 9600; Frequency 8000000 Hz; BRG 207; 
-    U1BRG = 0xCF;
+    // MODE Asynchronous 8-bit UART; RXEN ; TXEN ; ABDEN ; BRGS ; SENDB ; BRKOVR ; RXBIMD ; WUE ; SIDL ; ON disabled; FLO ; TXPOL ; C0EN ; STP 1 Stop bit sent, 1 checked at RX; RXPOL ; RUNOVF ; HALFDPLX ; CLKSEL Standard Speed Peripheral Clock; CLKMOD enabled; ACTIVE ; SLPEN ; 
+    U1CON = 0x8000000UL;
+    // TXCIF ; RXFOIF ; RXBKIF ; CERIF ; ABDOVIF ; TXCIE ; RXFOIE ; RXBKIE ; FERIE ; CERIE ; ABDOVIE ; PERIE ; TXMTIE ; STPMD ; TXWRE ; RXWM ; TXWM ; 
+    U1STAT = 0x2E0080UL;
+    // BaudRate 9592.33; Frequency 4000000 Hz; BRG 417; 
+    U1BRG = 0x1A1UL;
     
     U1CONbits.ON = 1;   // enabling UART ON bit
     U1CONbits.TXEN = 1;
     U1CONbits.RXEN = 1;
-    
 }
 
 void UART1_Deinitialize(void)
 {
-    U1CON = 0x0;
-    U1STAT = 0x0;
-    U1BRG = 0x0;
+    U1CON = 0x0UL;
+    U1STAT = 0x2E0080UL;
+    U1BRG = 0x0UL;
 }
 
 uint8_t UART1_Read(void)
@@ -198,26 +196,26 @@ size_t UART1_ErrorGet(void)
     uartError.status = 0;
     if(U1STATbits.FERIF == 1U)
     {
-        uartError.status = uartError.status|UART_ERROR_FRAMING_MASK;
+        uartError.status = uartError.status|(uint16_t)UART_ERROR_FRAMING_MASK;
     }
     if(U1STATbits.PERIF== 1U)
     {
-        uartError.status = uartError.status|UART_ERROR_PARITY_MASK;
+        uartError.status = uartError.status|(uint16_t)UART_ERROR_PARITY_MASK;
     }
     if(U1STATbits.RXFOIF== 1U)
     {
-        uartError.status = uartError.status|UART_ERROR_RX_OVERRUN_MASK;
+        uartError.status = uartError.status|(uint16_t)UART_ERROR_RX_OVERRUN_MASK;
         U1STATbits.RXFOIF = 0;
     }
     if(U1STATbits.TXCIF== 1U)
     {
-        uartError.status = uartError.status|UART_ERROR_TX_COLLISION_MASK;
+        uartError.status = uartError.status|(uint16_t)UART_ERROR_TX_COLLISION_MASK;
         U1STATbits.TXCIF = 0;
     }
-    if(U1STATbits.ABDOVF== 1U)
+    if(U1STATbits.ABDOVIF== 1U)
     {
-        uartError.status = uartError.status|UART_ERROR_AUTOBAUD_OVERFLOW_MASK;
-        U1STATbits.ABDOVF = 0;
+        uartError.status = uartError.status|(uint16_t)UART_ERROR_AUTOBAUD_OVERFLOW_MASK;
+        U1STATbits.ABDOVIF = 0;
     }
     
     return uartError.status;
@@ -230,32 +228,24 @@ void UART1_BRGCountSet(uint32_t brgValue)
 
 uint32_t UART1_BRGCountGet(void)
 {
-    uint32_t brgValue;
-    brgValue = U1BRG;
-    return brgValue;
+    return U1BRG;
 }
 
 void UART1_BaudRateSet(uint32_t baudRate)
 {
     uint32_t brgValue;
     
-    if((baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL) && (baudRate != 0u))
+    if((baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL) && (baudRate != 0U))
     {
         U1CONbits.CLKMOD = 1;
         U1CONbits.BRGS = 0;
         brgValue = UART1_BAUD_TO_BRG_WITH_FRACTIONAL(baudRate);
     }
-    else if(baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGH_1)
-    {
-        U1CONbits.CLKMOD = 0;
-        U1CONbits.BRGS = 1;
-        brgValue = UART1_BAUD_TO_BRG_WITH_BRGH_1(baudRate);
-    }
     else
     {
         U1CONbits.CLKMOD = 0;
-        U1CONbits.BRGS = 0;
-        brgValue = UART1_BAUD_TO_BRG_WITH_BRGH_0(baudRate);
+        U1CONbits.BRGS = 1;
+        brgValue = UART1_BAUD_TO_BRG_WITH_BRGS_1(baudRate);
     }
     U1BRG = brgValue;
 }
@@ -266,17 +256,17 @@ uint32_t UART1_BaudRateGet(void)
     uint32_t baudRate;
     
     brgValue = UART1_BRGCountGet();
-    if((U1CONbits.CLKMOD == 1) && (brgValue != 0u))
+    if((U1CONbits.CLKMOD == 1U) && (brgValue != 0U))
     {
         baudRate = UART1_BRG_TO_BAUD_WITH_FRACTIONAL(brgValue);
     }
     else if(U1CONbits.BRGS == 1)
     {
-        baudRate = UART1_BRG_TO_BAUD_WITH_BRGH_1(brgValue);
+        baudRate = UART1_BRG_TO_BAUD_WITH_BRGS_1(brgValue);
     }
     else
     {
-        baudRate = UART1_BRG_TO_BAUD_WITH_BRGH_0(brgValue);
+        baudRate = UART1_BRG_TO_BAUD_WITH_BRGS_0(brgValue);
     }
     return baudRate;
 }
@@ -285,13 +275,11 @@ int __attribute__((__section__(".libc.write"))) write(int handle, void *buffer, 
     unsigned int numBytesWritten = 0 ;
     while(!UART1_IsTxDone())
     {
-        
     }
     while(numBytesWritten<len)
     {
         while(!UART1_IsTxReady())
         {
-            
         }
         UART1_Write(*((uint8_t *)buffer + numBytesWritten++));
     }

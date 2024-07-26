@@ -7,7 +7,7 @@
  * 
  * @brief     This is the generated driver types header file for the UART driver
  *
- * @skipline @version   PLIB Version 1.0.0
+ * @skipline @version   PLIB Version 1.0.1
  *
  * @skipline  Device : dsPIC33AK128MC106
 */
@@ -38,15 +38,17 @@
 
 /**
  @ingroup  uartdriver
- @enum     UART_ERROR
+ @enum     UART_ERROR_MASKS
  @brief    This Enum can be used to know UART error type 
            using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
 */
-#define UART_ERROR_FRAMING_MASK             0x01U
-#define UART_ERROR_PARITY_MASK              0x02U
-#define UART_ERROR_RX_OVERRUN_MASK          0x04U
-#define UART_ERROR_TX_COLLISION_MASK        0x08U
-#define UART_ERROR_AUTOBAUD_OVERFLOW_MASK   0x10U
+enum UART_ERROR_MASKS{
+    UART_ERROR_FRAMING_MASK = 0x1,
+    UART_ERROR_PARITY_MASK = 0x2,
+    UART_ERROR_RX_OVERRUN_MASK = 0x4,
+    UART_ERROR_TX_COLLISION_MASK = 0x8,
+    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10,
+};
 
 #endif
 

@@ -7,7 +7,7 @@
  *            
  * @brief     Traps driver with handler for all types of traps using dsPIC MCUs.           
  *
- * @skipline @version   PLIB Version 1.0.0-dev.2
+ * @skipline @version   PLIB Version 1.0.1
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */
@@ -56,6 +56,7 @@ enum TRAPS_ERROR_CODE
     TRAPS_DIV0_ERR = 4, /**< Math error. */
     TRAPS_DMT_ERR = 5, /**< General error. */
     TRAPS_WDT_ERR = 6, /**< General error. */
+    TRAPS_GEN_ERR = 7, /**< General error. */
 };
 
 // Section: Driver Interface Function

@@ -1,3 +1,17 @@
+/**
+ * PWM Generated Driver Types Header File
+ * 
+ * @file 	  pwm_types.h
+ * 
+ * @ingroup   pwmdriver
+ * 
+ * @brief 	  This is the generated driver types header file for the PWM driver
+ *
+ * @skipline @version   PLIB Version 1.0.1
+ *
+ * @skipline  Device : dsPIC33AK128MC106
+*/
+
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,39 +33,25 @@
     THIS SOFTWARE.
 */
 
-#include <xc.h>
-#include "led5.h"
+#ifndef PWM_TYPES_H
+#define PWM_TYPES_H
 
-void LED5_Initialize(void)
-{
-    TRISCbits.TRISC8 = 0;
-}
+// Section: Included Files
 
-void LED5_On(void)
-{
-    LATCbits.LATC8 = 1;
-}
+// Section: Enum Declarations
 
-void LED5_Off(void)
+/**
+ @ingroup  pwmdriver
+ @enum 	   PWM_OUTPUT_MODES
+ @brief	   Enumeration containing the output modes of PWM driver
+*/
+enum PWM_OUTPUT_MODES
 {
-    LATCbits.LATC8 = 0;
-}
+    OUTPUT_MODES_NOT_AVAILABLE,         /**< No output modes available*/
 
-void LED5_Toggle(void)
-{
-    LATCbits.LATC8 ^= 1;
-}
-
-void LED5_Set(bool on)
-{
-    LATCbits.LATC8 = on;
-}
-
-const struct LED_SIMPLE led5 = 
-{
-    &LED5_Initialize,
-    &LED5_On,
-    &LED5_Off,
-    &LED5_Toggle,
-    &LED5_Set
 };
+
+#endif  //PWM_TYPES_H
+/**
+ End of File
+*/

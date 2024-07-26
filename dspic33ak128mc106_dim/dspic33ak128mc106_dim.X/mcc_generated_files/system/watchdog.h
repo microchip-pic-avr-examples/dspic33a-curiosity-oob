@@ -1,3 +1,16 @@
+/**
+ * WATCHDOG Generated Driver Header File
+ * 
+ * @file      watchdog.h
+ * 
+ * @defgroup  watchdogdriver WDT Driver
+ * 
+ * @brief     Watchdog Timer Driver using dsPIC MCUs.
+ *
+ * @skipline @version   PLIB Version 1.0.1
+ *
+ * @skipline  Device : dsPIC33AK128MC106
+*/
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -19,32 +32,50 @@
     THIS SOFTWARE.
 */
 
-#ifndef BUTTON_S3_H
-#define BUTTON_S3_H
+#ifndef WATCHDOG_H
+#define WATCHDOG_H
 
-#include <stdbool.h>
-#include "button_simple.h"
+#include <xc.h>
+
+// Section: Type defines
+ 
 
 /**
- * @ingroup  s3
- * @brief    Initializes the S3 button.  Must be called before other functions can be used.
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to enable the Watchdog Timer (WDT) using the software bit
  * @param    none
- * @return   none
+ * @return   none  
  */
-void BUTTON_S3_Initialize(void);
+inline static void WATCHDOG_TimerSoftwareEnable(void)
+{
+    WDTCONbits.ON = 1;
+}
 
 /**
- * @ingroup  s3
- * @brief    Detects if the S3 button is pressed (not debounced)
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to disable the Watchdog Timer (WDT) using the software bit
  * @param    none
- * @return   bool - true = pressed, false = not pressed
+ * @return   none  
  */
-bool BUTTON_S3_IsPressed(void);
+inline static void WATCHDOG_TimerSoftwareDisable(void)
+{
+    WDTCONbits.ON = 0;
+}
 
 /**
- @ingroup  s3
- @brief    Declaration of BUTTON_SIMPLE structure for S3 button.
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to clear the Watchdog Timer (WDT)
+ * @param    none
+ * @return   none  
+ */
+inline static void WATCHDOG_TimerClear(void)
+{
+    ClrWdt();
+}
+
+#endif /* WATCHDOG_H */
+/**
+ End of File
 */
-extern const struct BUTTON_SIMPLE s3;
 
-#endif
+
