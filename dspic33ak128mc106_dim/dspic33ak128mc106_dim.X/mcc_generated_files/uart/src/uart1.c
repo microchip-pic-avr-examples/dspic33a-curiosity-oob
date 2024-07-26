@@ -214,10 +214,10 @@ size_t UART1_ErrorGet(void)
         uartError.status = uartError.status|UART_ERROR_TX_COLLISION_MASK;
         U1STATbits.TXCIF = 0;
     }
-    if(U1STATbits.ABDOVF== 1U)
+    if(U1STATbits.ABDOVIF== 1U)
     {
         uartError.status = uartError.status|UART_ERROR_AUTOBAUD_OVERFLOW_MASK;
-        U1STATbits.ABDOVF = 0;
+        U1STATbits.ABDOVIF = 0;
     }
     
     return uartError.status;
