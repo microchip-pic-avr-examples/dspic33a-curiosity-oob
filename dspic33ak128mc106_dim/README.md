@@ -15,7 +15,7 @@ Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curio
 2) [dsPIC33A Curiosity Platform Development Board User's Guide](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU16/ProductDocuments/UserGuides/dsPIC33A-Curiosity-Platform-Development-Board-Users-Guide-DS70005562.pdf)
 
 ## Software Used 
-1) MPLAB X 6.20 or 
+1) MPLAB X 6.20 or later 
     * Note: If using MPLAB X 6.20, three patches are required for dsPIC33A support. If not automatically installed, these patches can be found under Tools -> Plugins<br>
     ![MPLAB X Plugins Update](./images/mplabPatches.png)
 2) XC-DSC 3.00 or later

@@ -69,7 +69,6 @@
                    displayName="Important Files"
                    projectFiles="true">
       <itemPath>Makefile</itemPath>
-      <itemPath>oob.mc3</itemPath>
       <itemPath>dsPIC33AK128MC106_Curiosity_GP_DIM_out_of_box_demo.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -496,8 +495,6 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="800000-81ffff"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/work/repos/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
