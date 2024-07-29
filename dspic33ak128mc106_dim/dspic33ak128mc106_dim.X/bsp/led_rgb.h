@@ -22,8 +22,17 @@
 #ifndef LED_RGB_H
 #define LED_RGB_H
 
+#include "led_simple.h"
 #include <stdbool.h>
 #include <stdint.h>
+
+/**
+ * @ingroup  led_rgb
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
+void LED_RGB_Initialize(void);
 
 /**
  * @ingroup  led_rgb
@@ -48,6 +57,14 @@ void LED_RGB_Off(void);
  * @return   none
  */
 void LED_RGB_Toggle(void);
+
+/**
+ * @ingroup  led_rgb
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
+void LED_RGB_Set(bool on);
 
 /**
  * @ingroup  led_rgb

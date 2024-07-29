@@ -25,6 +25,11 @@
 
 static bool issccp2Enabled = false;
 
+void LED_GREEN_Initialize(void)
+{
+    
+}
+
 void LED_GREEN_On(void)
 {
     SCCP2_PWM_Enable();
@@ -49,6 +54,11 @@ void LED_GREEN_Toggle(void)
     }
 }
 
+void LED_GREEN_Set(bool on)
+{
+    
+}
+
 void LED_GREEN_SetIntensity(uint16_t request)
 {  
     SCCP2_PWM_DutyCycleSet(request);
@@ -56,8 +66,10 @@ void LED_GREEN_SetIntensity(uint16_t request)
 
 const struct LED_DIMMABLE ledGreen = 
 {
+    &LED_GREEN_Initialize,
     &LED_GREEN_On,
     &LED_GREEN_Off,
     &LED_GREEN_Toggle,
+    &LED_GREEN_Set,
     &LED_GREEN_SetIntensity
 };

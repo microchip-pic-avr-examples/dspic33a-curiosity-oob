@@ -40,6 +40,7 @@ static bool potentiometerPrintRequired = false;
 
 static void initializeAllLEDs(void)
 {
+    ledRGB.initialize();
     led5.initialize();
     led6.initialize();
     led7.initialize();
@@ -171,6 +172,7 @@ int main(void)
     initializeAllLEDs();
     initializeAllButtons();
     TASK_Initialize();
+    pot.initialize();
     ledRGB.on();
     printMenu();
     TASK_Request(printPotentiometer, 200);

@@ -26,6 +26,14 @@
 
 /**
  * @ingroup  pot
+ * @brief    Initializes the potentiometer.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
+void POT_Initialize(void);
+
+/**
+ * @ingroup  pot
  * @brief    Reads the value of the potentiometer.
  * @param    none
  * @return   uint16_t - 16-bit potentiometer value.  
@@ -39,6 +47,7 @@ uint16_t POT_Read(void);
 */
 struct POT
 {
+    void (*const initialize)(void);
     uint16_t (*const read)(void);
 };
 

@@ -23,6 +23,11 @@
 #include "../mcc_generated_files/adc/adc1.h"
 #include <xc.h>
 
+void POT_Initialize(void)
+{
+
+}
+
 uint16_t POT_Read(void)
 {
     ADC1.SoftwareTriggerEnable();
@@ -31,6 +36,7 @@ uint16_t POT_Read(void)
 
 const struct POT pot = 
 {
+    &POT_Initialize,
     &POT_Read
 };
 

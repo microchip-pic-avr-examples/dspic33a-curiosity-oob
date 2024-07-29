@@ -28,6 +28,14 @@
 
 /**
  * @ingroup  led_green
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
+ * @param    none
+ * @return   none
+ */
+void LED_GREEN_Initialize(void);
+
+/**
+ * @ingroup  led_green
  * @brief    Turns on the LED
  * @param    none
  * @return   none
@@ -49,6 +57,14 @@ void LED_GREEN_Off(void);
  * @return   none
  */
 void LED_GREEN_Toggle(void);
+
+/**
+ * @ingroup  led_green
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
+void LED_GREEN_Set(bool on);
 
 /**
  * @ingroup  led_green

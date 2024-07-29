@@ -25,6 +25,11 @@
 
 static bool issccp3Enabled = false;
 
+void LED_BLUE_Initialize(void) 
+{
+    
+}
+
 void LED_BLUE_On(void)
 {
     SCCP3_PWM_Enable();
@@ -49,6 +54,11 @@ void LED_BLUE_Toggle(void)
     }
 }
 
+void LED_BLUE_Set(bool on)
+{
+    
+}
+
 void LED_BLUE_SetIntensity(uint16_t request)
 {  
     SCCP3_PWM_DutyCycleSet(request);
@@ -56,8 +66,10 @@ void LED_BLUE_SetIntensity(uint16_t request)
 
 const struct LED_DIMMABLE ledBlue = 
 {
+    &LED_BLUE_Initialize,
     &LED_BLUE_On,
     &LED_BLUE_Off,
     &LED_BLUE_Toggle,
+    &LED_BLUE_Set,
     &LED_BLUE_SetIntensity
 };

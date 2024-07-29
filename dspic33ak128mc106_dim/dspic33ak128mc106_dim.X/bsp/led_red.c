@@ -25,6 +25,11 @@
 
 static bool issccp1Enabled = false;
 
+void LED_RED_Initialize(void)
+{
+    
+}
+
 void LED_RED_On(void)
 {
     SCCP1_PWM_Enable();
@@ -49,6 +54,11 @@ void LED_RED_Toggle(void)
     }
 }
 
+void LED_RED_Set(bool on) 
+{
+    
+}
+
 void LED_RED_SetIntensity(uint16_t request)
 {  
     SCCP1_PWM_DutyCycleSet(request);
@@ -56,8 +66,10 @@ void LED_RED_SetIntensity(uint16_t request)
 
 const struct LED_DIMMABLE ledRed = 
 {
+    &LED_RED_Initialize,
     &LED_RED_On,
     &LED_RED_Off,
     &LED_RED_Toggle,
+    &LED_RED_Set,
     &LED_RED_SetIntensity
 };

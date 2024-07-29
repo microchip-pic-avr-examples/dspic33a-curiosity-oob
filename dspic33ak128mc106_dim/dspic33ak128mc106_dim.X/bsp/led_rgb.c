@@ -27,6 +27,11 @@
 #include "led_green.h"
 #include "led_blue.h"
 
+void LED_RGB_Initialize(void)
+{
+
+}
+
 void LED_RGB_On(void)
 {
     ledRed.on();
@@ -48,6 +53,11 @@ void LED_RGB_Toggle(void)
     ledBlue.toggle();
 }
 
+void LED_RGB_Set(bool on)
+{
+
+}
+
 void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue)
 {
     ledRed.setIntensity((uint16_t)red << 8u);
@@ -57,8 +67,10 @@ void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue)
 
 const struct LED_COLOR ledRGB = 
 {
+    &LED_RGB_Initialize,
     &LED_RGB_On,
     &LED_RGB_Off,
     &LED_RGB_Toggle,
+    &LED_RGB_Set,
     &LED_RGB_SetColor
 };
