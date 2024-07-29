@@ -11,19 +11,29 @@
 Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curiosity Platform Development Board
 
 ## Related Documentation
-1) dsPIC33AK128MC106 Curiosity GP DIM User's Guide: TBD
-2) [dsPIC33A Curiosity Platform Development Board User's Guide](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU16/ProductDocuments/UserGuides/dsPIC33A-Curiosity-Platform-Development-Board-Users-Guide-DS70005562.pdf)
+1) [dsPIC33AK128MC106 Curiosity GP DIM User's Guide](https://www.microchip.com/70005556)
+2) [dsPIC33A Curiosity Platform Development Board User's Guide](https://www.microchip.com/70005562)
 
 ## Software Used 
-1) MPLAB X 6.20 or later 
-    * Note: If using MPLAB X 6.20, three patches are required for dsPIC33A support. If not automatically installed, these patches can be found under Tools -> Plugins<br>
+1) MPLAB X 6.20 or later with the following component versions:
+    * RI4 > 1.2.13
+    * ControlPointMediator > 1.3
+    * RealICE4ToolsController > 1.2
+    
+    Note: If using MPLAB X 6.20, three patches are required for dsPIC33A support. If not automatically installed, these patches can be found under Tools -> Plugins<br>
     ![MPLAB X Plugins Update](./images/mplabPatches.png)
 2) XC-DSC 3.00 or later
 3) dsPIC33AK-MC_DFP 1.0.33 or later
+4) Toolpacks for the programmer of choice:
+    * PKOB 4 > 1.16.1230
+    * PICkit 4 > 2.5.1929
+    * PICkit 5 > 2.5.391
+    * ICD4 > 2.5.1856
+    * ICD5 > 2.5.367
 
 ## Hardware Used
-1) dsPIC33AK128MC106 Curiosity GP DIM
-2) dsPIC33A Curiosity Platform Development Board
+1) [dsPIC33AK128MC106 Curiosity GP DIM](https://www.microchip.com/EV02G02A)
+2) [dsPIC33A Curiosity Platform Development Board](http://www.microchip.com/EV74H48A)
 
 ## Setup
 1) Connect the dsPIC33AK128MC106 Curiosity GP DIM to the dsPIC33A Curiosity Platform Development Board
@@ -36,8 +46,8 @@ After completing the board setup in the prior section, you may interact with the
 
 **Basic I/O**
 * LED7 reflects the status of the S1 button; On when pressed, off when released.
-* LED6 reflects the status of the S1 button; On when pressed, off when released.
-* LED5 reflects the status of the S1 button; On when pressed, off when released.
+* LED6 reflects the status of the S2 button; On when pressed, off when released.
+* LED5 reflects the status of the S3 button; On when pressed, off when released.
 
 **ADC/PWM**
 * Turning the potentiometer will vary the RGB LED brightness
