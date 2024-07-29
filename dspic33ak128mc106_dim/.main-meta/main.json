@@ -14,7 +14,7 @@
       },
       "compiler":{
          "name":"XCDSC",
-         "semverRange":"^3.0"
+         "semverRange":"^3.10"
       },
       "dfp":{
          "name":"dsPIC33AK-MC_DFP",

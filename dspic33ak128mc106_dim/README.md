@@ -22,7 +22,7 @@ Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curio
     
     Note: If using MPLAB X 6.20, three patches are required for dsPIC33A support. If not automatically installed, these patches can be found under Tools -> Plugins<br>
     ![MPLAB X Plugins Update](./images/mplabPatches.png)
-2) XC-DSC 3.00 or later
+2) XC-DSC 3.10 or later
 3) dsPIC33AK-MC_DFP 1.0.33 or later
 4) Toolpacks for the programmer of choice:
     * PKOB 4 > 1.16.1230
