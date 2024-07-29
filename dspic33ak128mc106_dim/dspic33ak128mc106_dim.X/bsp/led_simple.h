@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,32 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
-#include <xc.h>
+#ifndef LED_SIMPLE_H
+#define LED_SIMPLE_H
 
-// Section: Device Pin Macros
+#include <stdbool.h>
+
+#define LED_SIMPLE_ON true
+#define LED_SIMPLE_OFF false
 
 /**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
- * @param    none
- * @return   none  
- */
-void PINS_Initialize(void);
-
-
+ @ingroup  led_simple
+ @struct   LED_SIMPLE
+ @brief    Defines structure for interface for a simple LED with on/off/toggle
+           functionality.
+*/
+struct LED_SIMPLE
+{
+    //Initializes the LED.  Must be called before other functions can be used.
+    void (*const initialize)(void);
+    //Turns on the LED
+    void (*const on)(void);
+    //Turns off the LED
+    void (*const off)(void);
+    //Toggles the LED between on/off states (on->off or off->on)
+    void (*const toggle)(void);
+    //Sets the LED on(true) or off(false) based on provided input.
+    void (*const set)(bool);
+};
 
 #endif

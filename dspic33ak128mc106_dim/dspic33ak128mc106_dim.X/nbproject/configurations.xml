@@ -12,6 +12,20 @@
         <itemPath>bsp/led_dimmable.h</itemPath>
         <itemPath>bsp/led_rgb.h</itemPath>
         <itemPath>bsp/led_color.h</itemPath>
+        <itemPath>bsp/button_simple.h</itemPath>
+        <itemPath>bsp/led0.h</itemPath>
+        <itemPath>bsp/led1.h</itemPath>
+        <itemPath>bsp/led2.h</itemPath>
+        <itemPath>bsp/led3.h</itemPath>
+        <itemPath>bsp/led4.h</itemPath>
+        <itemPath>bsp/led5.h</itemPath>
+        <itemPath>bsp/led6.h</itemPath>
+        <itemPath>bsp/led7.h</itemPath>
+        <itemPath>bsp/led_simple.h</itemPath>
+        <itemPath>bsp/s1.h</itemPath>
+        <itemPath>bsp/s2.h</itemPath>
+        <itemPath>bsp/s3.h</itemPath>
+        <itemPath>bsp/pot.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -71,6 +85,18 @@
         <itemPath>bsp/led_green.c</itemPath>
         <itemPath>bsp/led_blue.c</itemPath>
         <itemPath>bsp/led_rgb.c</itemPath>
+        <itemPath>bsp/led0.c</itemPath>
+        <itemPath>bsp/led1.c</itemPath>
+        <itemPath>bsp/led2.c</itemPath>
+        <itemPath>bsp/led3.c</itemPath>
+        <itemPath>bsp/led4.c</itemPath>
+        <itemPath>bsp/led5.c</itemPath>
+        <itemPath>bsp/led6.c</itemPath>
+        <itemPath>bsp/led7.c</itemPath>
+        <itemPath>bsp/pot.c</itemPath>
+        <itemPath>bsp/s1.c</itemPath>
+        <itemPath>bsp/s2.c</itemPath>
+        <itemPath>bsp/s3.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
@@ -471,7 +497,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="800000-81ffff"/>
         <property key="programmerToGoFilePath"
-                  value="C:/Users/C74569/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
+                  value="C:/work/repos/dspic33a-curiosity-oob/dspic33ak128mc106_dim/dspic33ak128mc106_dim.X/debug/default/dspic33ak128mc106_dim_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>

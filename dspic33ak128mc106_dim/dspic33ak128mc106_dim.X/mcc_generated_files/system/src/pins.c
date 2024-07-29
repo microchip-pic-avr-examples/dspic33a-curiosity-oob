@@ -70,7 +70,7 @@ void PINS_Initialize(void)
      ***************************************************************************/
     TRISA = 0x0FFFUL;
     TRISB = 0x0FFFUL;
-    TRISC = 0x08FBUL;
+    TRISC = 0x0FFBUL;
     TRISD = 0x1FF8UL;
 
 
@@ -99,8 +99,8 @@ void PINS_Initialize(void)
     /****************************************************************************
      * Setting the Analog/Digital Configuration SFR(s)
      ***************************************************************************/
-    ANSELA = 0x0FBFUL;
-    ANSELB = 0x03CFUL;
+    ANSELA = 0x0FFFUL;
+    ANSELB = 0x03FFUL;
 
     /****************************************************************************
      * Set the PPS

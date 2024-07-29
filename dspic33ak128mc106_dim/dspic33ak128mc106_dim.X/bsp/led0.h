@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -33,22 +18,56 @@
     EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
     THIS SOFTWARE.
 */
+#ifndef LED_0_H
+#define LED_0_H
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
-#include <xc.h>
-
-// Section: Device Pin Macros
+#include "led_simple.h"
+#include <stdbool.h>
 
 /**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
+ * @ingroup  led0
+ * @brief    Initializes the LED.  Must be called before other functions can be used.
  * @param    none
- * @return   none  
+ * @return   none
  */
-void PINS_Initialize(void);
+void LED0_Initialize(void);
 
+/**
+ * @ingroup  led0
+ * @brief    Turns on the LED
+ * @param    none
+ * @return   none
+ */
+void LED0_On(void);
 
+/**
+ * @ingroup  led0
+ * @brief    Turns off the LED
+ * @param    none
+ * @return   none
+ */
+void LED0_Off(void);
+
+/**
+ * @ingroup  led0
+ * @brief    Toggles the LED between on/off states (on->off or off->on)
+ * @param    none
+ * @return   none
+ */
+void LED0_Toggle(void);
+
+/**
+ * @ingroup  led0
+ * @brief    Sets the LED on(true) or off(false) based on provided input.
+ * @param[in] bool on - true = on, false = off
+ * @return   none
+ */
+void LED0_Set(bool on);
+
+/**
+ @ingroup  led0
+ @brief    Declaration of LED_SIMPLE structure for LED0.
+*/
+extern const struct LED_SIMPLE led0;
 
 #endif

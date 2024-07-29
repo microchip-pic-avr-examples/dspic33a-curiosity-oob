@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,29 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
-#include <xc.h>
+#ifndef POT_H
+#define POT_H
 
-// Section: Device Pin Macros
+#include <stdint.h>
 
 /**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
+ * @ingroup  pot
+ * @brief    Reads the value of the potentiometer.
  * @param    none
- * @return   none  
+ * @return   uint16_t - 16-bit potentiometer value.  
  */
-void PINS_Initialize(void);
+uint16_t POT_Read(void);
 
+/**
+ @ingroup  pot
+ @struct   POT
+ @brief    Defines structure for interface for a simple potentiometer interface.
+*/
+struct POT
+{
+    uint16_t (*const read)(void);
+};
 
+extern const struct POT pot;
 
 #endif

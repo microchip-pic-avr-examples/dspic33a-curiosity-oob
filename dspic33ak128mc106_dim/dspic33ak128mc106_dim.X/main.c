@@ -20,19 +20,37 @@
 */
 
 #include "mcc_generated_files/system/system.h"
-#include "mcc_generated_files/system/pins.h"
-#include "mcc_generated_files/adc/adc1.h"
+#include "bsp/led7.h"
+#include "bsp/led6.h"
+#include "bsp/led5.h"
 #include "bsp/led_red.h"
 #include "bsp/led_blue.h"
 #include "bsp/led_green.h"
 #include "bsp/led_color.h"
 #include "bsp/led_rgb.h"
+#include "bsp/s1.h"
+#include "bsp/s2.h"
+#include "bsp/s3.h"
 #include "mcc_generated_files/uart/uart1.h"
+#include "bsp/pot.h"
 #include "bsp/task.h"
 #include <stdio.h>
 
 static bool potentiometerPrintRequired = false;
-static uint16_t potentiometerReading = 200;
+
+static void initializeAllLEDs(void)
+{
+    led5.initialize();
+    led6.initialize();
+    led7.initialize();
+}
+
+static void initializeAllButtons(void)
+{
+    s1.initialize();
+    s2.initialize();
+    s3.initialize();
+}
 
 static void setRGBIntensity(uint16_t potentiometerReading)
 {
@@ -114,43 +132,44 @@ static void checkUartApp(void)
  
 static void checkButtonS1(void)
 {
-    if(IO_RB5_GetValue() == 0) 
+    if(s1.isPressed()) 
     {
-        IO_RC10_SetHigh();
+        led7.on();
     } 
     else 
     {
-        IO_RC10_SetLow();
+        led7.off();
     }
 }
  
 static void checkButtonS2(void)
 {
-    if(IO_RB4_GetValue() == 0) 
+    if(s2.isPressed()) 
     {
-        IO_RC9_SetHigh();
+       led6.on();
     } 
     else 
     {
-        IO_RC9_SetLow();
+       led6.off();
     }    
 }
  
 static void checkButtonS3(void)
 {
-    if(IO_RA6_GetValue() == 0) 
+    if(s3.isPressed()) 
     {
-        IO_RC8_SetHigh();
+        led5.on();
     } 
-    else 
-    {
-        IO_RC8_SetLow();
+    else {
+        led5.off();
     } 
 }
 
 int main(void)
 {       
     SYSTEM_Initialize();
+    initializeAllLEDs();
+    initializeAllButtons();
     TASK_Initialize();
     ledRGB.on();
     printMenu();
@@ -158,14 +177,13 @@ int main(void)
 
     while (1) 
     {
-        ADC1.SoftwareTriggerEnable();
-        potentiometerReading = ADC1.ConversionResultGet(ADC1_Channel0);
+        uint16_t potentiometerReading = pot.read();
         setRGBIntensity(potentiometerReading);
         if(potentiometerPrintRequired)
         {
             potentiometerPrintRequired = false;
             moveCursor(10);
-            printf("Potentiometer: 0x%04X\r\n", potentiometerReading);
+            printf("Potentiometer: 0x%04X\r\n", pot.read());
         }
         
         checkUartApp();

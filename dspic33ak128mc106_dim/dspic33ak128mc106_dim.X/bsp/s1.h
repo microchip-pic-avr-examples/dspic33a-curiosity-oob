@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,32 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
-#include <xc.h>
+#ifndef BUTTON_S1_H
+#define BUTTON_S1_H
 
-// Section: Device Pin Macros
+#include <stdbool.h>
+#include "button_simple.h"
 
 /**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
+ * @ingroup  s1
+ * @brief    Initializes the S1 button.  Must be called before other functions can be used.
  * @param    none
- * @return   none  
+ * @return   none
  */
-void PINS_Initialize(void);
+void BUTTON_S1_Initialize(void);
 
+/**
+ * @ingroup  s1
+ * @brief    Detects if the S1 button is pressed (not debounced)
+ * @param    none
+ * @return   bool - true = pressed, false = not pressed
+ */
+bool BUTTON_S1_IsPressed(void);
 
+/**
+ @ingroup  s1
+ @brief    Declaration of BUTTON_SIMPLE structure for S1 button.
+*/
+extern const struct BUTTON_SIMPLE s1;
 
 #endif

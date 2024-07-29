@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,23 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
+#include "s3.h"
+#include <stdbool.h>
 #include <xc.h>
 
-// Section: Device Pin Macros
+void BUTTON_S3_Initialize(void)
+{
+    ANSELAbits.ANSELA6 = 0;
+    TRISAbits.TRISA6 = 1;
+}
 
-/**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
- * @param    none
- * @return   none  
- */
-void PINS_Initialize(void);
+bool BUTTON_S3_IsPressed(void)
+{
+    return PORTAbits.RA6 == 0;      //Active low
+}
 
-
-
-#endif
+const struct BUTTON_SIMPLE s3 = 
+{
+    &BUTTON_S3_Initialize,
+    &BUTTON_S3_IsPressed
+};

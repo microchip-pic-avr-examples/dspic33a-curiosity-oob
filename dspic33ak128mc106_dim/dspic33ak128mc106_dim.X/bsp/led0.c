@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,39 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
 #include <xc.h>
+#include "led0.h"
 
-// Section: Device Pin Macros
+void LED0_Initialize(void)
+{
+    TRISCbits.TRISC3 = 0;
+}
 
-/**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
- * @param    none
- * @return   none  
- */
-void PINS_Initialize(void);
+void LED0_On(void)
+{
+    LATCbits.LATC3 = 1;
+}
 
+void LED0_Off(void)
+{
+    LATCbits.LATC3 = 0;
+}
 
+void LED0_Toggle(void)
+{
+    LATCbits.LATC3 ^= 1;
+}
 
-#endif
+void LED0_Set(bool on)
+{
+    LATCbits.LATC3 = on;
+}
+
+const struct LED_SIMPLE led0 = 
+{
+    &LED0_Initialize,
+    &LED0_On,
+    &LED0_Off,
+    &LED0_Toggle,
+    &LED0_Set
+};

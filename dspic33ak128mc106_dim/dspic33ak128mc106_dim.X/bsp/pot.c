@@ -1,18 +1,3 @@
-/**
- * PINS Generated Driver Header File 
- * 
- * @file      pins.h
- *            
- * @defgroup  pinsdriver Pins Driver
- *            
- * @brief     The Pin Driver directs the operation and function of 
- *            the selected device pins using dsPIC MCUs.
- *
- * @skipline @version   PLIB Version 1.0.1
- *
- * @skipline  Device : dsPIC33AK128MC106
-*/
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -34,21 +19,18 @@
     THIS SOFTWARE.
 */
 
-#ifndef PINS_H
-#define PINS_H
-// Section: Includes
+#include "pot.h"
+#include "../mcc_generated_files/adc/adc1.h"
 #include <xc.h>
 
-// Section: Device Pin Macros
+uint16_t POT_Read(void)
+{
+    ADC1.SoftwareTriggerEnable();
+    return ADC1.ConversionResultGet(ADC1_Channel0);
+}
 
-/**
- * @ingroup  pinsdriver
- * @brief    Initializes the PINS module
- * @param    none
- * @return   none  
- */
-void PINS_Initialize(void);
+const struct POT pot = 
+{
+    &POT_Read
+};
 
-
-
-#endif
