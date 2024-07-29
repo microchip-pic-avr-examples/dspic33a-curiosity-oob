@@ -5,9 +5,9 @@
       "metaDataVersion":"1.3.0",
       "name":"com.microchip.mplabx.project.dspic33a-curiosity-oob",
       "version":"1.0.0",
-      "displayName":"dsPIC33AK128MC106 Curiosity Out of Box Demos",
-      "projectName":"dspic33ak128mc106_dim",
-      "shortDescription":"dsPIC33AK128MC106 Curiosity Out of Box Demos",
+      "displayName":"dsPIC33AK128MC106 GP DIM Curiosity Out of Box Demo",
+      "projectName":"dspic33ak128mc106_gp_dim_oob",
+      "shortDescription":"dsPIC33AK128MC106 GP DIM Curiosity Out of Box Demo",
       "ide":{
          "name":"MPLABX",
          "semverRange":">=6.20.0"
