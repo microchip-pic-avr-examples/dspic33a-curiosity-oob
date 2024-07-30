@@ -1,14 +1,14 @@
 /**
- * UART Generated Driver Types Header File
+ * RESET Generated Driver Header File
  * 
- * @file      uart_types.h
- * 
- * @ingroup   uartdriver
- * 
- * @brief     This is the generated driver types header file for the UART driver
+ * @file      reset.h
+ *            
+ * @defgroup  resetdriver Reset Driver
+ *            
+ * @brief     This is the generated driver header file for the RESET driver
  *
  * @skipline @version   PLIB Version 1.0.1
- *
+ *            
  * @skipline  Device : dsPIC33AK128MC106
 */
 
@@ -33,23 +33,39 @@
     THIS SOFTWARE.
 */
 
-#ifndef UART_TYPES_H
-#define UART_TYPES_H
+#ifndef RESET_H
+#define    RESET_H
+
+#include <stdint.h>
+#include "reset_types.h"
 
 /**
- @ingroup  uartdriver
- @enum     UART_ERROR_MASKS
- @brief    This Enum can be used to know UART error type 
-           using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
+ * @ingroup  resetdriver
+ * @brief    Returns the cause of previous reset
+ * @pre      This function should be called before any use of CLRWDT
+ *           since it has a side-effect of clearing the appropriate bits in the
+ *           register showing reset cause (see DS70602B page 8-10)
+ * @return   none  
+ */
+uint32_t RESET_CauseGet(void);
+
+/**
+ * @ingroup  resetdriver
+ * @brief    It handles the reset cause by clearing the cause register values.
+ *           This is a weak attribute function. The user can 
+ *           override and implement the same function without weak attribute.
+ * @return   none  
+ */
+void RESET_CauseHandler(void);
+
+/**
+ * @ingroup  resetdriver
+ * @brief    Clears the Reset Cause register
+ * @return   none  
+ */
+void RESET_CauseClearAll(void);
+
+#endif    /* RESET_H */
+/**
+ End of File
 */
-enum UART_ERROR_MASKS{
-    UART_ERROR_FRAMING_MASK = 0x1,
-    UART_ERROR_PARITY_MASK = 0x2,
-    UART_ERROR_RX_OVERRUN_MASK = 0x4,
-    UART_ERROR_TX_COLLISION_MASK = 0x8,
-    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10,
-};
-
-#endif
-
-

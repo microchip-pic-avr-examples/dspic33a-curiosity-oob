@@ -7,8 +7,6 @@
  *            
  * @brief     This is the generated driver header file for the System driver
  *            
- * @version   Driver Version 1.0.1
- *            
  * @skipline  Device : dsPIC33AK128MC106
 */
 /*
@@ -35,8 +33,12 @@
 #include "../system.h"
 #include "../clock.h"
 #include "../pins.h"
+#include "../../adc/adc1.h"
+#include "../dmt.h"
+#include "../../pwm/sccp1.h"
+#include "../../pwm/sccp2.h"
+#include "../../pwm/sccp3.h"
 #include "../../uart/uart1.h"
-#include "../system_types.h"
 #include "../interrupt.h"
 
 
@@ -44,9 +46,14 @@ void SYSTEM_Initialize(void)
 {
     CLOCK_Initialize();
     PINS_Initialize();
+    ADC1_Initialize();
+    DMT_Initialize();
+    SCCP1_PWM_Initialize();
+    SCCP2_PWM_Initialize();
+    SCCP3_PWM_Initialize();
     UART1_Initialize();
-    INTERRUPT_Initialize();
     INTERRUPT_GlobalEnable();
+    INTERRUPT_Initialize();
 }
 
 /**
