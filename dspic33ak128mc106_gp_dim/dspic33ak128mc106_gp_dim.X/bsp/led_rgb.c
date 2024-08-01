@@ -29,9 +29,7 @@
 
 void LED_RGB_Initialize(void)
 {
-    ledRed.initialize();
-    ledGreen.initialize();
-    ledBlue.initialize();
+
 }
 
 void LED_RGB_On(void)
@@ -57,9 +55,7 @@ void LED_RGB_Toggle(void)
 
 void LED_RGB_Set(bool on)
 {
-    ledRed.set(on);
-    ledGreen.set(on);
-    ledBlue.set(on);
+
 }
 
 void LED_RGB_SetColor(uint8_t red, uint8_t green, uint8_t blue)
