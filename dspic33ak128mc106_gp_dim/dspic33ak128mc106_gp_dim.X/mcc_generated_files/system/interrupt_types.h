@@ -7,7 +7,7 @@
  *            
  * @brief     This is the generated driver types header file for the INTERRUPT driver           
  *
- * @skipline @version   PLIB Version 1.0.0-dev.2
+ * @skipline @version   PLIB Version 1.0.1
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */

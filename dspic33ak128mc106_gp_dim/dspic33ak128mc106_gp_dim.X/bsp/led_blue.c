@@ -21,63 +21,47 @@
 
 #include <xc.h>
 #include "led_blue.h"
+#include "../mcc_generated_files/pwm/sccp3.h"
 
-void LED_BLUE_Initialize(void)
+static bool issccp3Enabled = false;
+
+void LED_BLUE_Initialize(void) 
 {
-    TRISDbits.TRISD2 = 0;
     
-    /* PWM control register configuration */
-    PCLKCONbits.MCLKSEL = 0b1;
-    
-    PG1CON = 0;
-    PG1CONbits.CLKSEL = 1;
-    PG1CONbits.MODSEL = 0b000;      /* Independent edge triggered mode */
-       
-    PG1IOCON = 0;
-    PG1IOCONbits.PMOD = 0b10;       /* Independent mode */
-    PG1IOCONbits.PENH = 1;          /* High output enabled */ 
-    
-    /* PWM uses PG1DC, PG1PER, PG1PHASE registers */
-    /* PWM Generator does not broadcast UPDATE status bit state or EOC signal */
-    /* Update the data registers at start of next PWM cycle (SOC) */
-    /* PWM Generator operates in Single Trigger mode */
-    /* Start of cycle (SOC) = local EOC */
-    /* Write to DATA REGISTERS */
-    PG1PER = 0x10000; /* PWM frequency */
-    PG1DC = 0x8000;   /* 50% duty */
-
-    PG1CONbits.ON = 0;
 }
 
 void LED_BLUE_On(void)
 {
-    PG1CONbits.ON = 1;
+    SCCP3_PWM_Enable();
+    issccp3Enabled = true;
 }
 
 void LED_BLUE_Off(void)
 {
-    PG1CONbits.ON = 0;
+    SCCP3_PWM_Disable();
+    issccp3Enabled = false;
 }
 
 void LED_BLUE_Toggle(void)
 {
-    PG1CONbits.ON ^= 1;
+    if (issccp3Enabled == true) 
+    {
+        LED_BLUE_Off();
+    } 
+    else 
+    {
+        LED_BLUE_On();
+    }
 }
 
 void LED_BLUE_Set(bool on)
 {
-    PG1CONbits.ON = on;
+    
 }
 
 void LED_BLUE_SetIntensity(uint16_t request)
 {  
-    while(PG1STATbits.UPDATE == 1)
-    {
-    }
-    
-    PG1DC = request;
-    
-    PG1STATbits.UPDREQ = 1;
+    SCCP3_PWM_DutyCycleSet(request);
 } 
 
 const struct LED_DIMMABLE ledBlue = 

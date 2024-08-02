@@ -1,14 +1,14 @@
 /**
- * UART Generated Driver Types Header File
+ * RESET Generated Driver Types Header File
  * 
- * @file      uart_types.h
- * 
- * @ingroup   uartdriver
- * 
- * @brief     This is the generated driver types header file for the UART driver
+ * @file      reset_types.h
+ *            
+ * @ingroup   resetdriver
+ *            
+ * @brief     This is the generated driver types header file for the RESET driver
  *
  * @skipline @version   PLIB Version 1.0.1
- *
+ *            
  * @skipline  Device : dsPIC33AK128MC106
 */
 
@@ -33,23 +33,24 @@
     THIS SOFTWARE.
 */
 
-#ifndef UART_TYPES_H
-#define UART_TYPES_H
+#ifndef RESET_TYPES_H
+#define    RESET_TYPES_H
 
 /**
- @ingroup  uartdriver
- @enum     UART_ERROR_MASKS
- @brief    This Enum can be used to know UART error type 
-           using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
+ @ingroup  resetdriver
+ @enum     RESET_MASKS
+ @brief    Defines the RESET cause mask location   
 */
-enum UART_ERROR_MASKS{
-    UART_ERROR_FRAMING_MASK = 0x1,
-    UART_ERROR_PARITY_MASK = 0x2,
-    UART_ERROR_RX_OVERRUN_MASK = 0x4,
-    UART_ERROR_TX_COLLISION_MASK = 0x8,
-    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10,
+enum RESET_MASKS
+{ 
+  RESET_MASK_WDTO      = 0x00000010,   /**< Defines the watchdog timeout reset flag mask location */
+  RESET_MASK_SWR       = 0x00000040,   /**< Defines the software reset mask location */
+  RESET_MASK_EXTR      = 0x00000080,   /**< Defines the external reset mask location */
+  RESET_MASK_CM        = 0x00000200,   /**< Defines the configuration mismatch reset mask location */
 };
 
-#endif
+#endif    /* RESET_TYPES_H */
 
-
+/**
+ End of File
+*/

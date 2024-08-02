@@ -1,11 +1,11 @@
 /**
- * UART Generated Driver Types Header File
+ * PWM Generated Driver Types Header File
  * 
- * @file      uart_types.h
+ * @file 	  pwm_types.h
  * 
- * @ingroup   uartdriver
+ * @ingroup   pwmdriver
  * 
- * @brief     This is the generated driver types header file for the UART driver
+ * @brief 	  This is the generated driver types header file for the PWM driver
  *
  * @skipline @version   PLIB Version 1.0.1
  *
@@ -33,23 +33,25 @@
     THIS SOFTWARE.
 */
 
-#ifndef UART_TYPES_H
-#define UART_TYPES_H
+#ifndef PWM_TYPES_H
+#define PWM_TYPES_H
+
+// Section: Included Files
+
+// Section: Enum Declarations
 
 /**
- @ingroup  uartdriver
- @enum     UART_ERROR_MASKS
- @brief    This Enum can be used to know UART error type 
-           using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
+ @ingroup  pwmdriver
+ @enum 	   PWM_OUTPUT_MODES
+ @brief	   Enumeration containing the output modes of PWM driver
 */
-enum UART_ERROR_MASKS{
-    UART_ERROR_FRAMING_MASK = 0x1,
-    UART_ERROR_PARITY_MASK = 0x2,
-    UART_ERROR_RX_OVERRUN_MASK = 0x4,
-    UART_ERROR_TX_COLLISION_MASK = 0x8,
-    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10,
+enum PWM_OUTPUT_MODES
+{
+    OUTPUT_MODES_NOT_AVAILABLE,         /**< No output modes available*/
+
 };
 
-#endif
-
-
+#endif  //PWM_TYPES_H
+/**
+ End of File
+*/

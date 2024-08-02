@@ -7,8 +7,6 @@
  * 
  * @brief     System driver using dsPIC MCUs.
  *
- * @version   Driver Version 1.0.1
- *
  * @skipline  Device : dsPIC33AK128MC106
 */
 /*
@@ -34,7 +32,6 @@
 
 #include "xc.h"
 #include "stdint.h"
-#include "system_types.h"
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H
@@ -45,49 +42,6 @@
  * @return  none 
  */
 void SYSTEM_Initialize(void);
-
-/**
- * @ingroup systemdriver
- * @brief   Initializes the CPU core control register
- * @return  none 
- */
-inline static void SYSTEM_CORCONInitialize(void)
-{
-    CORCON = (CORCON & 0x00F2) | CORCON_MODE_PORVALUES;
-}
-
-/**
- * @ingroup   systemdriver
- * @brief     This inline function sets the CPU core control register operating mode 
- *            to a value that is decided by the SYSTEM_CORCON_MODES argument.
- * @param[in] modeValue - SYSTEM_CORCON_MODES initialization mode specifier
- * @return    none 
- */
-inline static void SYSTEM_CORCONModeOperatingSet(SYSTEM_CORCON_MODES modeValue)
-{
-    CORCON = (CORCON & 0x00F2) | modeValue;
-}
-
-/**
- * @ingroup    systemdriver
- * @brief      This inline function sets the value of CPU core control register
- * @param[in]  value - value that needs to be written to the CPU core control register
- * @return     none 
- */
-inline static void SYSTEM_CORCONRegisterValueSet(uint16_t value)
-{
-    CORCON = value;
-}
-
-/**
- * @ingroup systemdriver
- * @brief   This inline function gets the value of CPU core control register
- * @return  value of the CPU core control register 
- */
-inline static uint16_t SYSTEM_CORCONRegisterValueGet(void)
-{    
-    return CORCON;
-}
 
 /**
  * @ingroup systemdriver

@@ -1,17 +1,16 @@
 /**
- * UART Generated Driver Types Header File
+ * WATCHDOG Generated Driver Header File
  * 
- * @file      uart_types.h
+ * @file      watchdog.h
  * 
- * @ingroup   uartdriver
+ * @defgroup  watchdogdriver WDT Driver
  * 
- * @brief     This is the generated driver types header file for the UART driver
+ * @brief     Watchdog Timer Driver using dsPIC MCUs.
  *
  * @skipline @version   PLIB Version 1.0.1
  *
  * @skipline  Device : dsPIC33AK128MC106
 */
-
 /*
 © [2024] Microchip Technology Inc. and its subsidiaries.
 
@@ -33,23 +32,50 @@
     THIS SOFTWARE.
 */
 
-#ifndef UART_TYPES_H
-#define UART_TYPES_H
+#ifndef WATCHDOG_H
+#define WATCHDOG_H
+
+#include <xc.h>
+
+// Section: Type defines
+ 
 
 /**
- @ingroup  uartdriver
- @enum     UART_ERROR_MASKS
- @brief    This Enum can be used to know UART error type 
-           using UARTx_ErrorGet function e.g. \ref UART1_ErrorGet.
-*/
-enum UART_ERROR_MASKS{
-    UART_ERROR_FRAMING_MASK = 0x1,
-    UART_ERROR_PARITY_MASK = 0x2,
-    UART_ERROR_RX_OVERRUN_MASK = 0x4,
-    UART_ERROR_TX_COLLISION_MASK = 0x8,
-    UART_ERROR_AUTOBAUD_OVERFLOW_MASK = 0x10,
-};
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to enable the Watchdog Timer (WDT) using the software bit
+ * @param    none
+ * @return   none  
+ */
+inline static void WATCHDOG_TimerSoftwareEnable(void)
+{
+    WDTCONbits.ON = 1;
+}
 
-#endif
+/**
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to disable the Watchdog Timer (WDT) using the software bit
+ * @param    none
+ * @return   none  
+ */
+inline static void WATCHDOG_TimerSoftwareDisable(void)
+{
+    WDTCONbits.ON = 0;
+}
+
+/**
+ * @ingroup  watchdogdriver
+ * @brief    This inline function is used to clear the Watchdog Timer (WDT)
+ * @param    none
+ * @return   none  
+ */
+inline static void WATCHDOG_TimerClear(void)
+{
+    ClrWdt();
+}
+
+#endif /* WATCHDOG_H */
+/**
+ End of File
+*/
 
 

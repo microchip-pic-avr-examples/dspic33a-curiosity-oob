@@ -5,7 +5,13 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="bsp" projectFiles="true">
-        <itemPath>bsp/led_simple.h</itemPath>
+        <itemPath>bsp/task.h</itemPath>
+        <itemPath>bsp/led_red.h</itemPath>
+        <itemPath>bsp/led_green.h</itemPath>
+        <itemPath>bsp/led_blue.h</itemPath>
+        <itemPath>bsp/led_dimmable.h</itemPath>
+        <itemPath>bsp/led_rgb.h</itemPath>
+        <itemPath>bsp/led_color.h</itemPath>
         <itemPath>bsp/button_simple.h</itemPath>
         <itemPath>bsp/led0.h</itemPath>
         <itemPath>bsp/led1.h</itemPath>
@@ -15,21 +21,28 @@
         <itemPath>bsp/led5.h</itemPath>
         <itemPath>bsp/led6.h</itemPath>
         <itemPath>bsp/led7.h</itemPath>
+        <itemPath>bsp/led_simple.h</itemPath>
         <itemPath>bsp/s1.h</itemPath>
         <itemPath>bsp/s2.h</itemPath>
         <itemPath>bsp/s3.h</itemPath>
         <itemPath>bsp/pot.h</itemPath>
-        <itemPath>bsp/task.h</itemPath>
-        <itemPath>bsp/led_red.h</itemPath>
-        <itemPath>bsp/led_green.h</itemPath>
-        <itemPath>bsp/led_blue.h</itemPath>
-        <itemPath>bsp/led_dimmable.h</itemPath>
-        <itemPath>bsp/led_rgb.h</itemPath>
-        <itemPath>bsp/led_color.h</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="adc" displayName="adc" projectFiles="true">
+          <itemPath>mcc_generated_files/adc/adc_features.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc1.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc_interface.h</itemPath>
+          <itemPath>mcc_generated_files/adc/adc_types.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="pwm" displayName="pwm" projectFiles="true">
+          <itemPath>mcc_generated_files/pwm/pwm_interface.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp1.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp2.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/sccp3.h</itemPath>
+          <itemPath>mcc_generated_files/pwm/pwm_types.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <itemPath>mcc_generated_files/system/interrupt_types.h</itemPath>
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
@@ -39,6 +52,11 @@
           <itemPath>mcc_generated_files/system/clock.h</itemPath>
           <itemPath>mcc_generated_files/system/pins.h</itemPath>
           <itemPath>mcc_generated_files/clock_settings.h</itemPath>
+          <itemPath>mcc_generated_files/system/clock_types.h</itemPath>
+          <itemPath>mcc_generated_files/system/dmt.h</itemPath>
+          <itemPath>mcc_generated_files/system/watchdog.h</itemPath>
+          <itemPath>mcc_generated_files/system/reset_types.h</itemPath>
+          <itemPath>mcc_generated_files/system/reset.h</itemPath>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
           <itemPath>mcc_generated_files/uart/uart1.h</itemPath>
@@ -51,6 +69,7 @@
                    displayName="Important Files"
                    projectFiles="true">
       <itemPath>Makefile</itemPath>
+      <itemPath>dsPIC33AK128MC106_Curiosity_GP_DIM_out_of_box_demo.mc3</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -60,6 +79,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="bsp" displayName="bsp" projectFiles="true">
+        <itemPath>bsp/task.c</itemPath>
+        <itemPath>bsp/led_red.c</itemPath>
+        <itemPath>bsp/led_green.c</itemPath>
+        <itemPath>bsp/led_blue.c</itemPath>
+        <itemPath>bsp/led_rgb.c</itemPath>
         <itemPath>bsp/led0.c</itemPath>
         <itemPath>bsp/led1.c</itemPath>
         <itemPath>bsp/led2.c</itemPath>
@@ -68,19 +92,26 @@
         <itemPath>bsp/led5.c</itemPath>
         <itemPath>bsp/led6.c</itemPath>
         <itemPath>bsp/led7.c</itemPath>
+        <itemPath>bsp/pot.c</itemPath>
         <itemPath>bsp/s1.c</itemPath>
         <itemPath>bsp/s2.c</itemPath>
         <itemPath>bsp/s3.c</itemPath>
-        <itemPath>bsp/pot.c</itemPath>
-        <itemPath>bsp/task.c</itemPath>
-        <itemPath>bsp/led_red.c</itemPath>
-        <itemPath>bsp/led_green.c</itemPath>
-        <itemPath>bsp/led_blue.c</itemPath>
-        <itemPath>bsp/led_rgb.c</itemPath>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
+        <logicalFolder name="adc" displayName="adc" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/adc/src/adc1.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
+        <logicalFolder name="pwm" displayName="pwm" projectFiles="true">
+          <logicalFolder name="src" displayName="src" projectFiles="true">
+            <itemPath>mcc_generated_files/pwm/src/sccp1.c</itemPath>
+            <itemPath>mcc_generated_files/pwm/src/sccp3.c</itemPath>
+            <itemPath>mcc_generated_files/pwm/src/sccp2.c</itemPath>
+          </logicalFolder>
+        </logicalFolder>
         <logicalFolder name="system" displayName="system" projectFiles="true">
           <logicalFolder name="src" displayName="src" projectFiles="true">
             <itemPath>mcc_generated_files/system/src/interrupt.c</itemPath>
@@ -88,6 +119,10 @@
             <itemPath>mcc_generated_files/system/src/system.c</itemPath>
             <itemPath>mcc_generated_files/system/src/clock.c</itemPath>
             <itemPath>mcc_generated_files/system/src/pins.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/reset.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/dmt.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/config_bits.c</itemPath>
+            <itemPath>mcc_generated_files/system/src/dmt_asm.s</itemPath>
           </logicalFolder>
         </logicalFolder>
         <logicalFolder name="uart" displayName="uart" projectFiles="true">
