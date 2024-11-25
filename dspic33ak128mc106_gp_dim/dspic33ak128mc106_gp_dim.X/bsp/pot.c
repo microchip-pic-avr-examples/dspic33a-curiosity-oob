@@ -31,6 +31,7 @@ void POT_Initialize(void)
 uint16_t POT_Read(void)
 {
     ADC1.SoftwareTriggerEnable();
+    while(!ADC1.IsConversionComplete);
     return ADC1.ConversionResultGet(ADC1_Channel0);
 }
 
