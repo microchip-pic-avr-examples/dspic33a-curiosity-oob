@@ -3,7 +3,7 @@
 1. Correct ADC conversion complete check in pot.c
 
 ### Features Added\Updated
-1. Correct ADC conversion complete check in pot.c.
+1. Correct ADC conversion complete check in pot.c
 
 # dspic33a-curiosity-oob v1.1.1
 ### Release Highlights
