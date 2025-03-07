@@ -91,9 +91,9 @@ void ERROR_HANDLER _AddressErrorTrap(void)
 /** General error.**/
 void ERROR_HANDLER _GeneralTrap(void)
 {
-    if(INTCON5bits.DMT == 1)
+    if(INTCON5bits.DMTE == 1)
     {
-      INTCON5bits.DMT = 0;  //Clear the trap flag
+      INTCON5bits.DMTE = 0;  //Clear the trap flag
       TRAPS_halt_on_error(TRAPS_DMT_ERR);
     }
 
@@ -102,10 +102,10 @@ void ERROR_HANDLER _GeneralTrap(void)
       INTCON5bits.SOFT = 0;  //Clear the trap flag
       TRAPS_halt_on_error(TRAPS_GEN_ERR);
     }
-
-    if(INTCON5bits.WDT == 1)
+    
+    if(INTCON5bits.WDTE == 1)
     {
-      INTCON5bits.WDT = 0;  //Clear the trap flag
+      INTCON5bits.WDTE = 0;  //Clear the trap flag
       TRAPS_halt_on_error(TRAPS_WDT_ERR);
     }
 
@@ -137,7 +137,7 @@ void ERROR_HANDLER _StackErrorTrap(void)
 /** Bus error.**/
 void ERROR_HANDLER _BusErrorTrap(void)
 {
-    INTCON3bits.BET2 = 0;  //Clear the trap flag
+    INTCON3bits.DMABET = 0;  //Clear the trap flag
     TRAPS_halt_on_error(TRAPS_DMA_BUS_ERR);
 }
 
