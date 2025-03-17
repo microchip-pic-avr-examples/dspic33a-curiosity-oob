@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.2.0
+### Release Highlights
+1. Update tool versions for MPLAB X 6.25
+
+### Features Added\Updated
+1. Update tool versions for MPLAB X 6.25
+
 # dspic33a-curiosity-oob v1.1.2
 ### Release Highlights
 1. Correct ADC conversion complete check in pot.c
