@@ -56,6 +56,8 @@ enum ADC_PWM_INSTANCE
 {
     ADC_PWM_GENERATOR_4,    /**< PWM name:PWM_GENERATOR_4 */
     ADC_PWM_GENERATOR_3,    /**< PWM name:PWM_GENERATOR_3 */
+    ADC_PWM_GENERATOR_2,    /**< PWM name:PWM_GENERATOR_2 */
+    ADC_PWM_GENERATOR_1,    /**< PWM name:PWM_GENERATOR_1 */
 };
 
 /**
