@@ -7,13 +7,13 @@
  *            
  * @brief     Traps driver with handler for all types of traps using dsPIC MCUs.           
  *
- * @skipline @version   PLIB Version 1.0.1
+ * @skipline @version   PLIB Version 1.1.0
  *            
  * @skipline  Device : dsPIC33AK128MC106
 */
 
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2025] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -49,14 +49,14 @@
 enum TRAPS_ERROR_CODE 
 {
 // Traps
-    TRAPS_DMA_BUS_ERR = 0, /**< Bus error. */
-    TRAPS_ILLEGALINSTRUCTION = 1, /**< Illegal instruction. */
-    TRAPS_ADDRESS_ERR = 2, /**< Address error. */
-    TRAPS_STACK_ERR = 3, /**< Stack error. */
-    TRAPS_DIV0_ERR = 4, /**< Math error. */
-    TRAPS_DMT_ERR = 5, /**< General error. */
-    TRAPS_WDT_ERR = 6, /**< General error. */
-    TRAPS_GEN_ERR = 7, /**< General error. */
+    TRAPS_DMA_BUS_ERR = 0, /**< Bus error trap */
+    TRAPS_ILLEGALINSTRUCTION = 1, /**< Illegal instruction trap */
+    TRAPS_ADDRESS_ERR = 2, /**< Address error trap */
+    TRAPS_STACK_ERR = 3, /**< Stack error trap */
+    TRAPS_DIV0_ERR = 4, /**< Math error trap */
+    TRAPS_DMT_ERR = 5, /**< General error trap */
+    TRAPS_WDT_ERR = 6, /**< General error trap */
+    TRAPS_GEN_ERR = 7, /**< General error trap */
 };
 
 // Section: Driver Interface Function

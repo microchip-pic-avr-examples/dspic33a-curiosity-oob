@@ -35,6 +35,11 @@ enum ADC1_PWM_TRIG_SRCS {
     PWM4_TRIGGER2 = 0xb, 
     PWM4_TRIGGER1 = 0xa, 
     PWM3_TRIGGER2 = 0x9, 
+    PWM3_TRIGGER1 = 0x8, 
+    PWM2_TRIGGER2 = 0x7, 
+    PWM2_TRIGGER1 = 0x6, 
+    PWM1_TRIGGER2 = 0x5, 
+    PWM1_TRIGGER1 = 0x4, 
 };
 
 //Defines an object for ADC_MULTICORE.
@@ -392,9 +397,42 @@ static uint16_t ADC1_TriggerSourceValueGet(enum ADC_PWM_INSTANCE pwmInstance, en
                 }
                 break;
         case ADC_PWM_GENERATOR_3:
-                if(triggerNumber == ADC_PWM_TRIGGER_2)
+                if(triggerNumber == ADC_PWM_TRIGGER_1)
+                {
+                    adcTriggerSourceValue = PWM3_TRIGGER1;
+                }
+                else if(triggerNumber == ADC_PWM_TRIGGER_2)
                 {
                     adcTriggerSourceValue = PWM3_TRIGGER2;
+                }
+                else
+                {
+                }
+                break;
+        case ADC_PWM_GENERATOR_2:
+                if(triggerNumber == ADC_PWM_TRIGGER_1)
+                {
+                    adcTriggerSourceValue = PWM2_TRIGGER1;
+                }
+                else if(triggerNumber == ADC_PWM_TRIGGER_2)
+                {
+                    adcTriggerSourceValue = PWM2_TRIGGER2;
+                }
+                else
+                {
+                }
+                break;
+        case ADC_PWM_GENERATOR_1:
+                if(triggerNumber == ADC_PWM_TRIGGER_1)
+                {
+                    adcTriggerSourceValue = PWM1_TRIGGER1;
+                }
+                else if(triggerNumber == ADC_PWM_TRIGGER_2)
+                {
+                    adcTriggerSourceValue = PWM1_TRIGGER2;
+                }
+                else
+                {
                 }
                 break;
          default:
