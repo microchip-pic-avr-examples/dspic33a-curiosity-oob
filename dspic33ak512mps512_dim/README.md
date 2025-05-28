@@ -8,11 +8,11 @@
 ![Board picture](./images/dim.jpg)
 
 ## Summary
-Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curiosity Platform Development Board
+Demonstrates the basic capability of the dsPIC33AK512MPS512 on the Curiosity Platform Development Board
 
 ## Related Documentation
-1) dsPIC33AK512MPS512 Curiosity GP DIM User's Guide: TBD
-2) dsPIC33A Curiosity Platform Development Board User's Guide: TBD
+1) [dsPIC33AK512MPS512 DIM (EV80L65A) User's Guide](https://www.microchip.com/EV80L65A)
+2) [Curiosity Platform Development Board (EV74H48A) User's Guide](https://www.microchip.com/en-us/development-tool/ev74h48a)
 
 ## Software Used 
 1) MPLAB X 6.25 or later
@@ -21,10 +21,10 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 
 ## Hardware Used
 1) dsPIC33AK512MPS512 Curiosity GP DIM
-2) dsPIC33A Curiosity Platform Development Board
+2) Curiosity Platform Development Board
 
 ## Setup
-1) Connect the dsPIC33AK512MPS512 Curiosity GP DIM to the dsPIC33A Curiosity Platform Development Board
+1) Connect the dsPIC33AK512MPS512 Curiosity GP DIM to the Curiosity Platform Development Board
 2) Connect the USB-C port to a host computer
 3) Compile and program the demo into the board
 4) Open a serial terminal program to 115200 8-N-1 to the port associated with the board
@@ -59,7 +59,7 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the dsPIC33A Curi
 ![Curiosity Platform Board](../images/curiosity.jpg)
 
 **PEAK PCAN-View CAN bit rate setup**
-* If using the PEAK USB CAN-FD Analyzer additional bit rates to the default bit rates may be needed to get consistent communication functioning with the dsPIC33A Curiosity Platform Development Board. The following steps are a guide to other tool provided bit rates that will improve communication.
+* If using the PEAK USB CAN-FD Analyzer additional bit rates to the default bit rates may be needed to get consistent communication functioning with the Curiosity Platform Development Board. The following steps are a guide to other tool provided bit rates that will improve communication.
 
 1) In the PEAK PCAN-View software double click the bit rate settings in the bottom left (circled in red) to open the bit rates dialogue box.<br>
 ![PEAK PCAN-View Settings](./images/peak-settings.png)
