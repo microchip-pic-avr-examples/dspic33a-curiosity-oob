@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.3.0
+### Release Highlights
+1. dsPIC33AK512MPS512 DIM example added
+
+### Features Added\Updated
+1. dsPIC33AK512MPS512 DIM example added
+
 # dspic33a-curiosity-oob v1.2.0
 ### Release Highlights
 1. Update tool versions for MPLAB X 6.25
@@ -29,7 +36,6 @@
 # dspic33a-curiosity-oob v1.0.0
 ### Release Highlights
 1. dsPIC33AK128MC106 GP DIM support added
-
 
 ### Features Added\Updated
 1. dsPIC33AK128MC106 GP DIM support added
