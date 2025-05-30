@@ -1,3 +1,12 @@
+# dspic33a-curiosity-oob v1.3.1
+### Release Highlights
+1. Corrected DFP version in dsPIC33AK512MPS512_dim main.json
+2. Corrected name in dsPIC33AK512MPS512_dim main.json
+
+### Features Added\Updated
+1. Corrected DFP version in dsPIC33AK512MPS512_dim main.json
+2. Corrected name in dsPIC33AK512MPS512_dim main.json
+
 # dspic33a-curiosity-oob v1.3.0
 ### Release Highlights
 1. dsPIC33AK512MPS512 DIM example added
