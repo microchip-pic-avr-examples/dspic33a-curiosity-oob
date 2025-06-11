@@ -8,7 +8,7 @@
  *            
  * @brief     This is the generated source file for CLOCK driver
  *
- * @version   PLIB Version 1.1.0
+ * @version   PLIB Version 1.1.2
  *
  * @skipline  Device : dsPIC33AK128MC106
 */
@@ -42,6 +42,9 @@
 #include "../clock.h"
 #include "../clock_types.h"
 
+#define PLL1FOUT_SOURCE         0x5U
+#define PLL2VCODIV_SOURCE       0x8U 
+
 // Section: Static Variables
 
 
@@ -59,37 +62,56 @@ void CLOCK_Initialize(void)
     */
     
     
-    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC FRC Oscillator; FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
-    CLK1CON = 0x19100UL;
+    //If CLK GEN 1 (system clock) is using a PLL, switch to FRC to avoid risk of over-clocking the CPU while changing PLL settings
+    if((CLK1CONbits.COSC >= PLL1FOUT_SOURCE) && (CLK1CONbits.COSC <= PLL2VCODIV_SOURCE))
+    {
+        CLK1CONbits.NOSC = 1U; //FRC as source 
+        CLK1CONbits.OSWEN = 1U;
+#ifndef __MPLAB_DEBUGGER_SIMULATOR
+        while(CLK1CONbits.OSWEN == 1U){};
+#endif
+    }
+    
+    
+    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Backup FRC Oscillator; FSCMEN enabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
+    CLK1CON = 0x129100UL;
     // FRACDIV 0x0; INTDIV 0x0; 
     CLK1DIV = 0x0UL;
     //enable clock switching
-    CLK1CONbits.OSWEN = 1U; 
+    CLK1CONbits.OSWEN = 1U;
+#ifndef __MPLAB_DEBUGGER_SIMULATOR    
     //wait for clock switching complete
     while(CLK1CONbits.OSWEN == 1U){};
+#endif
     
-    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Serial Test Mode clock (PGC); FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
-    CLK2CON = 0x9101UL;
+    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Backup FRC Oscillator; FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
+    CLK2CON = 0x29101UL;
     //enable clock switching
-    CLK2CONbits.OSWEN = 1U; 
+    CLK2CONbits.OSWEN = 1U;
+#ifndef __MPLAB_DEBUGGER_SIMULATOR    
     //wait for clock switching complete
     while(CLK2CONbits.OSWEN == 1U){};
+#endif
     
-    // NOSC Backup FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Serial Test Mode clock (PGC); FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
-    CLK3CON = 0x9202UL;
+    // NOSC Backup FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC FRC Oscillator; FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
+    CLK3CON = 0x19202UL;
     //enable clock switching
-    CLK3CONbits.OSWEN = 1U; 
+    CLK3CONbits.OSWEN = 1U;
+#ifndef __MPLAB_DEBUGGER_SIMULATOR    
     //wait for clock switching complete
     while(CLK3CONbits.OSWEN == 1U){};
+#endif
     
-    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Serial Test Mode clock (PGC); FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
-    CLK6CON = 0x9100UL;
+    // NOSC FRC Oscillator; OE enabled; SIDL disabled; ON enabled; BOSC Backup FRC Oscillator; FSCMEN disabled; DIVSWEN disabled; OSWEN disabled; EXTCFSEL External clock fail detection module #1; EXTCFEN disabled; RIS disabled; 
+    CLK6CON = 0x29100UL;
     // FRACDIV 0x0; INTDIV 0x0; 
     CLK6DIV = 0x0UL;
     //enable clock switching
-    CLK6CONbits.OSWEN = 1U; 
+    CLK6CONbits.OSWEN = 1U;
+#ifndef __MPLAB_DEBUGGER_SIMULATOR    
     //wait for clock switching complete
     while(CLK6CONbits.OSWEN == 1U){};
+#endif
     
     
     
