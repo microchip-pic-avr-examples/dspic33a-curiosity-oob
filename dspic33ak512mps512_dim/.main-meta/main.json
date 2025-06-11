@@ -4,7 +4,7 @@
    "content":{
       "metaDataVersion":"1.3.0",
       "name":"com.microchip.mplabx.project.dspic33ak512mps512-gp-dim-oob",
-      "version":"1.3.2",
+      "version":"1.3.3",
       "displayName":"dsPIC33AK512MPS512 GP DIM Out of Box Demo",
       "projectName":"dspic33ak512mps512_dim",
       "shortDescription":"dsPIC33AK512MPS512 GP DIM Out of Box Demo",
