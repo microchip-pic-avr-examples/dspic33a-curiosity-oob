@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.3.3
+### Release Highlights
+1. Updated Clock PLIB version from v1.1.0 to v1.1.2 in dsPIC33ak128mc106_gp_dim demo
+
+### Features Added\Updated
+1. Updated Clock PLIB version from v1.1.0 to v1.1.2 in dsPIC33ak128mc106_gp_dim demo
+
 # dspic33a-curiosity-oob v1.3.2
 ### Release Highlights
 1. Corrected project version number in dsPIC33AK512MPS512_dim main.json
