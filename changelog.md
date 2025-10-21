@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.3.4
+### Release Highlights
+1. Added missing data visualizer files for the dsPIC33AK512MPS512 GP DIM demo
+
+### Features Added\Updated
+1. Added missing data visualizer files for the dsPIC33AK512MPS512 GP DIM demo
+
 # dspic33a-curiosity-oob v1.3.3
 ### Release Highlights
 1. Updated Clock PLIB version from v1.1.0 to v1.1.2 in dsPIC33ak128mc106_gp_dim demo
