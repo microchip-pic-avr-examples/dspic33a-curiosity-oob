@@ -41,12 +41,25 @@ Makefile-genesis.properties
 *.log
 *.inx
 
+#MPLAB VS Code Extension
+out/
+cmake/
+_build/
+**/.vscode/settings.json
+**/.vscode/*.mplab-local.json
+
+#MCC
+*.yml
+
 # KDE specific
 .directory
 
 # Misc
 .svn
 *.bak
+*.bak0
+*.bak1
+*.bak2
 *.doc
 *.docx
 

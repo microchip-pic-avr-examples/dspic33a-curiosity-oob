@@ -11,11 +11,11 @@ spec:
       tty: true
       resources:
         requests:
-          cpu: 500m
-          memory: 1500Mi
+          cpu: 2
+          memory: 4Gi
         limits:
-          cpu: 1
-          memory: 2Gi
+          cpu: 4
+          memory: 8Gi
     - name: buildtools
       image: artifacts.microchip.com:7999/microchip/buildtools/doxygen:1.8.15-r0
       imagePullPolicy: Always
