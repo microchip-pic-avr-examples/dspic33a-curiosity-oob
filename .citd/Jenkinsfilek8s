@@ -70,23 +70,16 @@ pipeline {
             }
         }
         
-        stage('project config update') {
+        stage('MPLABX/VScode Build with Project Config Update') {
             steps {
                 script {                    
-                    mplabxProjectConfigUpdate(
-                        sourceFilePath: "${env.MPLABX_PROJECT_SOURCE}"
+                    mplabxMultiPlatformBuild(
+                        sourceFilePath: "${env.MPLABX_PROJECT_SOURCE}",
+                        compiler: "XC-DSC",
+                        publicDfpUpdate: true, // To build with latest public released dfp
+                        upgrade: false // To upgrade the projects which is there in .X to vscode project
                     )
                 }
-            }
-        }
-        
-        stage('Build') {
-            steps {
-                script {  
-                    mplabxProjectBuild(
-                        sourceFilePath: "${env.MPLABX_PROJECT_SOURCE}"
-                    )
-               }
             }
         }
 		
@@ -113,6 +106,17 @@ pipeline {
             }
         } 
         
+        // MCC Melody content public version check
+		stage(' MCC Melody content public version check') {
+            steps {
+              script {
+                     mccMelodyContentPublicVersionCheck(
+                         sourceFilePath: "${env.MPLABX_PROJECT_SOURCE}"
+                     )
+                }
+            }
+        }
+
         // Creating tag in Bitbucket repo
         stage('Bitbucket Tag Creation') {
             when {

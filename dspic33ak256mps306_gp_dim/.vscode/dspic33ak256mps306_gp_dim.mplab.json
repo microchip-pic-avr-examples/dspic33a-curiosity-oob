@@ -1,0 +1,152 @@
+{
+    "version": "1.9",
+    "propertyGroups": [
+        {
+            "name": "default-uservariables",
+            "type": "uservariables",
+            "properties": {}
+        },
+        {
+            "name": "default-XC-DSC",
+            "type": "toolchain",
+            "provider": "microchip.toolchains:xc-dsc@3.31.00",
+            "properties": {
+                "compiler.isolate-each-function": true,
+                "compiler.optimization-level": "-O1",
+                "compiler.place-data-into-section": true,
+                "linker.heap-size": "0",
+                "linker.remove-unused-sections": true,
+                "compiler++.isolate-each-function": true,
+                "compiler++.optimization-level": "-O1",
+                "global.common-include-directories": [
+                    "My_MCC_Config\\mcc\\mcc_generated_files"
+                ]
+            }
+        },
+        {
+            "name": "default-tool-base",
+            "type": "tool",
+            "properties": {}
+        }
+    ],
+    "fileSets": [
+        {
+            "name": "default",
+            "files": [
+                {
+                    "include": "**/*",
+                    "exclude": "**/(_build|out|cmake|.vscode)/**/*"
+                },
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/clock.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/clock.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/clock_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/config_bits.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/interrupt_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/interrupt.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/where_was_i.s",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/interrupt.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/traps.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/traps.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/system.c",
+                "My_MCC_Config/mcc/main.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/system.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/system_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/pins.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/pins.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/watchdog.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/dmt.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/dmt_asm.s",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/dmt.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/reset_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/system/src/reset.c",
+                "My_MCC_Config/mcc/mcc_generated_files/system/reset.h",
+                "My_MCC_Config/mcc/mcc_generated_files/adc/adc_interface.h",
+                "My_MCC_Config/mcc/mcc_generated_files/adc/adc1.h",
+                "My_MCC_Config/mcc/mcc_generated_files/adc/src/adc1.c",
+                "My_MCC_Config/mcc/mcc_generated_files/adc/adc_features.h",
+                "My_MCC_Config/mcc/mcc_generated_files/adc/adc_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/timer/src/tmr1.c",
+                "My_MCC_Config/mcc/mcc_generated_files/timer/timer_interface.h",
+                "My_MCC_Config/mcc/mcc_generated_files/timer/tmr1.h",
+                "My_MCC_Config/mcc/mcc_generated_files/uart/uart_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/uart/src/uart1.c",
+                "My_MCC_Config/mcc/mcc_generated_files/uart/uart1.h",
+                "My_MCC_Config/mcc/mcc_generated_files/uart/uart_interface.h",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/sccp1.h",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/pwm_interface.h",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/src/sccp1.c",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/pwm_types.h",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/sccp2.h",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/src/sccp2.c",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/src/sccp3.c",
+                "My_MCC_Config/mcc/mcc_generated_files/pwm/sccp3.h",
+                "bsp/button_simple.h",
+                "bsp/led_blue.c",
+                "bsp/led_blue.h",
+                "bsp/led_color.h",
+                "bsp/led_dimmable.h",
+                "bsp/led_green.c",
+                "bsp/led_green.h",
+                "bsp/led_red.c",
+                "bsp/led_red.h",
+                "bsp/led_rgb.c",
+                "bsp/led_rgb.h",
+                "bsp/led_simple.h",
+                "bsp/led0.c",
+                "bsp/led0.h",
+                "bsp/led1.c",
+                "bsp/led1.h",
+                "bsp/led2.c",
+                "bsp/led2.h",
+                "bsp/led3.c",
+                "bsp/led3.h",
+                "bsp/led4.c",
+                "bsp/led4.h",
+                "bsp/led5.c",
+                "bsp/led5.h",
+                "bsp/led6.c",
+                "bsp/led6.h",
+                "bsp/led7.c",
+                "bsp/led7.h",
+                "bsp/pot.c",
+                "bsp/pot.h",
+                "bsp/s1.c",
+                "bsp/s1.h",
+                "bsp/s2.c",
+                "bsp/s2.h",
+                "bsp/s3.c",
+                "bsp/s3.h",
+                "bsp/task.c",
+                "bsp/task.h",
+                "console.c",
+                "console.h",
+                "My_MCC_Config/mcc/mcc_generated_files/can/can_features.h",
+                "My_MCC_Config/mcc/mcc_generated_files/can/can1.h",
+                "My_MCC_Config/mcc/mcc_generated_files/can/src/can1.c",
+                "My_MCC_Config/mcc/mcc_generated_files/can/can_interface.h",
+                "My_MCC_Config/mcc/mcc_generated_files/can/can_types.h"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "default",
+            "id": "",
+            "device": "dsPIC33AK256MPS306",
+            "imagePath": "./out/dspic33ak256mps306_gp_dim/default.elf",
+            "toolProperties": "default-tool-base",
+            "tool": "Curiosity/Starter Kits (PKOB4)",
+            "packs": [
+                {
+                    "name": "dsPIC33AK-MP_DFP",
+                    "vendor": "Microchip",
+                    "version": "1.3.185"
+                }
+            ],
+            "fileSet": "default",
+            "toolchain": "default-XC-DSC",
+            "userVariables": "default-uservariables",
+            "includeLegacyMacros": true
+        }
+    ]
+}

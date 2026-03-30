@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.4.0
+### Release Highlights
+1. dsPIC33AK256MPS306 GP DIM example added
+
+### Features Added\Updated
+1. dsPIC33AK256MPS306 GP DIM example added
+
 # dspic33a-curiosity-oob v1.3.4
 ### Release Highlights
 1. Added missing data visualizer files for the dsPIC33AK512MPS512 GP DIM demo
