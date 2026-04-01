@@ -33,8 +33,8 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the Curiosity Pla
 
 **Basic I/O**
 * LED7 reflects the status of the S1 button; On when pressed, off when released.
-* LED6 reflects the status of the S1 button; On when pressed, off when released.
-* LED5 reflects the status of the S1 button; On when pressed, off when released.
+* LED6 reflects the status of the S2 button; On when pressed, off when released.
+* LED5 reflects the status of the S3 button; On when pressed, off when released.
 
 **ADC/PWM**
 * Turning the potentiometer will vary the RGB LED brightness
