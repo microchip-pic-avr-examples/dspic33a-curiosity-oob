@@ -13,7 +13,7 @@
 */
 
 /*
-© [2026] Microchip Technology Inc. and its subsidiaries.
+ï¿½ [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -63,7 +63,7 @@
 #pragma config FWDT_WDTNVMSTL = ON    //WDT Stall During NVM Operation->Stall WDT During NVM Operation
 
 // FPWRM
-#pragma config FPWRM_PWRM = ON    //Core Voltage Monitor Enable Bits->Core Voltage Monitor is Enabled
+#pragma config FPWRM_PWRM = OFF    //Core Voltage Monitor Enable Bits->Core Voltage Monitor is Disabled
 
 // FPR0CTRL
 #pragma config FPR0CTRL_RDIS = ON    //Region protection disable bit->Protection is disabled
