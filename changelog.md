@@ -1,3 +1,10 @@
+# dspic33a-curiosity-oob v1.4.1
+### Release Highlights
+1. Changed `FPWRM_PWRM` from `ON` to `OFF` in the `dsPIC33AK256MPS306` project as a workaround for a known A0 silicon issue.
+
+### Features Added\Updated
+1. Changed `FPWRM_PWRM` from `ON` to `OFF` in the `dsPIC33AK256MPS306` project as a workaround for a known A0 silicon issue.
+
 # dspic33a-curiosity-oob v1.4.0
 ### Release Highlights
 1. dsPIC33AK256MPS306 GP DIM example added

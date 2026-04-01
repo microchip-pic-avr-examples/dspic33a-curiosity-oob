@@ -4,7 +4,7 @@
    "content":{
       "metaDataVersion":"1.3.0",
       "name":"com.microchip.mplabx.project.dspic33ak256mps306-gp-dim-oob",
-      "version":"1.4.0",
+      "version":"1.4.1",
       "displayName":"dsPIC33AK256MPS306 GP DIM Curiosity Out of Box Demo",
       "projectName":"dspic33ak256mps306_gp_dim",
       "shortDescription":"dsPIC33AK256MPS306 GP DIM Curiosity Out of Box Demo",
