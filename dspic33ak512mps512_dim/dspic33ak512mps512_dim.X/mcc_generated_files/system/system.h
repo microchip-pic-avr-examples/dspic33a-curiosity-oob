@@ -10,7 +10,7 @@
  * @skipline  Device : dsPIC33AK512MPS512
 */
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -32,6 +32,7 @@
 
 #include "xc.h"
 #include "stdint.h"
+#include "system_types.h"
 
 #ifndef SYSTEM_H
 #define	SYSTEM_H
@@ -42,6 +43,49 @@
  * @return  none 
  */
 void SYSTEM_Initialize(void);
+
+/**
+ * @ingroup systemdriver
+ * @brief   Initializes the CPU core control register
+ * @return  none 
+ */
+inline static void SYSTEM_CORCONInitialize(void)
+{
+    CORCON = (CORCON & 0x00F2) | CORCON_MODE_PORVALUES;
+}
+
+/**
+ * @ingroup   systemdriver
+ * @brief     Sets the CPU core control register (CORCON) operating mode 
+ *            according to the SYSTEM_CORCON_MODES argument.
+ * @param[in] modeValue - SYSTEM_CORCON_MODES initialization mode specifier
+ * @return    none
+ */
+inline static void SYSTEM_CORCONModeOperatingSet(SYSTEM_CORCON_MODES modeValue)
+{
+    CORCON = (CORCON & 0x00F2) | modeValue;
+}
+
+/**
+ * @ingroup    systemdriver
+ * @brief      This inline function sets the value of CPU core control register
+ * @param[in]  value - value that needs to be written to the CPU core control register
+ * @return     none 
+ */
+    inline static void SYSTEM_CORCONRegisterValueSet(uint32_t value)
+    {
+        CORCON = value;
+    }
+
+/**
+ * @ingroup systemdriver
+ * @brief   This inline function gets the value of CPU core control register
+ * @return  value of the CPU core control register 
+ */
+inline static uint32_t SYSTEM_CORCONRegisterValueGet(void)
+{    
+    return CORCON;
+}
 
 /**
  * @ingroup systemdriver

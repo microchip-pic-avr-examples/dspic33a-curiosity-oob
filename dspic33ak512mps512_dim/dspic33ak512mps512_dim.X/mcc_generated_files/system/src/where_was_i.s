@@ -11,6 +11,7 @@
 */
     .section *,bss,near
     .global _trapSrcAddr
+    .align 4
  _trapSrcAddr:   .space 4
 
     .text

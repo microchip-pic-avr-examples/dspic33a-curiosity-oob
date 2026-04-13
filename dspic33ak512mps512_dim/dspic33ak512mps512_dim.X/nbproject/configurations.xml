@@ -40,6 +40,12 @@
           <itemPath>mcc_generated_files/adc/adc_types.h</itemPath>
           <itemPath>mcc_generated_files/adc/adc5.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="can" displayName="can" projectFiles="true">
+          <itemPath>mcc_generated_files/can/can_features.h</itemPath>
+          <itemPath>mcc_generated_files/can/can_types.h</itemPath>
+          <itemPath>mcc_generated_files/can/can_interface.h</itemPath>
+          <itemPath>mcc_generated_files/can/can1.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="pwm" displayName="pwm" projectFiles="true">
           <itemPath>mcc_generated_files/pwm/pwm_types.h</itemPath>
           <itemPath>mcc_generated_files/pwm/sccp2.h</itemPath>
@@ -59,6 +65,7 @@
           <itemPath>mcc_generated_files/system/clock.h</itemPath>
           <itemPath>mcc_generated_files/system/traps.h</itemPath>
           <itemPath>mcc_generated_files/system/interrupt.h</itemPath>
+          <itemPath>mcc_generated_files/system/system_types.h</itemPath>
         </logicalFolder>
         <logicalFolder name="timer" displayName="timer" projectFiles="true">
           <itemPath>mcc_generated_files/timer/tmr1.h</itemPath>

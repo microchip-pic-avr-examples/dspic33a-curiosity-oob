@@ -7,13 +7,13 @@
  *            
  * @brief     This is the generated driver source file for PINS driver.
  *
- * @skipline @version   PLIB Version 1.0.1
+ * @skipline @version   PLIB Version 1.0.5
  *
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -40,20 +40,6 @@
 
 // Section: File specific functions
 
-/**
- * @ingroup  pinsdriver
- * @brief    Locks all the Peripheral Remapping registers and cannot be written.
- * @return   none  
- */
-#define PINS_PPSLock()           (RPCONbits.IOLOCK = 1)
-
-/**
- * @ingroup  pinsdriver
- * @brief    Unlocks all the Peripheral Remapping registers and can be written.
- * @return   none  
- */
-#define PINS_PPSUnlock()         (RPCONbits.IOLOCK = 0)
-
 // Section: Driver Interface Function Definitions
 void PINS_Initialize(void)
 {
@@ -74,8 +60,8 @@ void PINS_Initialize(void)
      ***************************************************************************/
     TRISA = 0xFFFFUL;
     TRISB = 0xFFFFUL;
-    TRISC = 0x00FEUL;
-    TRISD = 0xFDFAUL;
+    TRISC = 0x00FFUL;
+    TRISD = 0xDDFAUL;
     TRISE = 0x07FFUL;
     TRISF = 0x0FEFUL;
     TRISG = 0x03F7UL;
@@ -127,19 +113,17 @@ void PINS_Initialize(void)
     /****************************************************************************
      * Set the PPS
      ***************************************************************************/
-    PINS_PPSUnlock(); // unlock PPS
+      PINS_PPSUnlock(); // unlock PPS
 
-    RPINR13bits.U1RXR = 0x0032UL; //RD1->UART1:U1RX;
-    RPOR14bits.RP58R = 0x0028UL;  //RD9->SCCP2:OCM2;
-    RPOR12bits.RP49R = 0x0027UL;  //RD0->SCCP1:OCM1;
-    RPOR12bits.RP51R = 0x0029UL;  //RD2->SCCP3:OCM3;
-    RPOR28bits.RP114R = 0x0013UL;  //RH1->UART1:U1TX;
+        RPINR13bits.U1RXR = 0x0032UL; //RD1->UART1:U1RX;
+        RPINR17bits.CAN1RXR = 0x003CUL; //RD11->CAN1:CAN1RX;
+        RPOR14bits.RP58R = 0x0028UL;  //RD9->SCCP2:OCM2;
+        RPOR12bits.RP49R = 0x0027UL;  //RD0->SCCP1:OCM1;
+        RPOR12bits.RP51R = 0x0029UL;  //RD2->SCCP3:OCM3;
+        RPOR28bits.RP114R = 0x0013UL;  //RH1->UART1:U1TX;
+        RPOR15bits.RP62R = 0x0011UL;  //RD13->CAN1:CAN1TX;
 
-    _CAN1RXR = 60;              //RD11 -> CAN1RX
-    _RP62R = _RPOUT_CAN1TX;     //RD13 -> CAN1TX
-    LATDbits.LATD14 = 0;        //Enable CAN Transceiver drive STBY low
-    TRISDbits.TRISD14 = 0;
-    PINS_PPSLock(); // lock PPS
+      PINS_PPSLock(); // lock PPS
 
 
 }

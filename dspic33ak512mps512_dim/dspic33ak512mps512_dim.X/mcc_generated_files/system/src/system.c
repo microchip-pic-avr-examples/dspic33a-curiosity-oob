@@ -10,7 +10,7 @@
  * @skipline  Device : dsPIC33AK512MPS512
 */
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -31,9 +31,11 @@
 */
 
 #include "../system.h"
+#include "../system_types.h"
 #include "../clock.h"
 #include "../pins.h"
 #include "../../adc/adc5.h"
+#include "../../can/can1.h"
 #include "../dmt.h"
 #include "../../pwm/sccp1.h"
 #include "../../pwm/sccp2.h"
@@ -41,7 +43,6 @@
 #include "../../timer/tmr1.h"
 #include "../../uart/uart1.h"
 #include "../interrupt.h"
-#include "../../can/can1.h"
 
 
 void SYSTEM_Initialize(void)
@@ -49,13 +50,13 @@ void SYSTEM_Initialize(void)
     CLOCK_Initialize();
     PINS_Initialize();
     ADC5_Initialize();
+    CAN1_Initialize();
     DMT_Initialize();
     SCCP1_PWM_Initialize();
     SCCP2_PWM_Initialize();
     SCCP3_PWM_Initialize();
     TMR1_Initialize();
     UART1_Initialize();
-    CAN1_Initialize();
     INTERRUPT_GlobalEnable();
     INTERRUPT_Initialize();
 }

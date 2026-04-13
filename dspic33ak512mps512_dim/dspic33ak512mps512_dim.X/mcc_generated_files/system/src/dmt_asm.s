@@ -8,7 +8,7 @@
 ; 
 ; @brief     Assembly language optimized helper routines required for calibration
 ;
-; @skipline @version   PLIB Version 1.0.1
+; @skipline @version   PLIB Version 1.0.3
 ;
 ; @skipline  Device : dsPIC33AK512MPS512
 ;
