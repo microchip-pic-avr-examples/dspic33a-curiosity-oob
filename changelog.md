@@ -5,6 +5,7 @@
 3. Fixed Clock settings to use External Clock instead of Primary Oscillator in the `dsPIC33AK512MPS512` project.
 4. Added CAN module to MCC in in the `dsPIC33AK512MPS512` project. 
 5. Updated PCAN-View settings in the `dsPIC33AK512MPS512` project README.md to ensure nominal bit rate and data bit rate prescalar values match. 
+6. Updated `dsPIC33AK128MC106` project to maximum speed based on external clock rather than FRC.
 
 ### Features Added\Updated
 1. Changed `FPWRM_PWRM` from `ON` to `OFF` in the `dsPIC33AK256MPS306` project as a workaround for a known A0 silicon issue.
@@ -12,6 +13,7 @@
 3. Fixed Clock settings to use External Clock instead of Primary Oscillator in the `dsPIC33AK512MPS512` project.
 4. Added CAN module to MCC in in the `dsPIC33AK512MPS512` project. 
 5. Updated PCAN-View settings in the `dsPIC33AK512MPS512` project README.md to ensure nominal bit rate and data bit rate prescalar values match.  
+6. Updated `dsPIC33AK128MC106` project to maximum speed based on external clock rather than FRC.
 
 # dspic33a-curiosity-oob v1.4.0
 ### Release Highlights
