@@ -13,7 +13,7 @@
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -73,14 +73,14 @@ void SCCP1_PWM_Initialize (void)
     CCP1STAT = 0x0UL;
     // TMRL 0x0; TMRH 0x0; 
     CCP1TMR = 0x0UL;
-    // PRL 40000; PRH 0; 
-    CCP1PR = 0x9C40UL;
+    // PRL 65535; PRH 0; 
+    CCP1PR = 0xFFFFUL;
     // BUFL 0x0; BUFH 0x0; 
     CCP1BUF = 0x0UL;
     // CMPA 0; 
     CCP1RA = 0x0UL;
-    // CMPB 20000; 
-    CCP1RB = 0x4E20UL;
+    // CMPB 65535; 
+    CCP1RB = 0xFFFFUL;
     SCCP1_PWM_CallbackRegister(&SCCP1_PWM_Callback);
     
     CCP1CON1bits.ON = 1; //Enable Module
