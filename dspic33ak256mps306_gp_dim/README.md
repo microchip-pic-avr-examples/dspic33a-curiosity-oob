@@ -82,6 +82,11 @@ A CAN protocol analyzer can be used to view the potentiometer.  The potentiomete
 ## Unsupported Board Features
 * The touch pad capability is currently unsupported in this demo
 
+## FPWRM_PWRM Note
+In `config_bits.c`, `FPWRM_PWRM` is set to `OFF`. This is a workaround for a known A0 silicon issue: during programming, the power monitor may reset the device while the configuration fuse is being programmed. When this occurs, MPLAB IDE or IPE may display a DEVID error.
+
+Setting `FPWRM_PWRM` to `OFF` prevents this errata-related behavior. If the project is regenerated in MCC, this setting may be overwritten and should be restored manually.
+
 
  
 
