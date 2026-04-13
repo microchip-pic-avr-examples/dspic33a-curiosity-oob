@@ -13,7 +13,7 @@
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -41,7 +41,7 @@
 #include "../uart1.h"
 
 // Section: Macro Definitions
-#define UART1_CLOCK 4000000U
+#define UART1_CLOCK 100000000U
 #define UART1_BAUD_TO_BRG_WITH_FRACTIONAL(x) (UART1_CLOCK/(x))
 #define UART1_BAUD_TO_BRG_WITH_BRGS_1(x) (UART1_CLOCK/(4U*(x))-1U)
 #define UART1_BAUD_TO_BRG_WITH_BRGS_0(x) (UART1_CLOCK/(16U*(x))-1U)
@@ -49,8 +49,8 @@
 #define UART1_BRG_TO_BAUD_WITH_BRGS_1(x) (UART1_CLOCK/(4U*((x)+1U)))
 #define UART1_BRG_TO_BAUD_WITH_BRGS_0(x) (UART1_CLOCK/(16U*((x)+1U)))
 
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 4U
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGS_1 1U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 95U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGS_1 24U
 
 // Section: Driver Interface
 
@@ -109,8 +109,8 @@ void UART1_Initialize(void)
     U1CON = 0x8000000UL;
     // TXCIF ; RXFOIF ; RXBKIF ; CERIF ; ABDOVIF ; TXCIE ; RXFOIE ; RXBKIE ; FERIE ; CERIE ; ABDOVIE ; PERIE ; TXMTIE ; STPMD ; TXWRE ; RXWM ; TXWM ; 
     U1STAT = 0x2E0080UL;
-    // BaudRate 9592.33; Frequency 4000000 Hz; BRG 417; 
-    U1BRG = 0x1A1UL;
+    // BaudRate 9599.69; Frequency 100000000 Hz; BRG 10417; 
+    U1BRG = 0x28B1UL;
     
     U1CONbits.ON = 1;   // enabling UART ON bit
     U1CONbits.TXEN = 1;
@@ -241,11 +241,17 @@ void UART1_BaudRateSet(uint32_t baudRate)
         U1CONbits.BRGS = 0;
         brgValue = UART1_BAUD_TO_BRG_WITH_FRACTIONAL(baudRate);
     }
-    else
+    else if(baudRate >= UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGS_1)
     {
         U1CONbits.CLKMOD = 0;
         U1CONbits.BRGS = 1;
         brgValue = UART1_BAUD_TO_BRG_WITH_BRGS_1(baudRate);
+    }
+    else
+    {
+        U1CONbits.CLKMOD = 0;
+        U1CONbits.BRGS = 0;
+        brgValue = UART1_BAUD_TO_BRG_WITH_BRGS_0(baudRate);
     }
     U1BRG = brgValue;
 }
