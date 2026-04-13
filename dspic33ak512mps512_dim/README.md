@@ -63,8 +63,11 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the Curiosity Pla
 
 1) In the PEAK PCAN-View software double click the bit rate settings in the bottom left (circled in red) to open the bit rates dialogue box.<br>
 ![PEAK PCAN-View Settings](./images/peak-settings.png)
-2) Ensure that both the nominal bit rate and data bit rate have similar sample points. If the sample points are different click the ellipsis (circled in red) to open an additional table of timing setting options.<br>
-![PEAK PCAN-View Bit Rates Dialogue](./images/peak-bit-rates.png)
+2) Ensure that both the nominal bit rate and data bit rate have similar sample points and the prescalar values are the same. If the sample points are different click the ellipsis (circled in red) to open an additional table of timing setting options. Below are the suggested values to use for this demo.<br>
+![PEAK PCAN-View Bit Rates Dialogue](./images/peak-bit-rates.png)<br>
+![Bit Timing Configuration - Nominal Bit Rate](./images/peak-bit-timing-nominal.png)<br>
+![Bit Timing Configuration - Data Bit Rate](./images/peak-bit-timing-data.png)<br>
+
 3) Select a timing setting similar to the selected data bit rate, and make a selection for the Sync Jump Width before selecting OK to both dialogue boxes to accept these settings.
 4) Repeat these steps until there is consistent potentiometer messages being received in PCAN-View on CAN ID 0x0A2 ~every 200ms.
 

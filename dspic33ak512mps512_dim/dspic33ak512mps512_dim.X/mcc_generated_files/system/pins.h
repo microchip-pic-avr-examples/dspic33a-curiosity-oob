@@ -464,6 +464,57 @@
 
 /**
  * @ingroup  pinsdriver
+ * @brief    Sets the RD14 GPIO Pin which has a custom name of IO_RD14 to High
+ * @pre      The RD14 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_SetHigh()          (_LATD14 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RD14 GPIO Pin which has a custom name of IO_RD14 to Low
+ * @pre      The RD14 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_SetLow()           (_LATD14 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RD14 GPIO Pin which has a custom name of IO_RD14
+ * @pre      The RD14 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_Toggle()           (_LATD14 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RD14 GPIO Pin which has a custom name of IO_RD14
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_GetValue()         _RD14
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD14 GPIO Pin which has a custom name of IO_RD14 as Input
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_SetDigitalInput()  (_TRISD14 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD14 GPIO Pin which has a custom name of IO_RD14 as Output
+ * @param    none
+ * @return   none  
+ */
+#define IO_RD14_SetDigitalOutput() (_TRISD14 = 0)
+
+/**
+ * @ingroup  pinsdriver
  * @brief    Initializes the PINS module
  * @param    none
  * @return   none  
