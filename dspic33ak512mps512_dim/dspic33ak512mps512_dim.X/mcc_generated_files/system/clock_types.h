@@ -7,13 +7,13 @@
  * 
  * @brief     This is the generated driver types header file for the CLOCK driver
  *
- * @skipline @version   PLIB Version 1.1.2
+ * @skipline @version   PLIB Version 1.3.1
  *
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -41,6 +41,14 @@
  @enum     CLOCK_GENERATOR
  @brief    CLOCK generator instances
 */
+/* cppcheck-suppress misra-c2012-8.12
+*
+* (Rule 8.12) REQUIRED: Within an enumerator list, the value of an implicitly-specified 
+* enumeration constant shall be unique
+*
+* Reasoning: Enum members are created to reflect the hardware settings and to provide 
+* clear usage of API without impacting the functionality.
+*/
 enum CLOCK_GENERATOR
 {
     CLOCK_GENERATOR_1 = 1,    /**< Clock Generator 1 */
@@ -48,7 +56,6 @@ enum CLOCK_GENERATOR
     CLOCK_GENERATOR_3 = 3,    /**< Clock Generator 3 */
     CLOCK_GENERATOR_6 = 6,    /**< Clock Generator 6 */
     CLOCK_GENERATOR_10 = 10,    /**< Clock Generator 10 */
-    CLOCK_GENERATOR_13 = 13,    /**< Clock Generator 13 */
     
     CLOCK_SYSTEM = 1,    /**< Clock for System */
     CLOCK_FRC = 2,    /**< Clock for FRC */
@@ -56,10 +63,8 @@ enum CLOCK_GENERATOR
     CLOCK_BFRC = 3,    /**< Clock for BFRC */
     CLOCK_ADC = 6,    /**< Clock for ADC */
     CLOCK_CAN = 10,    /**< Clock for CAN */
-    CLOCK_CCP = 13,    /**< Clock for CCP */
-    CLOCK_REFO1 = 13,    /**< Clock for REFO1 */
     
-    CLOCK_GENERATOR_MAX = 6
+    CLOCK_GENERATOR_MAX = 5
 };
 
 /**
@@ -74,7 +79,6 @@ enum CLOCK_FAIL_STATUS_MASKS
     CLOCK_GEN3_FAIL_MASK = 0x4,    /**< Fail mask for Clock Generator 3 */
     CLOCK_GEN6_FAIL_MASK = 0x20,    /**< Fail mask for Clock Generator 6 */
     CLOCK_GEN10_FAIL_MASK = 0x200,    /**< Fail mask for Clock Generator 10 */
-    CLOCK_GEN13_FAIL_MASK = 0x1000,    /**< Fail mask for Clock Generator 13 */
     CLOCK_PLL1_FAIL_MASK = 0x1000000,    /**< Fail mask for PLL Generator 1 */
     CLOCK_PLL2_FAIL_MASK = 0x2000000,    /**< Fail mask for PLL Generator 2 */
 };

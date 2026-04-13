@@ -7,13 +7,13 @@
  * 
  * @brief 	  This is the generated driver types header file for the PWM driver
  *
- * @skipline @version   PLIB Version 1.1.0
+ * @skipline @version   PLIB Version 1.2.2
  *
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -44,11 +44,17 @@
  @ingroup  pwmdriver
  @enum 	   PWM_OUTPUT_MODES
  @brief	   Enumeration containing the output modes of PWM driver
+ @note     The PWM output modes may not be available for all devices, please refer
+           specific device datasheet for availability.
 */
 enum PWM_OUTPUT_MODES
 {
-    OUTPUT_MODES_NOT_AVAILABLE,         /**< No output modes available*/
-
+    OUTPUT_SCAN_MODE = 0x6,         /**<Output Scan Mode*/
+    BRUSH_DC_OUTPUT_FORWARD = 0x5,  /**<Brush DC Output Forward Mode*/
+    BRUSH_DC_OUTPUT_REVERSE = 0x4,  /**<Brush DC Output Reverse Mode*/
+    HALF_BRIDGE_OUTPUT = 0x2,       /**<Half Bridge Output Mode*/
+    PUSH_PULL_OUTPUT = 0x1,         /**<Push Pull Output Mode*/
+    STEERABLE_SINGLE_OUTPUT = 0x0,  /**<Steerable Single Output Mode*/
 };
 
 #endif  //PWM_TYPES_H
