@@ -9,13 +9,13 @@
  *            is to interrupt the processor in the event of a software 
  *            malfunction.
  *
- * @skipline @version   PLIB Version 1.0.1
+ * @skipline @version   PLIB Version 1.0.3
  *
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -41,6 +41,8 @@
 // Section: Included Files
 #include <stdbool.h>
 #include <stdint.h>
+
+extern uint32_t calibOffset;
 
 // Section: DMT APIs
 

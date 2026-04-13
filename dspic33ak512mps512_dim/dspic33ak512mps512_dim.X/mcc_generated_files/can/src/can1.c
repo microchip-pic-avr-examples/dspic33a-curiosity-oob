@@ -5,17 +5,15 @@
  *            
  * @ingroup   candriver
  *            
- * @brief     This is the generated driver source file for CAN1 driver using CCL
- *            
- * @skipline @version   Firmware Driver Version N/A
+ * @brief     This is the generated driver source file for CAN1 driver            
  *
- * @skipline @version   PLIB Version N/A
+ * @skipline @version   PLIB Version 1.0.6
  *            
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
 /*
-© [2024] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -50,34 +48,34 @@
 #define CAN_RX_FIFO_WORD_0      0
 #define CAN_RX_FIFO_WORD_1      1
 #define CAN_RX_FIFO_WORD_2      2
-#define CAN_RX_FIFO_WORD_4      4
 
 // CAN Bus Transmit FIFO Memory information
-#define CAN1_TX_MSG_SEND_REQ_BIT_POS   0x200U // CAN FIFO TX Message Send Request bit 
-#define CAN1_TX_INC_FIFO_PTR_BIT_POS   0x100U // CAN FIFO Increment Head/Tail bit
+#define CAN1_TX_MSG_SEND_REQ_BIT_POS   0x200UL // CAN FIFO TX Message Send Request bit 
+#define CAN1_TX_INC_FIFO_PTR_BIT_POS   0x100UL // CAN FIFO Increment Head/Tail bit
 #define CAN_TX_FIFO_WORD_0      0
 #define CAN_TX_FIFO_WORD_1      1
 #define CAN_TX_FIFO_WORD_2      2
-#define CAN_TX_FIFO_WORD_4      4
 
 // CAN Message object arbitration field information
 #define CAN_MSG_OBJ_DLC_FIELD_SIZE          0xFU
-#define CAN_MSG_OBJ_ID_TYPE_FIELD_POS       0x10U
-#define CAN_MSG_OBJ_ID_TYPE_SHIFT_POS       0x4U
-#define CAN_MSG_OBJ_RTR_SHIFT_POS           0x5U
-#define CAN_MSG_OBJ_RTR_FIELD_POS           0x20U
-#define CAN_MSG_OBJ_FRAME_TYPE_FIELD_POS    0x20U
-#define CAN_MSG_OBJ_FRAME_TYPE_SHIFT_POS    0x5U
-#define CAN_MSG_OBJ_BRS_FIELD_POS           0x40U
-#define CAN_MSG_OBJ_BRS_SHIFT_POS           0x6U
-#define CAN_MSG_OBJ_FORMAT_TYPE_FIELD_POS   0x80U
-#define CAN_MSG_OBJ_FORMAT_TYPE_SHIFT_POS   0x7U
+#define CAN_MSG_OBJ_ID_TYPE_MASK       0x10U
+#define CAN_MSG_OBJ_ID_TYPE_POS       0x4U
+#define CAN_MSG_OBJ_RTR_POS           0x5U
+#define CAN_MSG_OBJ_RTR_MASK           0x20U
+#define CAN_MSG_OBJ_FRAME_TYPE_MASK    0x20U
+#define CAN_MSG_OBJ_FRAME_TYPE_POS    0x5U
+#define CAN_MSG_OBJ_BRS_MASK           0x40U
+#define CAN_MSG_OBJ_BRS_POS           0x6U
+#define CAN_MSG_OBJ_FORMAT_TYPE_MASK   0x80U
+#define CAN_MSG_OBJ_FORMAT_TYPE_POS   0x7U
 #define CAN_STD_MSG_ID_MAX_SIZE             0x7FFU
-#define CAN_MSG_OBJ_SID_SHIFT_POS           0x12U
-#define CAN_EXT_MSG_ID_HIGH_MAX_SIZE        0x1FFFU
-#define CAN_EXT_MSG_ID_LOW_MAX_SIZE         0x1FU
-#define CAN_MSG_OBJ_EID_LOW_SHIFT_POS       0xBU
-#define CAN_MSG_OBJ_EID_HIGH_SHIFT_POS      0x5U
+#define CAN_MSG_OBJ_SID_POS           0x12U
+#define CAN_EXT_MSG_ID_MAX_SIZE        0x3FFFFU
+#define CAN_MSG_OBJ_EID_POS       0xBU
+
+//The time required for can bus to wake up from bus off and integrate is 128 times the recessive bits,
+//Considering the highest clock speed of CAN 80MHz the minimun TBC required in 0xDC000, providing the time double of 0xDC000 is 1B8000
+#define CAN_MODE_SET_TIMEOUT 0x1B8000U
 
 // Section: Driver Interface
 const struct CAN_INTERFACE CAN_FD1 = {
@@ -152,7 +150,7 @@ struct CAN1_FIFO_INFO
 {
     uint8_t payloadSize;
     uint8_t msgDeepSize;
-    uint16_t *address;
+    uint32_t *address;
 };
 
 // Section: Private Function Definitions
@@ -180,13 +178,13 @@ static void CAN1_FIFO_InfoGet(const uint8_t fifoNum, volatile struct CAN1_FIFO_I
     switch (fifoNum) 
     {
         case CAN1_TXQ:
-            fifoInfo->address = (uint16_t *) &C1TXQUA;
+            fifoInfo->address = (uint32_t *) &C1TXQUA;
             fifoInfo->payloadSize = 8U;
             fifoInfo->msgDeepSize = 1U;
             break;
      
         case CAN1_FIFO_1:
-            fifoInfo->address = (uint16_t *) &C1FIFOUA1;
+            fifoInfo->address = (uint32_t *) &C1FIFOUA1;
             fifoInfo->payloadSize = 8U;
             fifoInfo->msgDeepSize = 1U;
             break;
@@ -281,9 +279,9 @@ static void CAN1_RX_FIFO_IncrementMsgPtr(const uint8_t fifoNum)
  @static   Get the Receiver FIFO message index value
  @brief    This function get the Receiver FIFO message index value
 */
-static uint16_t CAN1_RX_FIFO_MessageIndexGet(const enum CAN1_RX_FIFO_CHANNELS fifoNum) 
+static uint32_t CAN1_RX_FIFO_MessageIndexGet(const enum CAN1_RX_FIFO_CHANNELS fifoNum) 
 {
-    uint16_t fifoMsgIndex;
+    uint32_t fifoMsgIndex;
     
     switch (fifoNum) 
     {            
@@ -325,63 +323,62 @@ static void CAN1_TX_FIFO_MessageSendRequest(const enum CAN1_TX_FIFO_CHANNELS fif
  @brief    This function read the message object from receive FIFO and update to the user  
            message object pointer.
 */
-static void CAN1_MessageReadFromFifo(uint16_t *rxFifoObj, struct CAN_MSG_OBJ *rxCanMsg)
+static void CAN1_MessageReadFromFifo(uint32_t *rxFifoObj, struct CAN_MSG_OBJ *rxCanMsg)
 {   
     /*
     Receive FIFO Object format:
     
-    Receive FIFO WORD_0:    |15:8|| EID<4:0>          | SID<10:8>              ||
-                            | 7:0||           SID<7:0>                         ||
+    Receive FIFO WORD_0:    |31:24|| SID<11>           | EID<17:13>             ||
+                            |23:16|| EID<12:5>                                  ||   
+                            |15: 8|| EID<4:0>          | SID<10:8>              ||
+                            | 7: 0||           SID<7:0>                         ||
                              
-    Receive FIFO WORD_1:    |15:8|| SID<11>           | EID<17:13>             ||
-                            | 7:0|| EID<12:5>                                  ||
-                             
-    Receive FIFO WORD_2:    |15:8||FILHIT<4:0>  |   Reserved    |    ESI<1>    ||
-                            | 7:0||FDF<1> | BRS<1> | RTR<1> | IDE<1> | DLC<3:0>||
-                             
-    Receive FIFO WORD_3:    |15:8||          Reserved                          ||
-                            | 7:0||          Reserved                          ||
+                                 
+    Receive FIFO WORD_1:    |31:24||          Reserved                          ||
+                            |23:16||          Reserved                          ||                             
+                            |15: 8||FILHIT<4:0>  | Reserved<1:0> |    ESI<1>    ||
+                            | 7: 0||FDF<1> | BRS<1> | RTR<1> | IDE<1> | DLC<3:0>||
+
                           
-    Receive FIFO WORD_4 to  |15:8||  Receive Data Byte 1,3,5.. n               || 
-    Receive FIFO WORD_n:    | 7:0||  Receive Data Byte 0,2,4.. n-1             ||
+    Receive FIFO WORD_2 to  |31:24||  Receive Data Byte 3,7,11.. n              || 
+    Receive FIFO WORD_n:    |23:16||  Receive Data Byte 2,6,10.. n-1            ||
+                            |15: 8||  Receive Data Byte 1,5,9.. n-2             ||
+                            | 7: 0||  Receive Data Byte 0,4,8.. n-3             ||
     When timestamp is disabled
     */
     
-    uint8_t dlcByteSize = 0;
-        
+    uint8_t dlcByteSize;
+    
+    // SID11 and EID <17:5>    
     // SID <10:0> and EID <4:0>
-    uint16_t rx0Data = rxFifoObj[CAN_RX_FIFO_WORD_0];
-
-    // SID11 and EID <17:5>
-    uint16_t rx1Data = rxFifoObj[CAN_RX_FIFO_WORD_1];
+    uint32_t rxData = rxFifoObj[CAN_RX_FIFO_WORD_0];
 
     // DLC <3:0>, IDE <1>, RTR <1>, BRS <1>, FDF <1> 
-    rxCanMsg->field.dlc = (rxFifoObj[CAN_RX_FIFO_WORD_2] & CAN_MSG_OBJ_DLC_FIELD_SIZE);
-    rxCanMsg->field.idType = ((rxFifoObj[CAN_RX_FIFO_WORD_2] & CAN_MSG_OBJ_ID_TYPE_FIELD_POS) >> CAN_MSG_OBJ_ID_TYPE_SHIFT_POS);
-    rxCanMsg->field.frameType = ((rxFifoObj[CAN_RX_FIFO_WORD_2] & CAN_MSG_OBJ_FRAME_TYPE_FIELD_POS) >> CAN_MSG_OBJ_FRAME_TYPE_SHIFT_POS);
-    rxCanMsg->field.brs = ((rxFifoObj[CAN_RX_FIFO_WORD_2] & CAN_MSG_OBJ_BRS_FIELD_POS) >> CAN_MSG_OBJ_BRS_SHIFT_POS);
-    rxCanMsg->field.formatType = ((rxFifoObj[CAN_RX_FIFO_WORD_2] & CAN_MSG_OBJ_FORMAT_TYPE_FIELD_POS) >> CAN_MSG_OBJ_FORMAT_TYPE_SHIFT_POS);
+    rxCanMsg->field.dlc = (rxFifoObj[CAN_RX_FIFO_WORD_1] & CAN_MSG_OBJ_DLC_FIELD_SIZE);
+    rxCanMsg->field.idType = ((rxFifoObj[CAN_RX_FIFO_WORD_1] & CAN_MSG_OBJ_ID_TYPE_MASK) >> CAN_MSG_OBJ_ID_TYPE_POS);
+    rxCanMsg->field.frameType = ((rxFifoObj[CAN_RX_FIFO_WORD_1] & CAN_MSG_OBJ_FRAME_TYPE_MASK) >> CAN_MSG_OBJ_FRAME_TYPE_POS);
+    rxCanMsg->field.brs = ((rxFifoObj[CAN_RX_FIFO_WORD_1] & CAN_MSG_OBJ_BRS_MASK) >> CAN_MSG_OBJ_BRS_POS);
+    rxCanMsg->field.formatType = ((rxFifoObj[CAN_RX_FIFO_WORD_1] & CAN_MSG_OBJ_FORMAT_TYPE_MASK) >> CAN_MSG_OBJ_FORMAT_TYPE_POS);
 
     /* message is standard identifier */
     if(rxCanMsg->field.idType == (uint8_t) CAN_FRAME_STD) 
     {
         // SID <10:0>
-        rxCanMsg->msgId = ((uint32_t)rx0Data & CAN_STD_MSG_ID_MAX_SIZE);   
+        rxCanMsg->msgId = ((uint32_t)rxData & CAN_STD_MSG_ID_MAX_SIZE);   
     }
     else 
     {
         /* message is extended identifier */
         // EID <28:18>, EID <17:0>
-        rxCanMsg->msgId = ((((uint32_t)rx0Data & CAN_STD_MSG_ID_MAX_SIZE) << CAN_MSG_OBJ_SID_SHIFT_POS) | 
-                            (((uint32_t)rx1Data & CAN_EXT_MSG_ID_HIGH_MAX_SIZE) << CAN_MSG_OBJ_EID_HIGH_SHIFT_POS) | 
-                            (((uint32_t)rx0Data >> CAN_MSG_OBJ_EID_LOW_SHIFT_POS) & CAN_EXT_MSG_ID_LOW_MAX_SIZE));
+        rxCanMsg->msgId = ((((uint32_t)rxData & CAN_STD_MSG_ID_MAX_SIZE) << CAN_MSG_OBJ_SID_POS) |  
+                            (((uint32_t)rxData >> CAN_MSG_OBJ_EID_POS) & CAN_EXT_MSG_ID_MAX_SIZE));
     }
 
     dlcByteSize = CAN1_DlcToDataBytesGet(rxCanMsg->field.dlc);
 
     // Coping receive FIFO data starting memory location
     (void)memset(rxMsgData, 0, CAN1_RX_FIFO_MSG_DATA);
-    (void)memcpy((char *) rxMsgData, (char *) (&rxFifoObj[CAN_RX_FIFO_WORD_4]), dlcByteSize);
+    (void)memcpy((char *) rxMsgData, (char *) (&rxFifoObj[CAN_RX_FIFO_WORD_2]), dlcByteSize);
     rxCanMsg->data = rxMsgData;
 }
 
@@ -391,28 +388,29 @@ static void CAN1_MessageReadFromFifo(uint16_t *rxFifoObj, struct CAN_MSG_OBJ *rx
  @brief    This function Read the message object from user input and update
            to the CAN1 TX FIFO.
 */
-static void CAN1_MessageWriteToFifo(uint16_t *txFifoObj, struct CAN_MSG_OBJ *txCanMsg)
+static void CAN1_MessageWriteToFifo(uint32_t *txFifoObj, struct CAN_MSG_OBJ *txCanMsg)
 {
     /*
     Transmit FIFO Object format:
+    Transmit FIFO WORD_0:   |31:24|| SID<11>           | EID<17:13>             ||
+                            |23:16|| EID<12:5>                                  ||
+                            |15: 8|| EID<4:0>          | SID<10:8>              ||
+                            | 7: 0||           SID<7:0>                         ||
+                             
     
-    Transmit FIFO WORD_0:    |15:8|| EID<4:0>          | SID<10:8>              ||
-                             | 7:0||           SID<7:0>                         ||
-                             
-    Transmit FIFO WORD_1:    |15:8|| SID<11>           | EID<17:13>             ||
-                             | 7:0|| EID<12:5>                                  ||
-                             
-    Transmit FIFO WORD_2:    |15:8||Sequence<6:0>(Not implemented) |  ESI<1>    ||
-                             | 7:0||FDF<1> | BRS<1> | RTR<1> | IDE<1> | DLC<3:0>||
-                             
-    Transmit FIFO WORD_3:    |15:8||Sequence<22:15>(Not implemented)            ||
-                             | 7:0||Sequence<14:7>(Not implemented)             ||
+    Transmit FIFO WORD_1:   |31:24||Sequence<22:15>(Not implemented)            ||
+                            |23:16||Sequence<14:7>(Not implemented)             ||
+                            |15: 8||Sequence<6:0>(Not implemented) |  ESI<1>    ||
+                            | 7: 0||FDF<1> | BRS<1> | RTR<1> | IDE<1> | DLC<3:0>||
+                                 
                           
-    Transmit FIFO WORD_4 to  |15:8|| Transmit Data Byte 1,3,5.. n               ||
-    Transmit FIFO WORD_n:    | 7:0|| Transmit Data Byte 0,2,4.. n-1             ||
+    Transmit FIFO WORD_2 to |31:24|| Transmit Data Byte 3,7,11.. n              ||
+    Transmit FIFO WORD_n:   |23:16|| Transmit Data Byte 2,6,10.. n-1            ||
+                            |15: 8|| Transmit Data Byte 1,5,9.. n-2             ||
+                            | 7: 0|| Transmit Data Byte 0,4,8.. n-3             ||
     */
     
-    uint8_t dlcByteSize = 0;
+    uint8_t dlcByteSize;
 
     /* message is standard identifier */
     if(txCanMsg->field.idType == (uint8_t) CAN_FRAME_STD) 
@@ -423,20 +421,17 @@ static void CAN1_MessageWriteToFifo(uint16_t *txFifoObj, struct CAN_MSG_OBJ *txC
     else 
     {
         /* message is extended identifier */
-        // SID <10:0> and EID <4:0>
-        txFifoObj[CAN_TX_FIFO_WORD_0] = (((txCanMsg->msgId >> CAN_MSG_OBJ_SID_SHIFT_POS) & CAN_STD_MSG_ID_MAX_SIZE) | 
-                        (txCanMsg->msgId & CAN_EXT_MSG_ID_LOW_MAX_SIZE) << CAN_MSG_OBJ_EID_LOW_SHIFT_POS);
-
-        // EID <5:17>
-        txFifoObj[CAN_TX_FIFO_WORD_1] = ((txCanMsg->msgId >>  CAN_MSG_OBJ_EID_HIGH_SHIFT_POS) & CAN_EXT_MSG_ID_HIGH_MAX_SIZE);
+        // SID <10:0> and EID <17:0>
+        txFifoObj[CAN_TX_FIFO_WORD_0] = (((txCanMsg->msgId >> CAN_MSG_OBJ_SID_POS) & CAN_STD_MSG_ID_MAX_SIZE) | 
+                        (txCanMsg->msgId & CAN_EXT_MSG_ID_MAX_SIZE) << CAN_MSG_OBJ_EID_POS);
     }
 
     // DLC <3:0>, IDE <1>, RTR <1>, BRS <1>, FDF <1> 
-    txFifoObj[CAN_TX_FIFO_WORD_2] = (txCanMsg->field.dlc & CAN_MSG_OBJ_DLC_FIELD_SIZE) | 
-                    ((txCanMsg->field.idType << CAN_MSG_OBJ_ID_TYPE_SHIFT_POS) & CAN_MSG_OBJ_ID_TYPE_FIELD_POS) | 
-                    ((txCanMsg->field.frameType << CAN_MSG_OBJ_FRAME_TYPE_SHIFT_POS) & CAN_MSG_OBJ_FRAME_TYPE_FIELD_POS) | 
-                    ((txCanMsg->field.brs << CAN_MSG_OBJ_BRS_SHIFT_POS) & CAN_MSG_OBJ_BRS_FIELD_POS) | 
-                    ((txCanMsg->field.formatType << CAN_MSG_OBJ_FORMAT_TYPE_SHIFT_POS) & CAN_MSG_OBJ_FORMAT_TYPE_FIELD_POS);
+    txFifoObj[CAN_TX_FIFO_WORD_1] = (txCanMsg->field.dlc & CAN_MSG_OBJ_DLC_FIELD_SIZE) | 
+                    ((txCanMsg->field.idType << CAN_MSG_OBJ_ID_TYPE_POS) & CAN_MSG_OBJ_ID_TYPE_MASK) | 
+                    ((txCanMsg->field.frameType << CAN_MSG_OBJ_FRAME_TYPE_POS) & CAN_MSG_OBJ_FRAME_TYPE_MASK) | 
+                    ((txCanMsg->field.brs << CAN_MSG_OBJ_BRS_POS) & CAN_MSG_OBJ_BRS_MASK) | 
+                    ((txCanMsg->field.formatType << CAN_MSG_OBJ_FORMAT_TYPE_POS) & CAN_MSG_OBJ_FORMAT_TYPE_MASK);
         
     // Data frame message
     if(txCanMsg->field.frameType == (uint8_t) CAN_FRAME_DATA)
@@ -444,12 +439,12 @@ static void CAN1_MessageWriteToFifo(uint16_t *txFifoObj, struct CAN_MSG_OBJ *txC
         dlcByteSize = CAN1_DlcToDataBytesGet(txCanMsg->field.dlc);
 
         // Coping TX message object to FIFO
-        (void)memcpy((uint8_t*)(&txFifoObj[CAN_TX_FIFO_WORD_4]), txCanMsg->data, dlcByteSize);
+        (void)memcpy((uint8_t*)(&txFifoObj[CAN_TX_FIFO_WORD_2]), txCanMsg->data, dlcByteSize);
     } 
     // RTR frame message
     else
     {
-        txFifoObj[CAN_TX_FIFO_WORD_2] = txFifoObj[CAN_TX_FIFO_WORD_2] | (((bool) 1 << CAN_MSG_OBJ_RTR_SHIFT_POS) & CAN_MSG_OBJ_RTR_FIELD_POS);
+        txFifoObj[CAN_TX_FIFO_WORD_1] = txFifoObj[CAN_TX_FIFO_WORD_1] | (((bool) 1 << CAN_MSG_OBJ_RTR_POS) & CAN_MSG_OBJ_RTR_MASK);
     }
 }
 
@@ -460,9 +455,8 @@ static void CAN1_MessageWriteToFifo(uint16_t *txFifoObj, struct CAN_MSG_OBJ *txC
 */
 static void CAN1_TX_FIFO_Configuration(void)
 {
-    // TXAT Unlimited attempts; PLSIZE 8; FSIZE 1; TXPRI 0;
-    // TXQEIE disabled; TXREQ disabled; TXQNIE disabled; TXATIE disabled; UINC disabled; FRESET enabled;  
-    C1TXQCON = 0x00400480;
+    // TXQNIE ; TXQEIE ; TXATIE ; UINC ; TXREQ ; FRESET ; TXPRI 0; TXAT Unlimited attempts; FSIZE 1; PLSIZE 8; 
+    C1TXQCON = 0x400480UL;
 }
 
 /**
@@ -473,9 +467,8 @@ static void CAN1_TX_FIFO_Configuration(void)
 
 static void CAN1_RX_FIFO_Configuration(void)
 {          
-    // TXAT Disabled; PLSIZE 8; FSIZE 1; TXPRI 0; 
-    // TFHRFHIE disabled; TFERFFIE disabled; RXTSEN disabled; TXREQ disabled; RXOVIE disabled; RTREN disabled; TXEN disabled; TXATIE disabled; UINC disabled; FRESET enabled; TFNRFNIE disabled; 
-    C1FIFOCON1 = 0x00000400;
+    // TFNRFNIE ; TFHRFHIE ; TFERFFIE ; RXOVIE ; TXATIE ; RXTSEN ; RTREN ; TXEN ; UINC ; TXREQ ; FRESET ; TXPRI ; TXAT ; FSIZE 1; PLSIZE 8; 
+    C1FIFOCON1 = 0x600400UL;
 }
 
 /**
@@ -488,15 +481,13 @@ static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
     /* Configure RX FIFO Filter control settings*/
     
     // message stored in FIFO1
-    C1FLTCON0bits.F0BP = 1;
-    // EID 0; EXIDE disabled; SID11 disabled; 
-    // EID 0; SID 161; 
-    C1FLTOBJ0 = 0x000000A1;
-    // MEID 0; MSID11 disabled; MIDE enabled; 
-    // MSID 2047; MEID 0;
-    C1MASK0 = 0x400007FF;
+    C1FLTCON0bits.F0BP = 1UL;
+    // SID 161; EID 0; SID11 ; EXIDE disabled; 
+    C1FLTOBJ0 = 0xA1UL;
+    // MSID 2047; MEID 0; MSID11 ; MIDE enabled; 
+    C1MASK0 = 0x400007FFUL;
     // Enable the filter 0
-    C1FLTCON0bits.FLTEN0 = 1;
+    C1FLTCON0bits.FLTEN0 = 1UL;
 }
 
 /**
@@ -506,17 +497,12 @@ static void CAN1_RX_FIFO_FilterMaskConfiguration(void)
 */
 static void CAN1_BitRateConfiguration(void)
 {
-    // BRP 39; TSEG1 12; 
-    // SJW 1; TSEG2 1; 
-    C1NBTCFG = 0x270C0101;
-    
-    // BRP 0; TSEG1 30; 
-    // SJW 7; TSEG2 7; 
-    C1DBTCFG = 0x001E0707;
-    
-    // EDGFLTEN disabled; TDCMOD Auto; SID11EN disabled; 
-    // TDCV 0x0; TDCO 31; 
-    C1TDC = 0x00021F00;
+    // SJW 19; TSEG2 19; TSEG1 138; BRP 3; 
+    C1NBTCFG = 0x38A1313U;
+    // SJW 3; TSEG2 3; TSEG1 14; BRP 1; 
+    C1DBTCFG = 0x10E0303U;
+    // TDCV ; TDCO 15; TDCMOD Auto; SID11EN ; EDGFLTEN ; 
+    C1TDC = 0x20F00U;
 }
 
 /**
@@ -538,19 +524,21 @@ static void CAN1_ErrorNotificationEnable(void)
 
 // Section: Driver Interface Function Definitions
 void CAN1_Initialize(void)
-{
-    /* Enable the CAN1 module */
-    C1CONbits.ON = 1;
-    
+{  
+    // DNCNT ; ISOCRCEN enabled; PXEDIS ; WAKFIL ; WFT ; BRSDIS disabled; SIDL ; ON enabled; RTXAT ; ESIGM ; SERR2LOM ; STEF disabled; TXQEN enabled; REQOP Configuration mode; ABAT ; TXBWS ; 
+    C1CON = 0x4908760UL;  
+
     /* Place CAN1 module in configuration mode */
     if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_CONFIGURATION_MODE))
     {
-        /* Initialize the C1FIFOBAL with the start address of the CAN1 FIFO message object area. */
+        /* Initialize the C1FIFOBA with the start address of the CAN1 FIFO message object area. */
+        /* cppcheck-suppress misra-c2012-11.4
+        * Assigning an array pointer to CAN FIFO Address register
+        */
         C1FIFOBA = (uint32_t) &can1FifoMsg[0];
         
-        // RTXAT disabled; ESIGM disabled; TXBWS No delay; STEF disabled; SERRLOM disabled; ABAT disabled; REQOP Configuration mode; TXQEN enabled; 
-        // BRSDIS disabled; CON enabled; WAKFIL enabled; WFT T11 Filter; ISOCRCEN enabled; SIDL disabled; DNCNT 0x0; PXEDIS enabled; CLKSEL disabled; 
-        C1CON = 0x04908760;
+        // DNCNT ; ISOCRCEN enabled; PXEDIS ; WAKFIL ; WFT ; BRSDIS disabled; SIDL ; ON enabled; RTXAT ; ESIGM ; SERR2LOM ; STEF disabled; TXQEN enabled; REQOP Configuration mode; ABAT ; TXBWS ; 
+        C1CON = 0x4908760UL;
     
         // Disabled CAN1 Store in Transmit Event FIFO bit
         C1CONbits.STEF = 0;
@@ -583,30 +571,30 @@ void CAN1_Deinitialize(void)
     /* Place CAN1 module in configuration mode */
     if(CAN_OP_MODE_REQUEST_SUCCESS == CAN1_OperationModeSet(CAN_CONFIGURATION_MODE))
     {        
-        C1CON = 0x04980760;  
+        C1CON = 0x4980760UL;  
            
         /* Reset bit rate settings to POR*/
-        C1NBTCFG = 0x003E0F0F;
-        C1DBTCFG = 0x000E0303;
-        C1TDC = 0x00021000;
+        C1NBTCFG = 0x3E0F0F;
+        C1DBTCFG = 0xE0303;
+        C1TDC = 0x21000;
         
         /* configure CAN1 FIFO settings */
         /* Reset TX FIFO settings to POR*/
-        C1TXQCON = 0x00600480;
+        C1TXQCON = 0x600480U;
         
         /* Reset RX FIFO settings to POR*/
-        C1FIFOCON1 = 0x00600400;
+        C1FIFOCON1 = 0x600400U;
         
         /* Reset RX FIFO Filter control settings to POR*/
-        C1FLTCON0bits.F0BP = 0x0;
-        C1FLTOBJ0 = 0x0;
-        C1MASK0 = 0x0;
-        C1FLTCON0bits.FLTEN0 = 0x0;
+        C1FLTCON0bits.F0BP = 0x0U;
+        C1FLTOBJ0 = 0x0U;
+        C1MASK0 = 0x0U;
+        C1FLTCON0bits.FLTEN0 = 0x0U;
 
     }
     
     /* Disable the CAN1 module */
-    C1CONbits.ON = 0;
+    C1CONbits.ON = 0U;
 }
 
 enum CAN_OP_MODE_STATUS CAN1_OperationModeSet(const enum CAN_OP_MODES requestMode) 
@@ -617,7 +605,7 @@ enum CAN_OP_MODE_STATUS CAN1_OperationModeSet(const enum CAN_OP_MODES requestMod
             || (requestMode == CAN_CONFIGURATION_MODE))
     {
         C1CONbits.REQOP = requestMode;
-
+        C1TSCONbits.TBCEN = 1U;
         while(C1CONbits.OPMOD != requestMode) 
         {
             // This condition is avoiding the system error case endless loop
@@ -626,7 +614,18 @@ enum CAN_OP_MODE_STATUS CAN1_OperationModeSet(const enum CAN_OP_MODES requestMod
                 status = CAN_OP_MODE_SYS_ERROR_OCCURED;
                 break;
             }
+            else if(C1TBC > CAN_MODE_SET_TIMEOUT)
+            {
+                status = CAN_OP_MODE_REQUEST_FAIL;
+                break;
+            }
+            else
+            {
+                /* MISRA-C:2012 Rule 17.3 compliance
+                 * No action required */
+            }
         }
+        C1TSCONbits.TBCEN = 0U;
     }
     else
     {
@@ -659,9 +658,12 @@ bool CAN1_Receive(struct CAN_MSG_OBJ *rxCanMsg)
         // If message object is available
         if((uint8_t)CAN_RX_MSG_AVAILABLE == (rxMsgStatus & (uint8_t)CAN_RX_MSG_AVAILABLE)) 
         {           
-            if((uint16_t *)(*(fifoInfo.address)) != NULL)
+            if((uint32_t *)(*(fifoInfo.address)) != NULL)
             {
-                CAN1_MessageReadFromFifo((uint16_t *) *fifoInfo.address, rxCanMsg);
+                /* cppcheck-suppress misra-c2012-11.4
+                * Parsing CAN Message object location address
+                */
+                CAN1_MessageReadFromFifo((uint32_t *) *fifoInfo.address, rxCanMsg);
                 CAN1_RX_FIFO_IncrementMsgPtr(fifoChannel);
                 
                 // Update the RX FIFO Head count for CAN1_ReceivedMessageCountGet function
@@ -701,9 +703,12 @@ bool CAN1_ReceiveMessageGet(const enum CAN1_RX_FIFO_CHANNELS fifoChannel, struct
     // If message object is available
     if((uint8_t)CAN_RX_MSG_AVAILABLE == (rxMsgStatus & (uint8_t)CAN_RX_MSG_AVAILABLE)) 
     {           
-        if((uint16_t *)(*(fifoInfo.address)) != NULL)
+        if((uint32_t *)(*(fifoInfo.address)) != NULL)
         {
-            CAN1_MessageReadFromFifo((uint16_t *) *fifoInfo.address, rxCanMsg);
+            /* cppcheck-suppress misra-c2012-11.4
+            * Parsing CAN Message object location address
+            */
+            CAN1_MessageReadFromFifo((uint32_t *) *fifoInfo.address, rxCanMsg);
             CAN1_RX_FIFO_IncrementMsgPtr(fifoChannel);
 
             // Update the RX FIFO Head count for CAN1_ReceivedMessageCountGet function
@@ -759,9 +764,12 @@ enum CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const enum CAN1_TX_FIFO_CHANNELS fi
     {
         if(CAN_TX_FIFO_AVAILABLE == CAN1_TransmitFIFOStatusGet(fifoChannel))
         {
-            if((uint16_t *)(*(fifoInfo.address)) != NULL) 
+            if((uint32_t *)(*(fifoInfo.address)) != NULL) 
             {
-                CAN1_MessageWriteToFifo((uint16_t *) *fifoInfo.address, txCanMsg);
+                /* cppcheck-suppress misra-c2012-11.4
+                * Parsing CAN Message object location address
+                */
+                CAN1_MessageWriteToFifo((uint32_t *) *fifoInfo.address, txCanMsg);
                 CAN1_TX_FIFO_MessageSendRequest(fifoChannel);
             }         
         }
@@ -794,13 +802,13 @@ enum CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const enum CAN1_TX_FIFO_CHANN
 
 uint8_t CAN1_ReceivedMessageCountGet(void)
 {
-    uint8_t fifoChannel = 0;
+    uint8_t fifoChannel;
     uint8_t count = 0;
-    uint8_t numOfMsg = 0;
+    uint8_t numOfMsg;
     uint8_t totalMsgObj = 0;
     uint8_t rxMsgStatus;
     struct CAN1_FIFO_INFO fifoInfo;
-    uint16_t rxfifoMsgTail;
+    uint32_t rxfifoMsgTail;
     
     // Iterate all receive FIFO's and get the message object count
     for(count = 0; count < CAN1_NUM_OF_RX_FIFO; count++)
@@ -1010,7 +1018,15 @@ void __attribute__ ((weak)) CAN1_RxBufferOverFlowCallback(void)
 
 } 
 
-void __attribute__((__interrupt__, no_auto_psv)) _C1Interrupt(void)
+/* cppcheck-suppress misra-c2012-8.4
+*
+* (Rule 8.4) REQUIRED: A compatible declaration shall be visible when an object or 
+* function with external linkage is defined
+*
+* Reasoning: Interrupt declaration are provided by compiler and are available
+* outside the driver folder
+*/
+void __attribute__ ( ( __interrupt__ ) ) _C1Interrupt(void)
 {
     // Bus Wake-up Activity Interrupt 
     if(1 == C1INTbits.WAKIF)
