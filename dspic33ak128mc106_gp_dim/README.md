@@ -8,7 +8,9 @@
 ![Board picture](./images/dim.jpg)
 
 ## Summary
-Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curiosity Platform Development Board
+Demonstrates the basic capability of the dsPIC33AK128MC106 on the dsPIC33A Curiosity Platform Development Board.
+
+![Curiosity Platform Board](./images/curiosity.jpg)
 
 ## Related Documentation
 1) [dsPIC33AK128MC106 Curiosity GP DIM User's Guide](https://www.microchip.com/70005556)
@@ -56,8 +58,6 @@ After completing the board setup in the prior section, you may interact with the
 **Unsupported Board Features**
 * This DIM does not support CAN functionality
 * This DIM does not support the capacitive touch portion of the demo described in the dsPIC33A Curiosity Platform Board user's guide.
-
-![Curiosity Platform Board](../images/curiosity.jpg)
  
 
 
