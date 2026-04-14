@@ -13,7 +13,7 @@
 */
 
 /*
-© [2025] Microchip Technology Inc. and its subsidiaries.
+© [2026] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -73,14 +73,14 @@ void SCCP3_PWM_Initialize (void)
     CCP3STAT = 0x0UL;
     // TMRL 0x0; TMRH 0x0; 
     CCP3TMR = 0x0UL;
-    // PRL 40000; PRH 0; 
-    CCP3PR = 0x9C40UL;
+    // PRL 65535; PRH 0; 
+    CCP3PR = 0xFFFFUL;
     // BUFL 0x0; BUFH 0x0; 
     CCP3BUF = 0x0UL;
     // CMPA 0; 
     CCP3RA = 0x0UL;
-    // CMPB 20000; 
-    CCP3RB = 0x4E20UL;
+    // CMPB 65535; 
+    CCP3RB = 0xFFFFUL;
     SCCP3_PWM_CallbackRegister(&SCCP3_PWM_Callback);
     
     CCP3CON1bits.ON = 1; //Enable Module

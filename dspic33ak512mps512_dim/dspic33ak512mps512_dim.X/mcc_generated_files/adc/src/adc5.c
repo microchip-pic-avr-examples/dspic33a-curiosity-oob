@@ -7,12 +7,31 @@
  *            
  * @brief     This is the generated driver source file for ADC5 driver        
  *
- * @skipline @version   PLIB Version 1.1.0
+ * @skipline @version   PLIB Version 1.2.1
  *           
  * @skipline  Device : dsPIC33AK512MPS512
 */
 
-/*disclaimer*/
+/*
+© [2026] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
+*/
 
 // Section: Included Files
 #include <stddef.h>
@@ -78,6 +97,7 @@ const struct ADC_INTERFACE ADC5 = {
     .Initialize             = &ADC5_Initialize,
     .Deinitialize           = &ADC5_Deinitialize,
     .Enable                 = &ADC5_Enable,
+    .IsReady                = &ADC5_IsReady,
     .Disable                = &ADC5_Disable,
     .SoftwareTriggerEnable  = &ADC5_SoftwareTriggerEnable,
     .SoftwareTriggerDisable = &ADC5_SoftwareTriggerDisable,
@@ -100,7 +120,7 @@ const struct ADC_INTERFACE ADC5 = {
 void ADC5_Initialize(void)
 {
     //CALCNT Wait for 2 activity free ADC clock cycles; BUFEN disabled; TSTEN disabled; ON enabled; STNDBY disabled; RPTCNT 1 ADC clock cycles between triggers; CALRATE Every second; ACALEN disabled; CALREQ Calibration cycle is not requested; 
-    AD5CON = 0x8000UL;
+    AD5CON = (uint32_t)0x8000UL & ~_AD1CON_ON_MASK;
     //DATAOVR 0x0; 
     AD5DATAOVR = 0x0UL;
     //CH0RDY disabled; CH1RDY disabled; CH2RDY disabled; CH3RDY disabled; CH4RDY disabled; CH5RDY disabled; CH6RDY disabled; CH7RDY disabled; CH8RDY disabled; CH9RDY disabled; CH10RDY disabled; CH11RDY disabled; CH12RDY disabled; CH13RDY disabled; CH14RDY disabled; CH15RDY disabled; 
@@ -113,196 +133,16 @@ void ADC5_Initialize(void)
     AD5SWTRG = 0x0UL;
     //TRG1SRC Software trigger initiated by using ADnSWTRG register; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
     AD5CH0CON1 = 0x200001UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH1CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH2CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH3CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH4CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH5CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH6CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH7CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH8CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH9CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH10CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH11CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH12CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH13CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH14CON1 = 0x200000UL;
-    //TRG1SRC Triggers are disabled; MODE Single sample initiated by TRG1SRC[4:0] trigger; TRG2SRC Triggers are disabled; ACCNUM 4 samples, 13 bits result; SAMC 0.5 TAD; IRQSEL enabled; EIEN disabled; TRG1POL disabled; PINSEL AD5AN0; NINSEL disabled; FRAC Integer; DIFF disabled; 
-    AD5CH15CON1 = 0x200000UL;
     //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
     AD5CH0CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH1CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH2CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH3CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH4CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH5CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH6CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH7CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH8CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH9CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH10CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH11CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH12CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH13CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH14CON2 = 0x20000000UL;
-    //ADCMPCNT disabled; CMPMOD NONE; CMPCNTMOD disabled; CMPVAL enabled; ACCBRST disabled; ACCRO disabled; 
-    AD5CH15CON2 = 0x20000000UL;
     //
     AD5CH0RES = 0x0UL;
-    //
-    AD5CH1RES = 0x0UL;
-    //
-    AD5CH2RES = 0x0UL;
-    //
-    AD5CH3RES = 0x0UL;
-    //
-    AD5CH4RES = 0x0UL;
-    //
-    AD5CH5RES = 0x0UL;
-    //
-    AD5CH6RES = 0x0UL;
-    //
-    AD5CH7RES = 0x0UL;
-    //
-    AD5CH8RES = 0x0UL;
-    //
-    AD5CH9RES = 0x0UL;
-    //
-    AD5CH10RES = 0x0UL;
-    //
-    AD5CH11RES = 0x0UL;
-    //
-    AD5CH12RES = 0x0UL;
-    //
-    AD5CH13RES = 0x0UL;
-    //
-    AD5CH14RES = 0x0UL;
-    //
-    AD5CH15RES = 0x0UL;
     //CNT 0x0; 
     AD5CH0CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH1CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH2CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH3CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH4CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH5CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH6CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH7CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH8CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH9CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH10CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH11CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH12CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH13CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH14CNT = 0x0UL;
-    //CNT 0x0; 
-    AD5CH15CNT = 0x0UL;
     //CMPLO 0x0; 
     AD5CH0CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH1CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH2CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH3CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH4CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH5CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH6CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH7CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH8CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH9CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH10CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH11CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH12CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH13CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH14CMPLO = 0x0UL;
-    //CMPLO 0x0; 
-    AD5CH15CMPLO = 0x0UL;
     //CMPHI 0x0; 
     AD5CH0CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH1CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH2CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH3CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH4CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH5CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH6CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH7CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH8CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH9CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH10CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH11CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH12CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH13CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH14CMPHI = 0x0UL;
-    //CMPHI 0x0; 
-    AD5CH15CMPHI = 0x0UL;
 
     ADC5_ChannelCallbackRegister(&ADC5_ChannelCallback);
     ADC5_Result32BitChannelCallbackRegister(&ADC5_Result32BitChannelCallback);
@@ -324,101 +164,11 @@ void ADC5_Deinitialize (void)
     AD5CMPSTAT = 0x0UL;
     AD5SWTRG = 0x0UL;
     AD5CH0CON1 = 0x0UL;
-    AD5CH1CON1 = 0x0UL;
-    AD5CH2CON1 = 0x0UL;
-    AD5CH3CON1 = 0x0UL;
-    AD5CH4CON1 = 0x0UL;
-    AD5CH5CON1 = 0x0UL;
-    AD5CH6CON1 = 0x0UL;
-    AD5CH7CON1 = 0x0UL;
-    AD5CH8CON1 = 0x0UL;
-    AD5CH9CON1 = 0x0UL;
-    AD5CH10CON1 = 0x0UL;
-    AD5CH11CON1 = 0x0UL;
-    AD5CH12CON1 = 0x0UL;
-    AD5CH13CON1 = 0x0UL;
-    AD5CH14CON1 = 0x0UL;
-    AD5CH15CON1 = 0x0UL;
     AD5CH0CON2 = 0x1UL;
-    AD5CH1CON2 = 0x1UL;
-    AD5CH2CON2 = 0x1UL;
-    AD5CH3CON2 = 0x1UL;
-    AD5CH4CON2 = 0x1UL;
-    AD5CH5CON2 = 0x1UL;
-    AD5CH6CON2 = 0x1UL;
-    AD5CH7CON2 = 0x1UL;
-    AD5CH8CON2 = 0x1UL;
-    AD5CH9CON2 = 0x1UL;
-    AD5CH10CON2 = 0x1UL;
-    AD5CH11CON2 = 0x1UL;
-    AD5CH12CON2 = 0x1UL;
-    AD5CH13CON2 = 0x1UL;
-    AD5CH14CON2 = 0x1UL;
-    AD5CH15CON2 = 0x1UL;
     AD5CH0RES = 0x0UL;
-    AD5CH1RES = 0x0UL;
-    AD5CH2RES = 0x0UL;
-    AD5CH3RES = 0x0UL;
-    AD5CH4RES = 0x0UL;
-    AD5CH5RES = 0x0UL;
-    AD5CH6RES = 0x0UL;
-    AD5CH7RES = 0x0UL;
-    AD5CH8RES = 0x0UL;
-    AD5CH9RES = 0x0UL;
-    AD5CH10RES = 0x0UL;
-    AD5CH11RES = 0x0UL;
-    AD5CH12RES = 0x0UL;
-    AD5CH13RES = 0x0UL;
-    AD5CH14RES = 0x0UL;
-    AD5CH15RES = 0x0UL;
     AD5CH0CNT = 0x0UL;
-    AD5CH1CNT = 0x0UL;
-    AD5CH2CNT = 0x0UL;
-    AD5CH3CNT = 0x0UL;
-    AD5CH4CNT = 0x0UL;
-    AD5CH5CNT = 0x0UL;
-    AD5CH6CNT = 0x0UL;
-    AD5CH7CNT = 0x0UL;
-    AD5CH8CNT = 0x0UL;
-    AD5CH9CNT = 0x0UL;
-    AD5CH10CNT = 0x0UL;
-    AD5CH11CNT = 0x0UL;
-    AD5CH12CNT = 0x0UL;
-    AD5CH13CNT = 0x0UL;
-    AD5CH14CNT = 0x0UL;
-    AD5CH15CNT = 0x0UL;
     AD5CH0CMPLO = 0x0UL;
-    AD5CH1CMPLO = 0x0UL;
-    AD5CH2CMPLO = 0x0UL;
-    AD5CH3CMPLO = 0x0UL;
-    AD5CH4CMPLO = 0x0UL;
-    AD5CH5CMPLO = 0x0UL;
-    AD5CH6CMPLO = 0x0UL;
-    AD5CH7CMPLO = 0x0UL;
-    AD5CH8CMPLO = 0x0UL;
-    AD5CH9CMPLO = 0x0UL;
-    AD5CH10CMPLO = 0x0UL;
-    AD5CH11CMPLO = 0x0UL;
-    AD5CH12CMPLO = 0x0UL;
-    AD5CH13CMPLO = 0x0UL;
-    AD5CH14CMPLO = 0x0UL;
-    AD5CH15CMPLO = 0x0UL;
     AD5CH0CMPHI = 0x0UL;
-    AD5CH1CMPHI = 0x0UL;
-    AD5CH2CMPHI = 0x0UL;
-    AD5CH3CMPHI = 0x0UL;
-    AD5CH4CMPHI = 0x0UL;
-    AD5CH5CMPHI = 0x0UL;
-    AD5CH6CMPHI = 0x0UL;
-    AD5CH7CMPHI = 0x0UL;
-    AD5CH8CMPHI = 0x0UL;
-    AD5CH9CMPHI = 0x0UL;
-    AD5CH10CMPHI = 0x0UL;
-    AD5CH11CMPHI = 0x0UL;
-    AD5CH12CMPHI = 0x0UL;
-    AD5CH13CMPHI = 0x0UL;
-    AD5CH14CMPHI = 0x0UL;
-    AD5CH15CMPHI = 0x0UL;
 }
 
 void ADC5_SharedCorePowerEnable (void) 
@@ -559,7 +309,7 @@ void ADC5_PWMTriggerSourceSet(enum ADC5_CHANNEL channel, enum ADC_PWM_INSTANCE p
     switch(channel)
     {
         case ADC5_Channel0:
-                AD5SWTRGbits.CH0TRG = adcTriggerValue;
+                AD5CH0CON1bits.TRG1SRC = adcTriggerValue;
                 break;
         default:
                 break;
@@ -574,7 +324,7 @@ void ADC5_ChannelCallbackRegister(void(*callback)(enum ADC5_CHANNEL channel, uin
     }
 }
 
-void __attribute__ ((weak)) ADC5_ChannelCallback (enum ADC5_CHANNEL channel, uint16_t adcVal)
+void __attribute__ ( ( weak ) ) ADC5_ChannelCallback (enum ADC5_CHANNEL channel, uint16_t adcVal)
 { 
     (void)channel;
     (void)adcVal;
@@ -588,14 +338,22 @@ void ADC5_Result32BitChannelCallbackRegister(void(*callback)(enum ADC5_CHANNEL c
     }
 }
 
-void __attribute__ ((weak)) ADC5_Result32BitChannelCallback (enum ADC5_CHANNEL channel, uint32_t adcVal)
+void __attribute__ ( ( weak ) ) ADC5_Result32BitChannelCallback (enum ADC5_CHANNEL channel, uint32_t adcVal)
 { 
     (void)channel;
     (void)adcVal;
 } 
 
 
-void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _AD5CH0Interrupt ( void )
+/* cppcheck-suppress misra-c2012-8.4
+*
+* (Rule 8.4) REQUIRED: A compatible declaration shall be visible when an object or 
+* function with external linkage is defined
+*
+* Reasoning: Interrupt declaration are provided by compiler and are available
+* outside the driver folder
+*/
+void __attribute__ ( ( __interrupt__, weak ) ) _AD5CH0Interrupt ( void )
 {
     uint32_t valADC5_Channel0;
     //Read the ADC value from the ADCBUF
@@ -615,7 +373,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _AD5CH0Interrupt ( voi
 }
 
 
-void __attribute__ ((weak)) ADC5_ChannelTasks (enum ADC5_CHANNEL channel)
+void __attribute__ ( ( weak ) ) ADC5_ChannelTasks (enum ADC5_CHANNEL channel)
 {
     uint32_t adcVal;
     
@@ -650,7 +408,7 @@ void ADC5_ComparatorCallbackRegister(void(*callback)(enum ADC5_CMP comparator))
     }
 }
 
-void __attribute__ ((weak)) ADC5_ComparatorCallback (enum ADC5_CMP comparator)
+void __attribute__ ( ( weak ) ) ADC5_ComparatorCallback (enum ADC5_CMP comparator)
 { 
     (void)comparator;
 } 
