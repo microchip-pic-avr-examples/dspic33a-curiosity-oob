@@ -10,6 +10,8 @@
 ## Summary
 Demonstrates the basic capability of the dsPIC33AK512MPS512 on the Curiosity Platform Development Board
 
+![Curiosity Platform Board](./images/curiosity.jpg)
+
 ## Related Documentation
 1) [dsPIC33AK512MPS512 DIM (EV80L65A) User's Guide](https://www.microchip.com/EV80L65A)
 2) [Curiosity Platform Development Board (EV74H48A) User's Guide](https://www.microchip.com/en-us/development-tool/ev74h48a)
@@ -55,8 +57,6 @@ Demonstrates the basic capability of the dsPIC33AK512MPS512 on the Curiosity Pla
 * LED0 reflects the status of the T3 capacitive touch button; On when pressed, off when released.
 
 **NOTE**: The touch library, located in mcc_generated_files/touch, contains pre-release code intended solely for demonstration purposes. It is not intended for production use.
-
-![Curiosity Platform Board](../images/curiosity.jpg)
 
 **PEAK PCAN-View CAN bit rate setup**
 * If using the PEAK USB CAN-FD Analyzer additional bit rates to the default bit rates may be needed to get consistent communication functioning with the Curiosity Platform Development Board. The following steps are a guide to other tool provided bit rates that will improve communication.
